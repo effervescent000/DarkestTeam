@@ -81,22 +81,24 @@ public class Hero extends Creature implements ICombatMethods {
     private PlagueDoctor plagueDoctor;
     private Shieldbreaker shieldbreaker;
     private Vestal vestal;
+    
+//    private HeroClass myHero;
 
     private int startingPosition;
 
-    public Hero(String Name, String Class, int Lvl) {
+    public Hero(String heroName, String heroClass, int resolveLvl) {
         //this method can be private maybe
 
-        this.heroName = new SimpleStringProperty(Name);
-        this.heroClass = new SimpleStringProperty(Class);
-        this.resolveLvl = new SimpleIntegerProperty(Lvl);
+        this.heroName = new SimpleStringProperty(heroName);
+        this.heroClass = new SimpleStringProperty(heroClass);
+        this.resolveLvl = new SimpleIntegerProperty(resolveLvl);
 
         this.dmgMod = 1;
 
         int arraySlot;
 
-        if (Class != null) {
-            switch (Lvl) {
+        if (heroClass != null) {
+            switch (resolveLvl) {
                 case 0:
                     arraySlot = 0;
                     break;
@@ -104,13 +106,13 @@ public class Hero extends Creature implements ICombatMethods {
                     arraySlot = 4;
                     break;
                 default:
-                    arraySlot = Lvl - 1;
+                    arraySlot = resolveLvl - 1;
                     break;
             }
 
-            switch (Class) {
+            switch (heroClass) {
                 case "Antiquarian":
-                    antiquarian = new Antiquarian(Lvl);
+                    antiquarian = new Antiquarian(resolveLvl);
 
                     maxHP = antiquarian.getMaxHPArray()[arraySlot];
                     dodge = antiquarian.getDodgeArray()[arraySlot];
@@ -119,18 +121,19 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = antiquarian.getCritModArray()[arraySlot];
                     dmg = antiquarian.getDmgArray()[arraySlot];
 
-                    stunRes = 0.3 + .1 * Lvl;
-                    moveRes = 0.3 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
-                    trapRes = 0.1 + .1 * Lvl;
+                    stunRes = 0.3 + .1 * resolveLvl;
+                    moveRes = 0.3 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
 
                     deathRes = 0.67;
                     break;
                 case "Arbalest":
                     arbalest = new Arbalest();
+//                    myHero = new Arbalest();
 
                     maxHP = arbalest.getMaxHPArray()[arraySlot];
                     dodge = arbalest.getDodgeArray()[arraySlot];
@@ -139,13 +142,13 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = arbalest.getCritModArray()[arraySlot];
                     dmg = arbalest.getDmgArray()[arraySlot];
 
-                    stunRes = 0.4 + .1 * Lvl;
-                    moveRes = 0.4 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
-                    trapRes = 0.1 + .1 * Lvl;
+                    stunRes = 0.4 + .1 * resolveLvl;
+                    moveRes = 0.4 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
 
                     deathRes = 0.67;
                     break;
@@ -158,18 +161,18 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = bountyHunter.getCritModArray()[arraySlot];
                     dmg = bountyHunter.getDmgArray()[arraySlot];
 
-                    stunRes = 0.4 + .1 * Lvl;
-                    moveRes = 0.4 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.2 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
-                    trapRes = 0.4 + .1 * Lvl;
+                    stunRes = 0.4 + .1 * resolveLvl;
+                    moveRes = 0.4 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.2 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
+                    trapRes = 0.4 + .1 * resolveLvl;
 
                     deathRes = 0.67;
                     break;
                 case "Crusader":
-                    crusader = new Crusader(Lvl);
+                    crusader = new Crusader(resolveLvl);
                     maxHP = crusader.getMaxHPArray()[arraySlot];
                     dodge = crusader.getDodgeArray()[arraySlot];
                     speed = crusader.getSpeedArray()[arraySlot];
@@ -177,17 +180,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = crusader.getCritModArray()[arraySlot];
                     dmg = crusader.getDmgArray()[arraySlot];
 
-                    stunRes = 0.4 + .1 * Lvl;
-                    moveRes = 0.4 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.4 + .1 * resolveLvl;
+                    moveRes = 0.4 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.1 + .1 * Lvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Flagellant":
-                    flagellant = new Flagellant(Lvl);
+                    flagellant = new Flagellant(resolveLvl);
                     maxHP = flagellant.getMaxHPArray()[arraySlot];
                     dodge = flagellant.getDodgeArray()[arraySlot];
                     speed = flagellant.getSpeedArray()[arraySlot];
@@ -195,14 +198,14 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = flagellant.getCritModArray()[arraySlot];
                     dmg = flagellant.getDmgArray()[arraySlot];
 
-                    stunRes = 0.5 + .1 * Lvl;
-                    moveRes = 0.5 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.65 + .1 * Lvl;
-                    diseaseRes = 0.4 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.5 + .1 * resolveLvl;
+                    moveRes = 0.5 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.65 + .1 * resolveLvl;
+                    diseaseRes = 0.4 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.73;
-                    trapRes = 0 + .1 * Lvl;
+                    trapRes = 0 + .1 * resolveLvl;
                     break;
                 case "Grave Robber":
                     graveRobber = new GraveRobber(this);
@@ -213,17 +216,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = graveRobber.getCritModArray()[arraySlot];
                     dmg = graveRobber.getDmgArray()[arraySlot];
 
-                    stunRes = 0.2 + .1 * Lvl;
-                    moveRes = 0.2 + .1 * Lvl;
-                    blightRes = 0.5 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.2 + .1 * resolveLvl;
+                    moveRes = 0.2 + .1 * resolveLvl;
+                    blightRes = 0.5 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.5 + .1 * Lvl;
+                    trapRes = 0.5 + .1 * resolveLvl;
                     break;
                 case "Hellion":
-                    hellion = new Hellion(Lvl);
+                    hellion = new Hellion(resolveLvl);
                     maxHP = hellion.getMaxHPArray()[arraySlot];
                     dodge = hellion.getDodgeArray()[arraySlot];
                     speed = hellion.getSpeedArray()[arraySlot];
@@ -231,17 +234,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = hellion.getCritModArray()[arraySlot];
                     dmg = hellion.getDmgArray()[arraySlot];
 
-                    stunRes = 0.4 + .1 * Lvl;
-                    moveRes = 0.4 + .1 * Lvl;
-                    blightRes = 0.4 + .1 * Lvl;
-                    bleedRes = 0.4 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.4 + .1 * resolveLvl;
+                    moveRes = 0.4 + .1 * resolveLvl;
+                    blightRes = 0.4 + .1 * resolveLvl;
+                    bleedRes = 0.4 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.2 + .1 * Lvl;
+                    trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Highwayman":
-                    highwayman = new Highwayman(Lvl);
+                    highwayman = new Highwayman(resolveLvl);
                     maxHP = highwayman.getMaxHPArray()[arraySlot];
                     dodge = highwayman.getDodgeArray()[arraySlot];
                     speed = highwayman.getSpeedArray()[arraySlot];
@@ -249,17 +252,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = highwayman.getCritModArray()[arraySlot];
                     dmg = highwayman.getDmgArray()[arraySlot];
 
-                    stunRes = 0.3 + .1 * Lvl;
-                    moveRes = 0.3 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.3 + .1 * resolveLvl;
+                    moveRes = 0.3 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.4 + .1 * Lvl;
+                    trapRes = 0.4 + .1 * resolveLvl;
                     break;
                 case "Hound Master":
-                    houndMaster = new HoundMaster(Lvl);
+                    houndMaster = new HoundMaster(resolveLvl);
                     maxHP = houndMaster.getMaxHPArray()[arraySlot];
                     dodge = houndMaster.getDodgeArray()[arraySlot];
                     speed = houndMaster.getSpeedArray()[arraySlot];
@@ -267,17 +270,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = houndMaster.getCritModArray()[arraySlot];
                     dmg = houndMaster.getDmgArray()[arraySlot];
 
-                    stunRes = 0.4 + .1 * Lvl;
-                    moveRes = 0.4 + .1 * Lvl;
-                    blightRes = 0.4 + .1 * Lvl;
-                    bleedRes = 0.4 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.4 + .1 * resolveLvl;
+                    moveRes = 0.4 + .1 * resolveLvl;
+                    blightRes = 0.4 + .1 * resolveLvl;
+                    bleedRes = 0.4 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.4 + .1 * Lvl;
+                    trapRes = 0.4 + .1 * resolveLvl;
                     break;
                 case "Jester":
-                    jester = new Jester(Lvl);
+                    jester = new Jester(resolveLvl);
                     maxHP = jester.getMaxHPArray()[arraySlot];
                     dodge = jester.getDodgeArray()[arraySlot];
                     speed = jester.getSpeedArray()[arraySlot];
@@ -285,17 +288,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = jester.getCritModArray()[arraySlot];
                     dmg = jester.getDmgArray()[arraySlot];
 
-                    stunRes = 0.2 + .1 * Lvl;
-                    moveRes = 0.2 + .1 * Lvl;
-                    blightRes = 0.4 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.2 + .1 * Lvl;
-                    debuffRes = 0.4 + .1 * Lvl;
+                    stunRes = 0.2 + .1 * resolveLvl;
+                    moveRes = 0.2 + .1 * resolveLvl;
+                    blightRes = 0.4 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.2 + .1 * resolveLvl;
+                    debuffRes = 0.4 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.3 + .1 * Lvl;
+                    trapRes = 0.3 + .1 * resolveLvl;
                     break;
                 case "Leper":
-                    leper = new Leper(Lvl);
+                    leper = new Leper(resolveLvl);
                     maxHP = leper.getMaxHPArray()[arraySlot];
                     dodge = leper.getDodgeArray()[arraySlot];
                     speed = leper.getSpeedArray()[arraySlot];
@@ -303,17 +306,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = leper.getCritModArray()[arraySlot];
                     dmg = leper.getDmgArray()[arraySlot];
 
-                    stunRes = 0.6 + .1 * Lvl;
-                    moveRes = 0.6 + .1 * Lvl;
-                    blightRes = 0.4 + .1 * Lvl;
-                    bleedRes = 0.1 + .1 * Lvl;
-                    diseaseRes = 0.2 + .1 * Lvl;
-                    debuffRes = 0.4 + .1 * Lvl;
+                    stunRes = 0.6 + .1 * resolveLvl;
+                    moveRes = 0.6 + .1 * resolveLvl;
+                    blightRes = 0.4 + .1 * resolveLvl;
+                    bleedRes = 0.1 + .1 * resolveLvl;
+                    diseaseRes = 0.2 + .1 * resolveLvl;
+                    debuffRes = 0.4 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.1 + .1 * Lvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Man-at-Arms":
-                    manAtArms = new ManAtArms(Lvl);
+                    manAtArms = new ManAtArms(resolveLvl);
                     maxHP = manAtArms.getMaxHPArray()[arraySlot];
                     dodge = manAtArms.getDodgeArray()[arraySlot];
                     speed = manAtArms.getSpeedArray()[arraySlot];
@@ -321,17 +324,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = manAtArms.getCritModArray()[arraySlot];
                     dmg = manAtArms.getDmgArray()[arraySlot];
 
-                    stunRes = 0.5 + .1 * Lvl;
-                    moveRes = 0.5 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.4 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.5 + .1 * resolveLvl;
+                    moveRes = 0.5 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.4 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.1 + .1 * Lvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Occultist":
-                    occultist = new Occultist(Lvl);
+                    occultist = new Occultist(resolveLvl);
                     maxHP = occultist.getMaxHPArray()[arraySlot];
                     dodge = occultist.getDodgeArray()[arraySlot];
                     speed = occultist.getSpeedArray()[arraySlot];
@@ -339,17 +342,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = occultist.getCritModArray()[arraySlot];
                     dmg = occultist.getDmgArray()[arraySlot];
 
-                    stunRes = 0.2 + .1 * Lvl;
-                    moveRes = 0.2 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.4 + .1 * Lvl;
-                    diseaseRes = 0.4 + .1 * Lvl;
-                    debuffRes = 0.6 + .1 * Lvl;
+                    stunRes = 0.2 + .1 * resolveLvl;
+                    moveRes = 0.2 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.4 + .1 * resolveLvl;
+                    diseaseRes = 0.4 + .1 * resolveLvl;
+                    debuffRes = 0.6 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.1 + .1 * Lvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Plague Doctor":
-                    plagueDoctor = new PlagueDoctor(Lvl);
+                    plagueDoctor = new PlagueDoctor(resolveLvl);
                     maxHP = plagueDoctor.getMaxHPArray()[arraySlot];
                     dodge = plagueDoctor.getDodgeArray()[arraySlot];
                     speed = plagueDoctor.getSpeedArray()[arraySlot];
@@ -357,17 +360,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = plagueDoctor.getCritModArray()[arraySlot];
                     dmg = plagueDoctor.getDmgArray()[arraySlot];
 
-                    stunRes = 0.2 + .1 * Lvl;
-                    moveRes = 0.2 + .1 * Lvl;
-                    blightRes = 0.6 + .1 * Lvl;
-                    bleedRes = 0.2 + .1 * Lvl;
-                    diseaseRes = 0.5 + .1 * Lvl;
-                    debuffRes = 0.5 + .1 * Lvl;
+                    stunRes = 0.2 + .1 * resolveLvl;
+                    moveRes = 0.2 + .1 * resolveLvl;
+                    blightRes = 0.6 + .1 * resolveLvl;
+                    bleedRes = 0.2 + .1 * resolveLvl;
+                    diseaseRes = 0.5 + .1 * resolveLvl;
+                    debuffRes = 0.5 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.2 + .1 * Lvl;
+                    trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Shieldbreaker":
-                    shieldbreaker = new Shieldbreaker(Lvl);
+                    shieldbreaker = new Shieldbreaker(resolveLvl);
                     maxHP = shieldbreaker.getMaxHPArray()[arraySlot];
                     dodge = shieldbreaker.getDodgeArray()[arraySlot];
                     speed = shieldbreaker.getSpeedArray()[arraySlot];
@@ -375,17 +378,17 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = shieldbreaker.getCritModArray()[arraySlot];
                     dmg = shieldbreaker.getDmgArray()[arraySlot];
 
-                    stunRes = 0.5 + .1 * Lvl;
-                    moveRes = 0.5 + .1 * Lvl;
-                    blightRes = 0.2 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.5 + .1 * resolveLvl;
+                    moveRes = 0.5 + .1 * resolveLvl;
+                    blightRes = 0.2 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.2 + .1 * Lvl;
+                    trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Vestal":
-                    vestal = new Vestal(Lvl);
+                    vestal = new Vestal(resolveLvl);
                     maxHP = vestal.getMaxHPArray()[arraySlot];
                     dodge = vestal.getDodgeArray()[arraySlot];
                     speed = vestal.getSpeedArray()[arraySlot];
@@ -393,14 +396,14 @@ public class Hero extends Creature implements ICombatMethods {
                     critMod = vestal.getCritModArray()[arraySlot];
                     dmg = vestal.getDmgArray()[arraySlot];
 
-                    stunRes = 0.3 + .1 * Lvl;
-                    moveRes = 0.3 + .1 * Lvl;
-                    blightRes = 0.3 + .1 * Lvl;
-                    bleedRes = 0.3 + .1 * Lvl;
-                    diseaseRes = 0.3 + .1 * Lvl;
-                    debuffRes = 0.3 + .1 * Lvl;
+                    stunRes = 0.3 + .1 * resolveLvl;
+                    moveRes = 0.3 + .1 * resolveLvl;
+                    blightRes = 0.3 + .1 * resolveLvl;
+                    bleedRes = 0.3 + .1 * resolveLvl;
+                    diseaseRes = 0.3 + .1 * resolveLvl;
+                    debuffRes = 0.3 + .1 * resolveLvl;
                     deathRes = 0.67;
-                    trapRes = 0.1 + .1 * Lvl;
+                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 default:
                     System.out.println("Invalid class, try again");

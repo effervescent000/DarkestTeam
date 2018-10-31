@@ -27,8 +27,6 @@ import java.util.ArrayList;
  */
 public class Arbalest implements ICombatMethods {
 
-//    private int resolveLvl;
-//    private String heroName;
     private final int[] maxHPArray = {27, 32, 37, 42, 47};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};
     private final int[] speedArray = {3, 3, 4, 4, 5};
