@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="246.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="darkestteam.AddCharacterController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <ComboBox fx:id="classListBox" promptText="Class" GridPane.rowIndex="1" />
+        <ComboBox fx:id="resolveListBox" promptText="Resolve level" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="ConfirmButton" alignment="CENTER" contentDisplay="TOP" defaultButton="true" mnemonicParsing="false" onAction="#handleButtonAction" text="Create" GridPane.rowIndex="7" />
+        <Button fx:id="CancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleButtonAction" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <TextField fx:id="NameField" promptText="Name" />
+      <ComboBox fx:id="move1Rank" prefWidth="150.0" promptText="Move 1 Rank" GridPane.rowIndex="2" />
+      <ComboBox fx:id="move2Rank" prefWidth="150.0" promptText="Move 2 Rank" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ComboBox fx:id="move3Rank" prefWidth="150.0" promptText="Move 3 Rank" GridPane.rowIndex="3" />
+      <ComboBox fx:id="move4Rank" prefWidth="150.0" promptText="Move 4 Rank" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ComboBox fx:id="move5Rank" prefWidth="150.0" promptText="Move 5 Rank" GridPane.rowIndex="4" />
+      <ComboBox fx:id="move6Rank" prefWidth="150.0" promptText="Move 6 Rank" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <ComboBox fx:id="move7Rank" prefWidth="150.0" promptText="Move 7 Rank" GridPane.rowIndex="5" />
+    </children>
+</GridPane>
