@@ -6,6 +6,8 @@
 package darkestteam.heroClasses;
 
 import darkestteam.Combat;
+import darkestteam.Enemy;
+import darkestteam.Hero;
 
 /**
  *
@@ -22,30 +24,28 @@ public class Jester {
     private final double[] critModArray = {.075, .08, .085, .09, .095};
     private final double[] dmgArray = {5.5, 6.5, 8, 8.5, 10};
 
-    private static boolean religious = false;
-//
-//
-//    private double stunRes = 0.2;
-//    private double moveRes = 0.2;
-//    private double blightRes = 0.4;
-//    private double bleedRes = 0.3;
-//    private double diseaseRes = 0.2;
-//    private double debuffRes = 0.4;
-//    private double deathRes = 0.67;
-//    private double trapRes = 0.3;
+//    private static boolean religious = false;
+    private Combat combat;
+    private Hero myHero;
 
-    public Jester(int resolveLvl) {
-       
-//        this.resolveLvl = resolveLvl;
-//
-//        int arraySlot = resolveLvl - 1;
-//
-//        this.maxHP = maxHPArray[arraySlot];
-//        this.dodge = dodgeArray[arraySlot];
-//        this.speed = speedArray[arraySlot];
-//        this.accMod = accModArray[arraySlot];
-//        this.critMod = critModArray[arraySlot];
-//        this.dmg = dmgArray[arraySlot];
+    private int dirkStab;
+    private int harvest;
+    private int finale;
+    private int solo;
+    private int sliceOff;
+    private int battleBallad;
+    private int inspiringTune;
+
+    public Jester(Hero myHero) {
+        this.myHero = myHero;
+
+        dirkStab = myHero.getMove1Rank() - 1;
+        harvest = myHero.getMove2Rank() - 1;
+        finale = myHero.getMove3Rank() - 1;
+        solo = myHero.getMove4Rank() - 1;
+        sliceOff = myHero.getMove5Rank() - 1;
+        battleBallad = myHero.getMove6Rank() - 1;
+        inspiringTune = myHero.getMove7Rank() - 1;
 
     }
 
@@ -73,75 +73,40 @@ public class Jester {
         return dmgArray;
     }
 
-    
-    
     public int getResolveLvl() {
         return resolveLvl;
     }
 
-    public static boolean isReligious() {
-        return religious;
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+    private void useDirkStab(Enemy t) {
+        //todo add ability code here
     }
 
-//    public int getMaxHP() {
-//        return maxHP;
-//    }
-//
-//    public double getDodge() {
-//        return dodge;
-//    }
-//
-//    public int getSpeed() {
-//        return speed;
-//    }
-//
-//    public double getAccMod() {
-//        return accMod;
-//    }
-//
-//    public double getCritMod() {
-//        return critMod;
-//    }
-//
-//    public double getDmg() {
-//        return dmg;
-//    }
-//
-//    public double getProt() {
-//        return prot;
-//    }
+    private void useHarvest() {
 
-//    public double getStunRes() {
-//        return stunRes;
-//    }
-//
-//    public double getMoveRes() {
-//        return moveRes;
-//    }
-//
-//    public double getBlightRes() {
-//        return blightRes;
-//    }
-//
-//    public double getBleedRes() {
-//        return bleedRes;
-//    }
-//
-//    public double getDiseaseRes() {
-//        return diseaseRes;
-//    }
-//
-//    public double getDebuffRes() {
-//        return debuffRes;
-//    }
-//
-//    public double getDeathRes() {
-//        return deathRes;
-//    }
-//
-//    public double getTrapRes() {
-//        return trapRes;
-//    }
+    }
+
+    private void useFinale(Enemy t) {
+        //todo add ability code here
+    }
+
+    private void useSolo() {
+        //todo add ability code here
+    }
+
+    private void useSliceOff(Enemy t) {
+        //todo add ability code here   
+    }
+
+    private void useBattleBallad() {
+        //todo add ability code here   
+    }
+
+    private void useInspiringTune(Hero t) {
+        //todo add ability code here   
+    }
 
     public void selectAction(Combat combat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

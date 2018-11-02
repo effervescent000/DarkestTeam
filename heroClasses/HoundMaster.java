@@ -33,18 +33,25 @@ public class HoundMaster {
     private Hero myHero;
     private Combat combat;
 
-    public HoundMaster(int resolveLvl) {
+    private int houndsRush;
+    private int houndsHarry;
+    private int targetWhistle;
+    private int cryHavoc;
+    private int guardDog;
+    private int lickWounds;
+    private int blackjack;
 
-//        this.resolveLvl = resolveLvl;
-//
-//        int arraySlot = resolveLvl - 1;
-//
-//        this.maxHP = maxHPArray[arraySlot];
-//        this.dodge = dodgeArray[arraySlot];
-//        this.speed = speedArray[arraySlot];
-//        this.accMod = accModArray[arraySlot];
-//        this.critMod = critModArray[arraySlot];
-//        this.dmg = dmgArray[arraySlot];
+    public HoundMaster(Hero myHero) {
+        this.myHero = myHero;
+
+        houndsRush = myHero.getMove1Rank() - 1;
+        houndsHarry = myHero.getMove2Rank() - 1;
+        targetWhistle = myHero.getMove3Rank() - 1;
+        cryHavoc = myHero.getMove4Rank() - 1;
+        guardDog = myHero.getMove5Rank() - 1;
+        lickWounds = myHero.getMove6Rank() - 1;
+        blackjack = myHero.getMove7Rank() - 1;
+
     }
 
     public int[] getMaxHPArray() {
@@ -76,7 +83,6 @@ public class HoundMaster {
     }
 
     private void useHoundsRush(Enemy t) {
-        int houndsRush = myHero.getMove1Rank() - 1;
 
         myHero.setAcc(.85 + .05 * houndsRush);
         myHero.setCrit(-.03 + .01 * houndsRush);
@@ -100,7 +106,6 @@ public class HoundMaster {
     }
 
     private void useHoundsHarry() {
-        int houndsHarry = myHero.getMove2Rank() - 1;
 
         myHero.setAcc(.85 + .05 * houndsHarry);
         myHero.setCrit(-.05 + .01 * houndsHarry);
@@ -114,7 +119,6 @@ public class HoundMaster {
     }
 
     private void useTargetWhistle(Enemy t) {
-        int targetWhistle = myHero.getMove3Rank() - 1;
 
         myHero.setAcc(1 + .05 * targetWhistle);
 
@@ -127,15 +131,14 @@ public class HoundMaster {
     }
 
     private void useCryHavoc() {
-
+        //TODO fill out ability code here
     }
 
     private void useGuardDog() {
-
+           //TODO fill out ability code here
     }
 
     private void useLickWounds() {
-        int lickWounds = myHero.getMove6Rank() - 1;
 
         int amt = 4 + 1 * lickWounds;
 
@@ -143,23 +146,11 @@ public class HoundMaster {
     }
 
     private void useBlackjack() {
-
+//TODO fill out ability code here
     }
 
     public void selectAction(Combat combat) {
         this.combat = combat;
-
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Hound Master"))).forEach((hero) -> {
-            this.myHero = hero;
-        });
-
-        int houndsRush = myHero.getMove1Rank() - 1;
-        int houndsHarry = myHero.getMove2Rank() - 1;
-        int targetWhistle = myHero.getMove3Rank() - 1;
-        int cryHavoc = myHero.getMove4Rank() - 1;
-        int guardDog = myHero.getMove5Rank() - 1;
-        int lickWounds = myHero.getMove6Rank() - 1;
-        int blackjack = myHero.getMove7Rank() - 1;
 
         //use target whistle if there's another hero that can benefit from the mark OR
         //if there is a high prot target

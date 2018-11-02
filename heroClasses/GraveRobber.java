@@ -29,24 +29,7 @@ public class GraveRobber {
     private final double[] critModArray = {.05, .055, .06, .065, .07};
     private final double[] dmgArray = {6.5, 8, 9.5, 10, 11.5};
 
-    private static boolean religious = false;
-//
-//    private int maxHP;
-//    private double dodge;
-//    private int speed;
-//    private double accMod;
-//    private double critMod;
-//    private double dmg;
-//    private double prot;
-
-//    private double stunRes = 0.2;
-//    private double moveRes = 0.2;
-//    private double blightRes = 0.5;
-//    private double bleedRes = 0.3;
-//    private double diseaseRes = 0.3;
-//    private double debuffRes = 0.3;
-//    private double deathRes = 0.67;
-//    private double trapRes = 0.5;
+//    private static boolean religious = false;
     private Hero myHero;
     private Combat combat;
 
@@ -95,9 +78,9 @@ public class GraveRobber {
         return dmgArray;
     }
 
-    public static boolean isReligious() {
-        return religious;
-    }
+//    public static boolean isReligious() {
+//        return religious;
+//    }
 
     private void usePickToTheFace(Enemy t) {
 

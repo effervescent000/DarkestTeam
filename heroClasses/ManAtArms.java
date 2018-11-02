@@ -18,7 +18,6 @@ import darkestteam.Hero;
 public class ManAtArms {
 
     private int resolveLvl;
-//    private String heroName;
 
     private final int[] maxHPArray = {31, 37, 43, 49, 55};
     private final double[] dodgeArray = {.05, .10, .15, .20, .25};
@@ -34,9 +33,27 @@ public class ManAtArms {
 
     private int bolsterUses;
 
-    public ManAtArms(int resolveLvl) {
+    private int crush;
+    private int rampart;
+    private int bellow;
+    private int defender;
+    private int retribution;
+    private int command;
+    private int bolster;
+
+    public ManAtArms(Hero myHero) {
+
+        this.myHero = myHero;
 
         bolsterUses = 0;
+
+        crush = myHero.getMove1Rank() - 1;
+        rampart = myHero.getMove2Rank() - 1;
+        bellow = myHero.getMove3Rank() - 1;
+        defender = myHero.getMove4Rank() - 1;
+        retribution = myHero.getMove5Rank() - 1;
+        command = myHero.getMove6Rank() - 1;
+        bolster = myHero.getMove7Rank() - 1;
 
     }
 
@@ -49,52 +66,40 @@ public class ManAtArms {
     }
 
     private void useCrush(Enemy t) {
-
+        //todo fill out ability code here
     }
 
     private void useRampart(Enemy t) {
-
+//todo fill out ability code here
     }
 
     private void useBellow(Enemy t) {
-
+//todo fill out ability code here
     }
 
     private void useDefender(Hero t) {
-
+//todo fill out ability code here
     }
 
     private void useRetribution(Enemy t) {
-
+//todo fill out ability code here
     }
 
     private void useCommand() {
-
+//todo fill out ability code here
     }
 
     private void useBolster() {
-
+//todo fill out ability code here
     }
 
     public void selectAction(Combat combat) {
         this.combat = combat;
 
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Man-At-Arms"))).forEach((hero) -> {
-            this.myHero = hero;
-        });
-
         Enemy pos1 = Combat.getEnemyInPosition(1);
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
-
-        int crush = myHero.getMove1Rank() - 1;
-        int rampart = myHero.getMove2Rank() - 1;
-        int bellow = myHero.getMove3Rank() - 1;
-        int defender = myHero.getMove4Rank() - 1;
-        int retribution = myHero.getMove5Rank() - 1;
-        int command = myHero.getMove6Rank() - 1;
-        int bolster = myHero.getMove7Rank() - 1;
 
         //use Defender to protect squishies (maybe if there is one in particular who gets low?
         if (defender != -1) {
@@ -114,7 +119,7 @@ public class ManAtArms {
                 return;
             }
         }
-        
+
         //use Bolster if the buff isn't active
         if (bolster != -1) {
             if (bolsterUses == 0) {
@@ -122,7 +127,7 @@ public class ManAtArms {
                 return;
             }
         }
-        
+
         //use Bellow if I guess there is a moderate or higher danger enemy who is dodgy?
         //use Retribution if the group can benefit from Marked. Also have to figure out how this works as Riposte
         //use Rampart if nothing else has fired and we want to move forward to Crush

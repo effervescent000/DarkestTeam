@@ -25,13 +25,6 @@ public class Shieldbreaker {
 
     private static boolean religious = false;
 
-//    private int maxHP;
-//    private double dodge;
-//    private int speed;
-//    private double accMod;
-//    private double critMod;
-//    private double dmg;
-//    private double prot;
 
     private double stunRes = 0.5;
     private double moveRes = 0.5;

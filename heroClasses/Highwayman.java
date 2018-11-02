@@ -21,8 +21,6 @@ import java.util.List;
  */
 public class Highwayman {
 
-//    private int resolveLvl;
-//    private String heroName;
     private final int[] maxHPArray = {23, 28, 33, 38, 43};
     private final double[] dodgeArray = {.10, .15, .20, .25, .30};
     private final int[] speedArray = {5, 5, 6, 6, 7};
@@ -35,20 +33,25 @@ public class Highwayman {
     private Hero myHero;
     private Combat combat;
 
-    public Highwayman(int resolveLvl) {
+    private int wickedSlice;
+    private int pistolShot;
+    private int pointBlankShot;
+    private int grapeshotBlast;
+    private int trackingShot;
+    private int duelistsAdvance;
+    private int openVein;
 
-//        this.resolveLvl = resolveLvl;
-//
-//        int arraySlot = resolveLvl - 1;
-//
-//        this.maxHP = maxHPArray[arraySlot];
-//        this.dodge = dodgeArray[arraySlot];
-//        this.speed = speedArray[arraySlot];
-//        this.accMod = accModArray[arraySlot];
-//        this.critMod = critModArray[arraySlot];
-//        this.dmg = dmgArray[arraySlot];
-//        
-//        System.out.println("Arbalest named " + heroName + " created. She has " + maxHP + " health.");
+    public Highwayman(Hero myHero) {
+
+        this.myHero = myHero;
+
+        wickedSlice = myHero.getMove1Rank() - 1;
+        pistolShot = myHero.getMove2Rank() - 1;
+        pointBlankShot = myHero.getMove3Rank() - 1;
+        grapeshotBlast = myHero.getMove4Rank() - 1;
+        trackingShot = myHero.getMove5Rank() - 1;
+        duelistsAdvance = myHero.getMove6Rank() - 1;
+        openVein = myHero.getMove7Rank() - 1;
     }
 
     public int[] getMaxHPArray() {
@@ -80,9 +83,8 @@ public class Highwayman {
     }
 
     private void useWickedSlice(Enemy t) {
-        int rank = myHero.getMove1Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+        myHero.setAcc(.85 + .05 * wickedSlice);
+        myHero.setCrit(.05 + .01 * wickedSlice);
         int amt = (int) (myHero.getMeleeDmg() * 1.15);
 
         if (Combat.tryAttackByHero(myHero, t)) {
@@ -92,14 +94,13 @@ public class Highwayman {
     }
 
     private void usePistolShot(Enemy t) {
-        int rank = myHero.getMove2Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(.09 + .01 * rank);
+        myHero.setAcc(.85 + .05 * pistolShot);
+        myHero.setCrit(.09 + .01 * pistolShot);
         int amt = (int) (myHero.getRangedDmg() * (1 - .15));
 
         if (Checker.checkSpecificForDebuff(t, "Marked")) {
-            //this ability has a damage buff that does not scale linearly with rank so I'm fudging it
-            amt = (int) (amt + (6.25 * rank));
+            //this ability has a damage buff that does not scale linearly with pistolShot so I'm fudging it
+            amt = (int) (amt + (6.25 * pistolShot));
         }
 
         if (Combat.tryAttackByHero(myHero, t)) {
@@ -108,23 +109,21 @@ public class Highwayman {
     }
 
     private void usePointBlankShot(Enemy t) {
-        int rank = myHero.getMove3Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+                myHero.setAcc(.95 + .05 * pointBlankShot);
+        myHero.setCrit(.05 + .01 * pointBlankShot);
         int amt = (int) (myHero.getRangedDmg() * 1.5);
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            myHero.setAcc(1 + .1 * rank);
+            myHero.setAcc(1 + .1 * pointBlankShot);
             combat.moveAttack(myHero, t, 1);
             combat.moveSelf(myHero, 1);
         }
     }
 
     private void useGrapeshotBlast() {
-        int rank = myHero.getMove4Rank() - 1;
-        myHero.setAcc(.75 + .05 * rank);
-        myHero.setCrit(-.09 + .01 * rank);
+                myHero.setAcc(.75 + .05 * grapeshotBlast);
+        myHero.setCrit(-.09 + .01 * grapeshotBlast);
         int amt = (int) (myHero.getRangedDmg() * (1 - .5));
 
         ArrayList<Enemy> hits = combat.dmgEnemyMulti(1, 3, amt, myHero);
@@ -133,9 +132,8 @@ public class Highwayman {
     }
 
     private void useTrackingShot() {
-        int rank = myHero.getMove5Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(0 + .025 * rank); //this is not quite accurate but idc
+                myHero.setAcc(.95 + .05 * trackingShot);
+        myHero.setCrit(0 + .025 * trackingShot); //this is not quite accurate but idc
         int amt = (int) (myHero.getRangedDmg() * (1 - .8));
 
         Enemy t = ChooseTarget.chooseEnemy(2, 4);
@@ -150,19 +148,19 @@ public class Highwayman {
     }
 
     private void useDuelistsAdvance() {
-
+        //todo add ability code here
     }
 
     private void useOpenVein(Enemy t) {
-        int rank = myHero.getMove7Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(0 + .01 * rank); //this is not quite accurate but idc
+        int openVein = myHero.getMove7Rank() - 1;
+        myHero.setAcc(.95 + .05 * openVein);
+        myHero.setCrit(0 + .01 * openVein); //this is not quite accurate but idc
         int amt = (int) (myHero.getMeleeDmg() * (1 - .15));
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            myHero.setAcc(1 + .1 * rank);
-            amt = (int) (2 + .5 * rank);
+            myHero.setAcc(1 + .1 * openVein);
+            amt = (int) (2 + .5 * openVein);
             Managers.addBleed(t, 3, amt, myHero);
             Managers.addStatusEffect(t, "Open Vein", 3, myHero); //TODO check duration
         }
@@ -171,10 +169,6 @@ public class Highwayman {
     public void selectAction(Combat combat) {
         this.combat = combat;
 
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Highwayman"))).forEach((hero) -> {
-            this.myHero = hero;
-        });
-
         Enemy pos1 = Combat.getEnemyInPosition(1);
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
@@ -182,7 +176,7 @@ public class Highwayman {
 
         //use tracking shot for the buff
         //TODO add code to select for stealthed targets once I implement stealth lol
-        if (myHero.getMove5Rank() > 0) {
+        if (trackingShot != -1) {
             /**
              * this ability can only be used once per battle, but I'm not
              * tracking that specifically instead I'm using the buff it applies
@@ -196,7 +190,7 @@ public class Highwayman {
         }
 
         //use Open Vein if all available targets have high prot
-        if (myHero.getMove7Rank() > 0) {
+        if (openVein != -1) {
             if (myHero.getPosition() <= 3) {
                 Checker c = new Checker();
                 Enemy t = c.getLowestProtEnemy(Combat.getEnemyRoster());
@@ -221,14 +215,14 @@ public class Highwayman {
 
         //use Point Blank Shot if hero is in position 1
         if (myHero.getPosition() == 1) {
-            if (myHero.getMove3Rank() > 0) {
+            if (pointBlankShot != -1) {
                 usePointBlankShot(pos1);
                 return;
             }
         }
 
         //use Open Vein if available targets have only moderate bleed res
-        if (myHero.getMove7Rank() > 0) {
+        if (openVein != -1) {
             if (myHero.getPosition() <= 3) {
                 Checker c = new Checker();
                 List<Enemy> list = Arrays.asList(pos1, pos2);
@@ -243,7 +237,7 @@ public class Highwayman {
         }
 
         //use grapeshot blast for aoe
-        if (myHero.getMove4Rank() > 0) {
+        if (grapeshotBlast != -1) {
             if (myHero.getPosition() == 2 || myHero.getPosition() == 3) {
                 if (Combat.getEnemyRoster().size() >= 3) {
                     useGrapeshotBlast();
@@ -253,7 +247,7 @@ public class Highwayman {
         }
 
         //if there is a marked target, then use Pistol Shot
-        if (myHero.getMove2Rank() > 0) {
+        if (pistolShot != -1) {
             if (myHero.getPosition() >= 2) {
                 Enemy t = Checker.checkEnemiesForDebuff("Marked", Combat.getEnemyRoster());
                 if (t != null) {
@@ -264,7 +258,7 @@ public class Highwayman {
         }
 
         //use Wicked Slice if nothing better is available
-        if (myHero.getMove1Rank() > 0) {
+        if (wickedSlice != -1) {
             if (myHero.getPosition() <= 3) {
                 List<Enemy> list = Arrays.asList(pos1, pos2);
                 Checker c = new Checker();
@@ -275,7 +269,7 @@ public class Highwayman {
         }
 
         //use Open Vein if nothing better is available
-        if (myHero.getMove7Rank() > 0) {
+        if (openVein != -1) {
             if (myHero.getPosition() <= 3) {
                 Enemy t = ChooseTarget.chooseEnemy(1, 2);
                 useOpenVein(t);
@@ -284,7 +278,7 @@ public class Highwayman {
         }
 
         //use Pistol Shot if nothing better is available
-        if (myHero.getMove2Rank() > 0) {
+        if (pistolShot != -1) {
             if (myHero.getPosition() >= 2) {
                 Enemy t = ChooseTarget.chooseEnemy(2, 4);
                 usePistolShot(t);

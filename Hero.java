@@ -132,7 +132,7 @@ public class Hero extends Creature implements ICombatMethods {
                     deathRes = 0.67;
                     break;
                 case "Arbalest":
-                    arbalest = new Arbalest();
+                    arbalest = new Arbalest(this);
 //                    myHero = new Arbalest();
 
                     maxHP = arbalest.getMaxHPArray()[arraySlot];
@@ -172,7 +172,7 @@ public class Hero extends Creature implements ICombatMethods {
                     deathRes = 0.67;
                     break;
                 case "Crusader":
-                    crusader = new Crusader(resolveLvl);
+                    crusader = new Crusader(this);
                     maxHP = crusader.getMaxHPArray()[arraySlot];
                     dodge = crusader.getDodgeArray()[arraySlot];
                     speed = crusader.getSpeedArray()[arraySlot];
@@ -190,7 +190,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Flagellant":
-                    flagellant = new Flagellant(resolveLvl);
+                    flagellant = new Flagellant(this);
                     maxHP = flagellant.getMaxHPArray()[arraySlot];
                     dodge = flagellant.getDodgeArray()[arraySlot];
                     speed = flagellant.getSpeedArray()[arraySlot];
@@ -226,7 +226,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.5 + .1 * resolveLvl;
                     break;
                 case "Hellion":
-                    hellion = new Hellion(resolveLvl);
+                    hellion = new Hellion(this);
                     maxHP = hellion.getMaxHPArray()[arraySlot];
                     dodge = hellion.getDodgeArray()[arraySlot];
                     speed = hellion.getSpeedArray()[arraySlot];
@@ -244,7 +244,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Highwayman":
-                    highwayman = new Highwayman(resolveLvl);
+                    highwayman = new Highwayman(this);
                     maxHP = highwayman.getMaxHPArray()[arraySlot];
                     dodge = highwayman.getDodgeArray()[arraySlot];
                     speed = highwayman.getSpeedArray()[arraySlot];
@@ -262,7 +262,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.4 + .1 * resolveLvl;
                     break;
                 case "Hound Master":
-                    houndMaster = new HoundMaster(resolveLvl);
+                    houndMaster = new HoundMaster(this);
                     maxHP = houndMaster.getMaxHPArray()[arraySlot];
                     dodge = houndMaster.getDodgeArray()[arraySlot];
                     speed = houndMaster.getSpeedArray()[arraySlot];
@@ -280,7 +280,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.4 + .1 * resolveLvl;
                     break;
                 case "Jester":
-                    jester = new Jester(resolveLvl);
+                    jester = new Jester(this);
                     maxHP = jester.getMaxHPArray()[arraySlot];
                     dodge = jester.getDodgeArray()[arraySlot];
                     speed = jester.getSpeedArray()[arraySlot];
@@ -298,7 +298,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.3 + .1 * resolveLvl;
                     break;
                 case "Leper":
-                    leper = new Leper(resolveLvl);
+                    leper = new Leper(this);
                     maxHP = leper.getMaxHPArray()[arraySlot];
                     dodge = leper.getDodgeArray()[arraySlot];
                     speed = leper.getSpeedArray()[arraySlot];
@@ -316,7 +316,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Man-at-Arms":
-                    manAtArms = new ManAtArms(resolveLvl);
+                    manAtArms = new ManAtArms(this);
                     maxHP = manAtArms.getMaxHPArray()[arraySlot];
                     dodge = manAtArms.getDodgeArray()[arraySlot];
                     speed = manAtArms.getSpeedArray()[arraySlot];
@@ -334,7 +334,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Occultist":
-                    occultist = new Occultist(resolveLvl);
+                    occultist = new Occultist(this);
                     maxHP = occultist.getMaxHPArray()[arraySlot];
                     dodge = occultist.getDodgeArray()[arraySlot];
                     speed = occultist.getSpeedArray()[arraySlot];
@@ -352,7 +352,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Plague Doctor":
-                    plagueDoctor = new PlagueDoctor(resolveLvl);
+                    plagueDoctor = new PlagueDoctor(this);
                     maxHP = plagueDoctor.getMaxHPArray()[arraySlot];
                     dodge = plagueDoctor.getDodgeArray()[arraySlot];
                     speed = plagueDoctor.getSpeedArray()[arraySlot];
@@ -388,7 +388,7 @@ public class Hero extends Creature implements ICombatMethods {
                     trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Vestal":
-                    vestal = new Vestal(resolveLvl);
+                    vestal = new Vestal(this);
                     maxHP = vestal.getMaxHPArray()[arraySlot];
                     dodge = vestal.getDodgeArray()[arraySlot];
                     speed = vestal.getSpeedArray()[arraySlot];

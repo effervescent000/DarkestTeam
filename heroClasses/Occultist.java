@@ -33,18 +33,24 @@ public class Occultist {
     private Hero myHero;
     private Combat combat;
 
-    public Occultist(int resolveLvl) {
+    private int sacrificialStab;
+    private int abyssalArtillery;
+    private int weakeningCurse;
+    private int wyrdReconstruction;
+    private int vulnerabilityHex;
+    private int handsFromTheAbyss;
+    private int daemonsPull;
 
-//        this.resolveLvl = resolveLvl;
-//
-//        int arraySlot = resolveLvl - 1;
-//
-//        this.maxHP = maxHPArray[arraySlot];
-//        this.dodge = dodgeArray[arraySlot];
-//        this.speed = speedArray[arraySlot];
-//        this.accMod = accModArray[arraySlot];
-//        this.critMod = critModArray[arraySlot];
-//        this.dmg = dmgArray[arraySlot];
+    public Occultist(Hero myHero) {
+        this.myHero = myHero;
+
+        sacrificialStab = myHero.getMove1Rank() - 1;
+        abyssalArtillery = myHero.getMove2Rank() - 1;
+        weakeningCurse = myHero.getMove3Rank() - 1;
+        wyrdReconstruction = myHero.getMove4Rank() - 1;
+        vulnerabilityHex = myHero.getMove5Rank() - 1;
+        handsFromTheAbyss = myHero.getMove6Rank() - 1;
+        daemonsPull = myHero.getMove7Rank() - 1;
     }
 
     public int[] getMaxHPArray() {
@@ -76,13 +82,13 @@ public class Occultist {
     }
 
     private void useSacrificialStab(Enemy t) {
-        int rank = myHero.getMove1Rank() - 1;
-        myHero.setAcc(.8 + .05 * rank);
-        myHero.setCrit(.1 + .01 * rank);
+        
+        myHero.setAcc(.8 + .05 * sacrificialStab);
+        myHero.setCrit(.1 + .01 * sacrificialStab);
         int amt = (int) myHero.getMeleeDmg();
 
         if (t.isEldritch()) {
-            amt = (int) (amt * (1.15 + .05 * rank));
+            amt = (int) (amt * (1.15 + .05 * sacrificialStab));
         }
 
         if (Combat.tryAttackByHero(myHero, t)) {
@@ -92,25 +98,24 @@ public class Occultist {
     }
 
     private void useAbyssalArtillery() {
-        int rank = myHero.getMove2Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(0 + .01 * rank);
+        
+        myHero.setAcc(.85 + .05 * abyssalArtillery);
+        myHero.setCrit(0 + .01 * abyssalArtillery);
         int amt = (int) (myHero.getRangedDmg() * (1 - .33));
 
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
 
         if (pos3.isEldritch() && pos4.isEldritch()) {
-            amt = (int) (amt * (1.15 + .05 * rank));
+            amt = (int) (amt * (1.15 + .05 * abyssalArtillery));
         }
 
         combat.dmgEnemyMulti(3, 4, amt, myHero);
     }
 
     private void useWeakeningCurse(Enemy t) {
-        int rank = myHero.getMove3Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+                myHero.setAcc(.95 + .05 * weakeningCurse);
+        myHero.setCrit(.05 + .01 * weakeningCurse);
         int amt = (int) (myHero.getRangedDmg() * (1 - .75));
 
         if (Combat.tryAttackByHero(myHero, t)) {
@@ -121,49 +126,49 @@ public class Occultist {
     }
 
     private void useWyrdReconstruction(Hero t) {
-        int rank = myHero.getMove4Rank() - 1;
-        int upper = (int) (13 + 2.25 * rank); //this is again not perfect but w/e
+        
+        int upper = (int) (13 + 2.25 * wyrdReconstruction); //this is again not perfect but w/e
         int amt = RandomFunctions.getRandomNumberInRange(0, upper);
 
         combat.healHero(myHero, t, amt);
 
         //I'm basically just going to copy the bleed check code here b/c I don't want to make
         //a new hero-on-hero method for this single ability
-        myHero.setAcc(.6 + .0625 * rank);
+        myHero.setAcc(.6 + .0625 * wyrdReconstruction);
         if (Combat.calcHit(t.getBleedRes(), myHero.getAcc() + myHero.getAccMod())) {
-            amt = (int) (1 + .5 * rank);
+            amt = (int) (1 + .5 * wyrdReconstruction);
             t.getDebuffs().add(new Debuff("Bleed", 3, amt));
         }
     }
 
     private void useVulnerabilityHex(Enemy t) {
-        int rank = myHero.getMove5Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+        
+        myHero.setAcc(.95 + .05 * vulnerabilityHex);
+        myHero.setCrit(.05 + .01 * vulnerabilityHex);
         int amt = (int) (myHero.getRangedDmg() * (1 - .9));
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
             Managers.addStatusEffect(t, "Marked", 3, myHero); //TODO check duration
-            myHero.setAcc(1 + .1 * rank);
+            myHero.setAcc(1 + .1 * vulnerabilityHex);
             Managers.addStatusEffect(t, "Vulnerability Hex", 3, myHero); //TODO check duration
         }
 
     }
 
     private void useHandsFromTheAbyss(Enemy t) {
-
+        //todo fill out ability code here
     }
 
     private void useDaemonsPull(Enemy t) {
-        int rank = myHero.getMove7Rank() - 1;
-        myHero.setAcc(.9 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+        
+        myHero.setAcc(.9 + .05 * daemonsPull);
+        myHero.setCrit(.05 + .01 * daemonsPull);
         int amt = (int) (myHero.getRangedDmg() * (1 - .5));
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            myHero.setAcc(1 + .1 * rank);
+            myHero.setAcc(1 + .1 * daemonsPull);
             combat.moveAttack(myHero, t, -2);
             //TODO add code for clearing corpses once I implement them
         }
@@ -172,17 +177,13 @@ public class Occultist {
     public void selectAction(Combat combat) {
         this.combat = combat;
 
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Occultist"))).forEach((hero) -> {
-            this.myHero = hero;
-        });
-
         Enemy pos1 = Combat.getEnemyInPosition(1);
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
 
         //use Wyrd Recon if someone needs healing
-        if (myHero.getMove4Rank() > 0) {
+        if (wyrdReconstruction != -1) {
             Checker c = new Checker();
             Hero t = c.getLowestHealthHero(Combat.getHeroRoster());
             if (t.getCurHP() < t.getMaxHP() * .5) {
@@ -192,7 +193,7 @@ public class Occultist {
         }
 
         //use Abyssal Artillery if both backline targets are eldritch
-        if (myHero.getMove2Rank() > 0) {
+        if (abyssalArtillery != -1) {
             if (myHero.getPosition() >= 3) {
                 if (pos3 != null && pos4 != null) {
                     if (pos3.isEldritch() && pos4.isEldritch()) {
@@ -205,7 +206,7 @@ public class Occultist {
 
         //use Vulnerability Hex if another Hero can benefit from Mark
         //prioritize higher danger targets
-        if (myHero.getMove5Rank() > 0) {
+        if (vulnerabilityHex != -1) {
             if (Checker.checkPartyCompForMarked() > 1) {
                 Checker c = new Checker();
                 Enemy t = c.getHighestDangerEnemy(Combat.getEnemyRoster());
@@ -222,7 +223,7 @@ public class Occultist {
 
         //not exactly sure how to implement Hands from the Abyss rn
         //use Daemon's Pull if there is a backline target that's vulnerable to movement
-        if (myHero.getMove7Rank() > 0) {
+        if (daemonsPull != -1) {
             if (myHero.getPosition() >= 2) {
                 Checker c = new Checker();
 
@@ -241,7 +242,7 @@ public class Occultist {
         }
 
         //use Weakening Curse against a high danger or high prot target
-        if (myHero.getMove3Rank() > 0) {
+        if (weakeningCurse != -1) {
             Checker c = new Checker();
             Enemy t = c.getHighestProtEnemy(Combat.getEnemyRoster());
             if (!Checker.checkSpecificForDebuff(t, "Weakening Curse")) {
@@ -264,7 +265,7 @@ public class Occultist {
         }
 
         //use Sacrificial Stab against an eldritch target
-        if (myHero.getMove1Rank() > 0) {
+        if (sacrificialStab != -1) {
             if (myHero.getPosition() <= 3) {
                 Enemy t = Checker.checkEnemiesForType("Eldritch", Combat.getEnemyRoster());
                 if (t != null) {

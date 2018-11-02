@@ -29,14 +29,30 @@ public class Hellion implements ICombatMethods {
     private final double[] critModArray = {.025, .03, .035, .04, .045};
     private final double[] dmgArray = {9, 10.5, 12, 13, 14.5};
 
-    private static boolean religious = false;
-
+//    private static boolean religious = false;
     private Hero myHero;
 
     private Combat combat;
 
+    private int wickedHack;
+    private int ironSwan;
+    private int barbaricYAWP;
+    private int ifItBleeds;
+    private int breakthrough;
+    private int adrenalineRush;
+    private int bleedOut;
+
 //    private Enemy target;
-    public Hellion(int resolveLvl) {
+    public Hellion(Hero myHero) {
+        this.myHero = myHero;
+
+        wickedHack = myHero.getMove1Rank() - 1;
+        ironSwan = myHero.getMove2Rank() - 1;
+        barbaricYAWP = myHero.getMove3Rank() - 1;
+        ifItBleeds = myHero.getMove4Rank() - 1;
+        breakthrough = myHero.getMove5Rank() - 1;
+        adrenalineRush = myHero.getMove6Rank() - 1;
+        bleedOut = myHero.getMove7Rank() - 1;
 
     }
 
@@ -64,14 +80,12 @@ public class Hellion implements ICombatMethods {
         return dmgArray;
     }
 
-    public static boolean isReligious() {
-        return religious;
-    }
-
-    public void useWickedHack() {
-        int rank = myHero.getMove1Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+    private void useWickedHack() {
+        myHero.setAcc(.85 + .05 * wickedHack);
+        myHero.setCrit(.05 + .01 * wickedHack);
 
         Enemy target = ChooseTarget.chooseEnemy(1, 2);
 
@@ -80,10 +94,9 @@ public class Hellion implements ICombatMethods {
         }
     }
 
-    public void useIronSwan() {
-        int rank = myHero.getMove2Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+    private void useIronSwan() {
+        myHero.setAcc(.85 + .05 * ironSwan);
+        myHero.setCrit(.05 + .01 * ironSwan);
 
         Enemy target = Combat.getEnemyInPosition(4);
 
@@ -92,27 +105,25 @@ public class Hellion implements ICombatMethods {
         }
     }
 
-    public void useBarbaricYAWP() {
-
+    private void useBarbaricYAWP() {
+        //TODO fill out ability code here
     }
 
-    public void useIfItBleeds(Enemy target) {
-        int rank = myHero.getMove4Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(0 + .01 * rank);
+    private void useIfItBleeds(Enemy target) {
+        myHero.setAcc(.85 + .05 * ifItBleeds);
+        myHero.setCrit(0 + .01 * ifItBleeds);
 
         if (Combat.tryAttackByHero(myHero, target)) {
             int amt = (int) (myHero.getDmg() * (1 - .35));
             combat.dmgEnemy(target, amt, myHero);
-            myHero.setAcc(1 + .1 * rank);
+            myHero.setAcc(1 + .1 * ifItBleeds);
             Managers.addBleed(target, 3, 2, myHero);
         }
     }
 
     public void useBreakthrough() {
-        int rank = myHero.getMove5Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(-.01 + .01 * rank);
+        myHero.setAcc(.85 + .05 * breakthrough);
+        myHero.setCrit(-.01 + .01 * breakthrough);
 
         int amt = (int) (myHero.getDmg() * (1 - .5));
 
@@ -123,23 +134,18 @@ public class Hellion implements ICombatMethods {
     }
 
     private void useAdrenalineRush() {
-        int rank = myHero.getMove6Rank() - 1;
-
         Managers.purgeBleeds(myHero);
         Managers.purgeBlights(myHero);
-        combat.healHero(myHero, myHero, 1 + 1 * rank);
+        combat.healHero(myHero, myHero, 1 + 1 * adrenalineRush);
         addHelpfulEffect(myHero, "Adrenaline Rush", 3);
     }
 
-    public void useBleedOut() {
-
+    private void useBleedOut() {
+        //TODO fill out ability code here
     }
 
     @Override
     public void selectAction(Combat combat) {
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Hellion"))).forEach((hero) -> {
-            this.myHero = hero;
-        });
 
         this.combat = combat;
 
@@ -149,14 +155,14 @@ public class Hellion implements ICombatMethods {
         Enemy pos4 = Combat.getEnemyInPosition(4);
 
         //first use Adrenaline Rush if it isn't up
-        if (myHero.getMove6Rank() >= 1 && !Checker.checkSpecificForDebuff(myHero, "Adrenaline Rush")) {
+        if (adrenalineRush != -1 && !Checker.checkSpecificForDebuff(myHero, "Adrenaline Rush")) {
             useAdrenalineRush();
             return;
         }
 
         //first try Iron Swan
         if (myHero.getPosition() == 1) {
-            if (myHero.getMove2Rank() >= 1) {
+            if (ironSwan != -1) {
                 if (pos4 != null) {
                     if (pos4.getProt() <= .25) {//TODO tweak this number
                         useIronSwan();
@@ -167,7 +173,7 @@ public class Hellion implements ICombatMethods {
         }
         //next try If It Bleeds
         if (myHero.getPosition() <= 3) {
-            if (myHero.getMove4Rank() >= 1) {
+            if (ifItBleeds != -1) {
                 //target selection if both 2 and 3 exist
                 //TODO include some kind of prioritzation for higher health targets to maximize DOT uptime
                 if (pos2 != null && pos3 != null) {
@@ -206,14 +212,14 @@ public class Hellion implements ICombatMethods {
         }
         //next try breakthrough
         if (myHero.getPosition() >= 2) {
-            if (myHero.getMove5Rank() >= 1) {
+            if (breakthrough != -1) {
                 useBreakthrough();
                 return;
             }
         }
 
         //finally: use Wicked Hack if nothing else is available
-        if (myHero.getPosition() <= 2) {
+        if (wickedHack != -1) {
             if (myHero.getMove1Rank() >= 1) {
                 useWickedHack();
                 return;

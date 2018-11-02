@@ -32,18 +32,24 @@ public class Leper {
     private Hero myHero;
     private Combat combat;
 
-    public Leper(int resolveLvl) {
-//        
-//        this.resolveLvl = resolveLvl;
-//        
-//        int arraySlot = resolveLvl - 1;
-//        
-//        this.maxHP = maxHPArray[arraySlot];
-//        this.dodge = dodgeArray[arraySlot];
-//        this.speed = speedArray[arraySlot];
-//        this.accMod = accModArray[arraySlot];
-//        this.critMod = critModArray[arraySlot];
-//        this.dmg = dmgArray[arraySlot];
+    private int chop;
+    private int hew;
+    private int purge;
+    private int revenge;
+    private int withstand;
+    private int solemnity;
+    private int intimidate;
+
+    public Leper(Hero myHero) {
+        this.myHero = myHero;
+
+        chop = myHero.getMove1Rank() - 1;
+        hew = myHero.getMove2Rank() - 1;
+        purge = myHero.getMove3Rank() - 1;
+        revenge = myHero.getMove4Rank() - 1;
+        withstand = myHero.getMove5Rank() - 1;
+        solemnity = myHero.getMove6Rank() - 1;
+        intimidate = myHero.getMove7Rank() - 1;
 
     }
 
@@ -80,12 +86,10 @@ public class Leper {
     }
 
     public void useChop(Enemy t) {
-
-        int rank = myHero.getMove1Rank() - 1;
         int amt = (int) myHero.getMeleeDmg();
 
-        myHero.setAcc(.75 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+        myHero.setAcc(.75 + .05 * chop);
+        myHero.setCrit(.05 + .01 * chop);
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
@@ -93,53 +97,47 @@ public class Leper {
     }
 
     public void useHew() {
-        int rank = myHero.getMove2Rank() - 1;
         int amt = (int) (myHero.getDmg() * .5);
 
-        myHero.setAcc(.75 + .05 * rank);
-        myHero.setCrit(-.04 + .01 * rank);
+        myHero.setAcc(.75 + .05 * hew);
+        myHero.setCrit(-.04 + .01 * hew);
 
         combat.dmgEnemyMulti(1, 2, amt, myHero);
     }
 
     public void usePurge() {
-        int rank = myHero.getMove3Rank() - 1;
         int amt = (int) (myHero.getDmg() * (1 - .4));
 
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(0 + .01 * rank);
+        myHero.setAcc(.85 + .05 * purge);
+        myHero.setCrit(0 + .01 * purge);
         Enemy t = Combat.getEnemyInPosition(1);
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            myHero.setAcc(1 + .1 * rank);
+            myHero.setAcc(1 + .1 * purge);
             combat.moveAttack(myHero, t, 3);
             Managers.addHelpfulEffect(myHero, "Purge", 3); //TODO check duration
         }
     }
 
     public void useRevenge() {
-
+        //todo ability code here
     }
 
     public void useWithstand() {
-
+        //todo ability code here
     }
 
     public void useSolemnity() {
-
+        //todo ability code here
     }
 
     private void useIntimidate() {
-
+        //todo ability code here
     }
 
     public void selectAction(Combat combat) {
         this.combat = combat;
-
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Leper"))).forEach((hero) -> {
-            this.myHero = hero;
-        });
 
         Enemy pos1 = Combat.getEnemyInPosition(1);
         Enemy pos2 = Combat.getEnemyInPosition(2);
@@ -147,7 +145,7 @@ public class Leper {
         Enemy pos4 = Combat.getEnemyInPosition(4);
 
         //use Purge if the front-line enemy is high-danger
-        if (myHero.getMove3Rank() > 0) {
+        if (purge != -1) {
             if (myHero.getPosition() == 1) {
                 if (pos1 != null) {
                     if (pos1.getDanger() > 1) { //tweak this number
@@ -158,7 +156,7 @@ public class Leper {
             }
         }
         //if the leper's health is low and/or his stress is high
-        if (myHero.getMove6Rank() >= 1) {
+        if (solemnity != -1) {
             if (myHero.getPosition() <= 2) {
                 if (myHero.getCurHP() < myHero.getMaxHP() * .5 || myHero.getStressLvl() > .7) {
                     useSolemnity();
@@ -167,7 +165,7 @@ public class Leper {
             }
         }
         //chop if there is a priority target in the front lines, otherwise hew
-        if (myHero.getPosition() <= 2 && myHero.getMove1Rank() >= 1 && myHero.getMove2Rank() >= 1) {
+        if (myHero.getPosition() <= 2 && chop != -1 && hew != -1) {
             if (pos1 != null && pos2 != null) {
                 ArrayList<Enemy> list = new ArrayList();
                 list.add(pos1);
@@ -191,7 +189,7 @@ public class Leper {
                 return;
             }
         }
-
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++
         System.out.println("Leper could not find a valid action.");
     }
 

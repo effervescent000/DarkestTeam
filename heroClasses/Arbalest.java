@@ -34,7 +34,8 @@ public class Arbalest implements ICombatMethods {
     private final double[] critModArray = {.075, .08, .085, .09, .095};
     private final double[] dmgArray = {6.5, 8, 9.5, 10, 11.5};
 
-    private static boolean RELIGIOUS = false;
+    // RELIGIOUS commented out as it no longer serves a purpose
+//    private static boolean RELIGIOUS = false;
 
     private Hero myHero;
 
@@ -48,7 +49,7 @@ public class Arbalest implements ICombatMethods {
 
     private Combat combat;
 
-    public Arbalest() {
+    public Arbalest(Hero myHero) {
 
         this.sniperShot = myHero.getMove1Rank() - 1;
         this.suppressingFire = myHero.getMove2Rank() - 1;
@@ -59,9 +60,9 @@ public class Arbalest implements ICombatMethods {
         this.rallyingFlare = myHero.getMove7Rank() - 1;
     }
 
-    public static boolean isReligious() {
-        return RELIGIOUS;
-    }
+//    public static boolean isReligious() {
+//        return RELIGIOUS;
+//    }
 
     private void useSniperShot(Enemy target) {
         myHero.setAcc(.95 + 5 * sniperShot);

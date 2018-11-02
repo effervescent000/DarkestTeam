@@ -6,12 +6,15 @@
 package darkestteam.heroClasses;
 
 import darkestteam.Combat;
+import darkestteam.Hero;
 
 /**
  *
  * @author Tara
  */
 public class Flagellant {
+    
+    //todo literally everything with the flagellant
 
     private int resolveLvl;
 
@@ -22,37 +25,14 @@ public class Flagellant {
     private final double[] critModArray = {.025, .03, .035, .04, .045};
     private final double[] dmgArray = {4.5, 5.5, 6, 7.5, 8};
 
-    private static boolean religious = true;
-//
-//    private int maxHP;
-//    private double dodge;
-//    private int speed;
-//    private double accMod;
-//    private double critMod;
-//    private double dmg;
-//    private double prot;
+//    private static boolean religious = true;
 
-//    private double stunRes = 0.5;
-//    private double moveRes = 0.5;
-//    private double blightRes = 0.3;
-//    private double bleedRes = 0.65;
-//    private double diseaseRes = 0.4;
-//    private double debuffRes = 0.3;
-//    private double deathRes = 0.73;
-//    private double trapRes = 0;
+    private Hero myHero;
+    private Combat combat;
 
-    public Flagellant(int resolveLvl) {
+    public Flagellant(Hero myHero) {
 
-//        this.resolveLvl = resolveLvl;
-//
-//        int arraySlot = resolveLvl - 1;
-//
-//        this.maxHP = maxHPArray[arraySlot];
-//        this.dodge = dodgeArray[arraySlot];
-//        this.speed = speedArray[arraySlot];
-//        this.accMod = accModArray[arraySlot];
-//        this.critMod = critModArray[arraySlot];
-//        this.dmg = dmgArray[arraySlot];
+        this.myHero = myHero;
 
     }
 
@@ -86,68 +66,8 @@ public class Flagellant {
         return resolveLvl;
     }
 
-    public static boolean isReligious() {
-        return religious;
-    }
-
-//    public int getMaxHP() {
-//        return maxHP;
-//    }
-//
-//    public double getDodge() {
-//        return dodge;
-//    }
-//
-//    public int getSpeed() {
-//        return speed;
-//    }
-//
-//    public double getAccMod() {
-//        return accMod;
-//    }
-//
-//    public double getCritMod() {
-//        return critMod;
-//    }
-//
-//    public double getDmg() {
-//        return dmg;
-//    }
-//
-//    public double getProt() {
-//        return prot;
-//    }
-
-//    public double getStunRes() {
-//        return stunRes;
-//    }
-//
-//    public double getMoveRes() {
-//        return moveRes;
-//    }
-//
-//    public double getBlightRes() {
-//        return blightRes;
-//    }
-//
-//    public double getBleedRes() {
-//        return bleedRes;
-//    }
-//
-//    public double getDiseaseRes() {
-//        return diseaseRes;
-//    }
-//
-//    public double getDebuffRes() {
-//        return debuffRes;
-//    }
-//
-//    public double getDeathRes() {
-//        return deathRes;
-//    }
-//
-//    public double getTrapRes() {
-//        return trapRes;
+//    public static boolean isReligious() {
+//        return religious;
 //    }
 
     public void selectAction(Combat combat) {

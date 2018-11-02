@@ -38,9 +38,27 @@ public class PlagueDoctor {
     private int blindingGasUses;
     private int emboldeningVapoursUses;
 
-    public PlagueDoctor(int resolveLvl) {
+    private int noxiousBlast;
+    private int plagueGrenade;
+    private int blindingGas;
+    private int incision;
+    private int battlefieldMedicine;
+    private int emboldeningVapours;
+    private int disorientingBlast;
+
+    public PlagueDoctor(Hero myHero) {
+
+        this.myHero = myHero;
 
         blindingGasUses = 0;
+
+        noxiousBlast = myHero.getMove1Rank() - 1;
+        plagueGrenade = myHero.getMove2Rank() - 1;
+        blindingGas = myHero.getMove3Rank() - 1;
+        incision = myHero.getMove4Rank() - 1;
+        battlefieldMedicine = myHero.getMove5Rank() - 1;
+        emboldeningVapours = myHero.getMove6Rank() - 1;
+        disorientingBlast = myHero.getMove7Rank() - 1;
 
     }
 
@@ -73,16 +91,15 @@ public class PlagueDoctor {
     }
 
     private void useNoxiousBlast(Enemy t) {
-        int rank = myHero.getMove1Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+        myHero.setAcc(.95 + .05 * noxiousBlast);
+        myHero.setCrit(.05 + .01 * noxiousBlast);
         int amt = (int) (myHero.getDmg() * (1 - .8));
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
 
-            myHero.setAcc(1 + .1 * rank);
-            amt = (int) (5 + .5 * rank);
+            myHero.setAcc(1 + .1 * noxiousBlast);
+            amt = (int) (5 + .5 * noxiousBlast);
             Managers.addBlight(t, 3, amt, myHero);
             myHero.setAcc(1);
             Managers.addStatusEffect(t, "Noxious Blast", 3, myHero); //TODO check duration
@@ -91,15 +108,14 @@ public class PlagueDoctor {
     }
 
     private void usePlagueGrenade() {
-        int rank = myHero.getMove2Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
-        myHero.setCrit(0 + .01 * rank);
+        myHero.setAcc(.95 + .05 * plagueGrenade);
+        myHero.setCrit(0 + .01 * plagueGrenade);
         int amt = (int) (myHero.getDmg() * (1 - .9));
 
         ArrayList<Enemy> hits = combat.dmgEnemyMulti(3, 4, amt, myHero);
         if (hits != null && !hits.isEmpty()) {
-            myHero.setAcc(1 + .1 * rank);
-            amt = (int) (4 + .5 * rank);
+            myHero.setAcc(1 + .1 * plagueGrenade);
+            amt = (int) (4 + .5 * plagueGrenade);
             for (Enemy enemy : hits) {
                 Managers.addBlight(enemy, 3, amt, myHero);
             }
@@ -108,12 +124,12 @@ public class PlagueDoctor {
     }
 
     private void useBlindingGas() {
-        int rank = myHero.getMove3Rank() - 1;
-        myHero.setAcc(.95 + .05 * rank);
+
+        myHero.setAcc(.95 + .05 * blindingGas);
 
         ArrayList<Enemy> hits = combat.dmgEnemyMulti(3, 4, 0, myHero);
         if (hits != null && !hits.isEmpty()) {
-            myHero.setAcc(1 + .1 * rank);
+            myHero.setAcc(1 + .1 * blindingGas);
             for (Enemy hit : hits) {
                 Managers.addStatusEffect(hit, "Stun", 1, myHero);
             }
@@ -123,24 +139,23 @@ public class PlagueDoctor {
     }
 
     private void useIncision() {
-        int rank = myHero.getMove4Rank() - 1;
-        myHero.setAcc(.85 + .05 * rank);
-        myHero.setCrit(.05 + .01 * rank);
+        myHero.setAcc(.85 + .05 * incision);
+        myHero.setCrit(.05 + .01 * incision);
         int amt = (int) myHero.getDmg();
 
         Enemy target = ChooseTarget.chooseEnemy(1, 2);
 
         if (Combat.tryAttackByHero(myHero, target)) {
             combat.dmgEnemy(target, amt, myHero);
-            myHero.setAcc(1 + .1 * rank); //this is not a perfect representation but it's close
+            myHero.setAcc(1 + .1 * incision); //this is not a perfect representation but it's close
             Managers.addBleed(target, 3, 1, myHero);
         }
 
     }
 
     private void useBattlefieldMedicine(Hero h) {
-        int rank = myHero.getMove5Rank() - 1;
-        int amt = (int) (1 + .5 * rank); //this is not a 100% representation but it's pretty close
+
+        int amt = (int) (1 + .5 * battlefieldMedicine); //this is not a 100% representation but it's pretty close
         combat.healHero(myHero, h, amt);
         Managers.purgeBlights(h);
         Managers.purgeBleeds(h);
@@ -148,16 +163,16 @@ public class PlagueDoctor {
     }
 
     private void useEmboldeningVapours(Hero t) {
-        int rank = myHero.getMove6Rank() - 1;
-        
+        emboldeningVapours = myHero.getMove6Rank() - 1;
+
         Managers.addHelpfulEffect(t, "Emboldening Vapours", 1000); //lasts for 1 battle
-        
+
         emboldeningVapoursUses++;
 
     }
 
     private void useDisorientingBlast() {
-
+        //todo fill out ability code here
     }
 
     public void resetSpecials() {
@@ -168,20 +183,6 @@ public class PlagueDoctor {
     public void selectAction(Combat combat) {
 
         this.combat = combat;
-
-        Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Plague Doctor"))).forEach((hero) -> {
-            this.myHero = hero;
-
-        });
-
-        //FIXME
-        int noxiousBlast = myHero.getMove1Rank() - 1;
-        int plagueGrenade = myHero.getMove2Rank() - 1;
-        int blindingGas = myHero.getMove3Rank() - 1;
-        int incision = myHero.getMove4Rank() - 1;
-        int battlefieldMedicine = myHero.getMove5Rank() - 1;
-        int emboldeningVapours = myHero.getMove6Rank() - 1;
-        int disorientingBlast = myHero.getMove7Rank() - 1;
 
         Enemy pos1 = Combat.getEnemyInPosition(1);
         Enemy pos2 = Combat.getEnemyInPosition(2);
@@ -204,7 +205,7 @@ public class PlagueDoctor {
                 }
             }
         }
-        
+
         //use Emboldening Vapors on the heaviest hitters
         if (emboldeningVapours != -1 && emboldeningVapoursUses < 2) {
             Hero hPos1 = Combat.getHeroInPosition(1);
@@ -217,7 +218,7 @@ public class PlagueDoctor {
                 useEmboldeningVapours(hPos2);
                 return;
             }
-            
+
             //next check for crusaders
             if (hPos1.getHeroClass().equals("Crusader")) {
                 useEmboldeningVapours(hPos1);
@@ -226,7 +227,7 @@ public class PlagueDoctor {
                 useEmboldeningVapours(hPos2);
                 return;
             }
-            
+
             //next Lepers
             if (hPos1.getHeroClass().equals("Leper")) {
                 useEmboldeningVapours(hPos1);
@@ -235,9 +236,8 @@ public class PlagueDoctor {
                 useEmboldeningVapours(hPos2);
                 return;
             }
-            
+
             //TODO more here
-            
         }
 
         //use noxious blast if there is a high-danger front-line target (for the damage and the debuff)
