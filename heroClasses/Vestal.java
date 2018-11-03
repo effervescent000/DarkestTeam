@@ -160,7 +160,7 @@ public class Vestal implements ICombatMethods {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addStatusEffect(t, "Illumination", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Illumination", 3, myHero);
         }
     }
 
@@ -172,7 +172,7 @@ public class Vestal implements ICombatMethods {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addHelpfulEffect(myHero, "Hand of Light", 3); //TODO check duration
+            Managers.addHelpfulEffect(myHero, "Hand of Light", 3);
 
         }
 

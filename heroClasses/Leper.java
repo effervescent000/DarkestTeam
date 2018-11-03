@@ -116,7 +116,7 @@ public class Leper {
             combat.dmgEnemy(t, amt, myHero);
             myHero.setAcc(1 + .1 * purge);
             combat.moveAttack(myHero, t, 3);
-            Managers.addHelpfulEffect(myHero, "Purge", 3); //TODO check duration
+            Managers.addHelpfulEffect(myHero, "Purge", 3);
         }
     }
 

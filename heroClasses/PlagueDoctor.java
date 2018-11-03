@@ -102,7 +102,7 @@ public class PlagueDoctor {
             amt = (int) (5 + .5 * noxiousBlast);
             Managers.addBlight(t, 3, amt, myHero);
             myHero.setAcc(1);
-            Managers.addStatusEffect(t, "Noxious Blast", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Noxious Blast", 3, myHero);
         }
 
     }

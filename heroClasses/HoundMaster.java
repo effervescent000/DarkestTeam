@@ -126,7 +126,7 @@ public class HoundMaster {
             //this deals no damage
             myHero.setAcc(1.3 + .1 * targetWhistle);
             Managers.addStatusEffect(t, "Marked", 3, myHero);
-            Managers.addStatusEffect(t, "Target Whistle", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Target Whistle", 3, myHero);
         }
     }
 

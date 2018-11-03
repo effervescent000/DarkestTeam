@@ -145,7 +145,7 @@ public class Hellion implements ICombatMethods {
 
         combat.dmgEnemyMulti(1, 3, amt, myHero);
         combat.moveSelf(myHero, -1);
-        addHelpfulEffect(myHero, "Breakthrough", 3); // TODO check duration
+        addHelpfulEffect(myHero, "Breakthrough", 3);
 
     }
 

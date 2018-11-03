@@ -104,9 +104,9 @@ public class BountyHunter {
 //        int amt = 0;
 
         if (Combat.tryAttackByHero(myHero, t)) {
-            Managers.addStatusEffect(t, "Marked", 3, myHero); // TODO check duration
-            Managers.addStatusEffect(t, "Mark For Death", 3, myHero); //TODO check duration
-            Managers.addHelpfulEffect(myHero, "Mark For Death", 3); //TODO check duration
+            Managers.addStatusEffect(t, "Marked", 3, myHero);
+            Managers.addStatusEffect(t, "Mark For Death", 3, myHero);
+            Managers.addHelpfulEffect(myHero, "Mark For Death", 3);
         }
 
     }
@@ -118,7 +118,7 @@ public class BountyHunter {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addStatusEffect(t, "Marked", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Marked", 3, myHero);
             myHero.setAcc(1 + .1 * comeHither);
             combat.moveAttack(myHero, t, -2);
         }
@@ -134,7 +134,7 @@ public class BountyHunter {
             combat.dmgEnemy(t, amt, myHero);
             myHero.setAcc(1 + .1 * uppercut);
             combat.moveAttack(myHero, t, 2);
-            Managers.addStatusEffect(t, "Stun", 1, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Stun", 1, myHero);
         }
 
     }
@@ -222,7 +222,7 @@ public class BountyHunter {
             list.add(pos1);
             list.add(pos2);
             list.add(pos3);
-            Enemy t = checkEnemiesForDebuff("Stun", list); //TODO check syntax, is it Stun elsewhere or Stunned?
+            Enemy t = checkEnemiesForDebuff("Stun", list);
             if (t != null) {
                 useFinishHim(t);
                 return;

@@ -50,7 +50,7 @@ public class PelagicGuardian extends Enemy implements ICombatMethods {
         
         if (Combat.tryAttackByEnemy(this, target)) {
             combat.dmgEnemy(this, amt, target);
-            Managers.addBleed(target, 3, 2, this); //TODO check duration
+            Managers.addBleed(target, 3, 2, this);
         }
     }
 

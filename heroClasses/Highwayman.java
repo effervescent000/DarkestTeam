@@ -162,7 +162,7 @@ public class Highwayman {
             myHero.setAcc(1 + .1 * openVein);
             amt = (int) (2 + .5 * openVein);
             Managers.addBleed(t, 3, amt, myHero);
-            Managers.addStatusEffect(t, "Open Vein", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Open Vein", 3, myHero); 
         }
     }
 

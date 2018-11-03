@@ -143,7 +143,7 @@ public class GraveRobber {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addHelpfulEffect(myHero, "Thrown Dagger", 3); //TODO check duration
+            Managers.addHelpfulEffect(myHero, "Thrown Dagger", 3);
         }
     }
 

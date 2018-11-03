@@ -84,8 +84,8 @@ public class CultistBrawler extends Enemy implements ICombatMethods {
             combat.dmgHero(target, amt, this);
             combat.moveSelf(this, -1);
             acc = 1;
-            addBleed(target, 3, 1, this); //TODO check duration
-            addStatusEffect(target, "Rend for the Old Gods", 3, this); //TODO check duration
+            addBleed(target, 3, 1, this);
+            addStatusEffect(target, "Rend for the Old Gods", 3, this);
         }
 
     }

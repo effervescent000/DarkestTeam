@@ -100,22 +100,22 @@ public class Arbalest implements ICombatMethods {
         el = combat.dmgEnemyMulti(3, 4, amt, myHero);
         myHero.setAcc(1 + .1 * suppressingFire);
         for (Enemy enemy : el) {
-            Managers.addStatusEffect(enemy, "Suppressing Fire", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(enemy, "Suppressing Fire", 3, myHero);
         }
 
     }
 
     private void useSnipersMark(Enemy target) {
-        //TODO check duration of this mark effect
+        
         int rank = myHero.getMove3Rank() - 1;
         myHero.setAcc(1 + .05 * rank);
         myHero.setCrit(0);
 
         if (Combat.tryAttackByHero(myHero, target)) {
-            addHelpfulEffect(target, "Marked", 3); //TODO check duration
+            addHelpfulEffect(target, "Marked", 3);
             addLog(myHero.getHeroName() + " has marked " + target.toString() + " !");
             myHero.setAcc(1 + .1 * rank);
-            addStatusEffect(target, "Sniper's Mark Debuff", 3, myHero); //TODO check duration
+            addStatusEffect(target, "Sniper's Mark Debuff", 3, myHero);
         }
     }
 
@@ -142,7 +142,7 @@ public class Arbalest implements ICombatMethods {
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
         }
-        Managers.addHelpfulEffect(myHero, "Blindfire", 3); //TODO check duration
+        Managers.addHelpfulEffect(myHero, "Blindfire", 3);
 
     }
 
@@ -150,7 +150,7 @@ public class Arbalest implements ICombatMethods {
         int amt = RandomFunctions.getRandomNumberInRange(2, 3); //TODO this needs to take skill rank into account
 
         combat.healHero(myHero, t, amt);
-        Managers.addHelpfulEffect(t, "Battlefield Bandage", 3); //TODO check duration
+        Managers.addHelpfulEffect(t, "Battlefield Bandage", 3);
 
     }
 

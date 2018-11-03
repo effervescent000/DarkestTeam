@@ -50,11 +50,10 @@ public class BrigandBloodletter extends Enemy implements ICombatMethods {
             for (Hero hero : hits) {
                 combat.dmgStress(this, hero, 5);
                 if (calcHit(hero.getBleedRes(), acc)) {
-                    addBleed(hero, 2, 1, this); //TODO check duration
+                    addBleed(hero, 3, 1, this);
                 }
             }
         }
-        //TODO this should also add bleed damage
     }
 
     public void usePunishment() {
@@ -66,7 +65,7 @@ public class BrigandBloodletter extends Enemy implements ICombatMethods {
             combat.dmgEnemy(this, getRandomNumberInRange(2, 4), target);
             combat.dmgStress(this, target, 5);
             this.acc = 1;
-            addBleed(target, 2, 2, this); //TODO check duration
+            addBleed(target, 3, 2, this);
         }
     }
 

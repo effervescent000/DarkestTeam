@@ -48,7 +48,7 @@ public class BrigandCutthroat extends Enemy implements ICombatMethods {
         acc = 1;
         if (heroes != null) {
             for (Hero hero : heroes) {
-                addStatusEffect(hero, "Slice and Dice", 3, this); //TODO check duration
+                addStatusEffect(hero, "Slice and Dice", 3, this);
             }
         }
     }
@@ -93,7 +93,7 @@ public class BrigandCutthroat extends Enemy implements ICombatMethods {
         if (Combat.tryAttackByEnemy(this, target)) {
             combat.dmgHero(target, amt, this);
             combat.moveSelf(this, -1);
-            addHelpfulEffect(this, "Harmless Poke", 1); //TODO check duration
+            addHelpfulEffect(this, "Harmless Poke", 3);
         }
 
     }

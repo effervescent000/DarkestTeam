@@ -120,7 +120,7 @@ public class Occultist {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addStatusEffect(t, "Weakening Curse", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Weakening Curse", 3, myHero);
         }
 
     }
@@ -149,9 +149,9 @@ public class Occultist {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addStatusEffect(t, "Marked", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Marked", 3, myHero);
             myHero.setAcc(1 + .1 * vulnerabilityHex);
-            Managers.addStatusEffect(t, "Vulnerability Hex", 3, myHero); //TODO check duration
+            Managers.addStatusEffect(t, "Vulnerability Hex", 3, myHero);
         }
 
     }

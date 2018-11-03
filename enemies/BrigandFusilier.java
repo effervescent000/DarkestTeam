@@ -46,7 +46,7 @@ public class BrigandFusilier extends Enemy implements ICombatMethods {
             if (Combat.tryAttackByEnemy(this, hero)) {
                 combat.dmgEnemy(this, getRandomNumberInRange(1, 3), hero);
                 acc = 1;
-                addStatusEffect(hero, "Blanket Fire", 1, this); //TODO check duration
+                addStatusEffect(hero, "Blanket Fire", 1, this);
 
             }
         }
