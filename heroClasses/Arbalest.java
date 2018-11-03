@@ -60,6 +60,11 @@ public class Arbalest implements ICombatMethods {
         this.rallyingFlare = myHero.getMove7Rank() - 1;
     }
 
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 //    public static boolean isReligious() {
 //        return RELIGIOUS;
 //    }

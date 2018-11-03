@@ -6,6 +6,7 @@
 package darkestteam.heroClasses;
 
 import darkestteam.Combat;
+import darkestteam.Hero;
 
 /**
  *
@@ -41,18 +42,28 @@ public class Antiquarian {
     private double deathRes = 0.67;
     private double trapRes = 0.1;
 
-    public Antiquarian(int resolveLvl) {
+    private Combat combat;
+    private Hero myHero;
 
-        this.resolveLvl = resolveLvl;
+    private int nervousStab;
+    private int festeringVapours;
+    private int getDown;
+    private int flashpowder;
+    private int fortifyingVapours;
+    private int invigoratingVapours;
+    private int protectMe;
 
-        int arraySlot = resolveLvl - 1;
+    public Antiquarian(Hero myHero) {
 
-        this.maxHP = maxHPArray[arraySlot];
-        this.dodge = dodgeArray[arraySlot];
-        this.speed = speedArray[arraySlot];
-        this.accMod = accModArray[arraySlot];
-        this.critMod = critModArray[arraySlot];
-        this.dmg = dmgArray[arraySlot];
+        this.myHero = myHero;
+
+        nervousStab = myHero.getMove1Rank() - 1;
+        festeringVapours = myHero.getMove2Rank() - 1;
+        getDown = myHero.getMove3Rank() - 1;
+        flashpowder = myHero.getMove4Rank() - 1;
+        fortifyingVapours = myHero.getMove5Rank() - 1;
+        invigoratingVapours = myHero.getMove6Rank() - 1;
+        protectMe = myHero.getMove7Rank() - 1;
 
     }
 
@@ -152,6 +163,4 @@ public class Antiquarian {
         return dmgArray;
     }
 
-    
-    
 }

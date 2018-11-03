@@ -42,6 +42,8 @@ public class Hellion implements ICombatMethods {
     private int adrenalineRush;
     private int bleedOut;
 
+    private int barbaricYAWPUses;
+
 //    private Enemy target;
     public Hellion(Hero myHero) {
         this.myHero = myHero;
@@ -53,6 +55,8 @@ public class Hellion implements ICombatMethods {
         breakthrough = myHero.getMove5Rank() - 1;
         adrenalineRush = myHero.getMove6Rank() - 1;
         bleedOut = myHero.getMove7Rank() - 1;
+
+        barbaricYAWPUses = 0;
 
     }
 
@@ -106,7 +110,19 @@ public class Hellion implements ICombatMethods {
     }
 
     private void useBarbaricYAWP() {
-        //TODO fill out ability code here
+        myHero.setAcc(.95 + .05 * barbaricYAWP);
+        myHero.setCrit(-1);
+        int amt = 0;
+
+        ArrayList<Enemy> el = combat.dmgEnemyMulti(1, 2, amt, myHero);
+        if (!el.isEmpty()) {
+            for (Enemy enemy : el) {
+                Managers.addStatusEffect(enemy, "Stun", 1, myHero);
+            }
+        }
+        Managers.addHelpfulEffect(myHero, "BarbaricYAWP", 3);
+
+        barbaricYAWPUses++;
     }
 
     private void useIfItBleeds(Enemy target) {
@@ -140,8 +156,26 @@ public class Hellion implements ICombatMethods {
         addHelpfulEffect(myHero, "Adrenaline Rush", 3);
     }
 
-    private void useBleedOut() {
-        //TODO fill out ability code here
+    private void useBleedOut(Enemy t) {
+
+        myHero.setAcc(.85 + .05 * bleedOut);
+        myHero.setCrit(.06 + .01 * bleedOut);
+        int amt = (int) (myHero.getDmg() * 1.2);
+
+        if (combat.tryAttackByHero(myHero, t)) {
+            combat.dmgEnemy(t, amt, myHero);
+
+            myHero.setAcc(1 + .1 * bleedOut);
+            amt = (int) (3.5 + .5 * bleedOut);
+            Managers.addBleed(t, 3, amt, myHero);
+            Managers.addHelpfulEffect(myHero, "Bleed Out", 3);
+        }
+
+    }
+
+    @Override
+    public void resetSpecials() {
+        barbaricYAWPUses = 0;
     }
 
     @Override
@@ -160,7 +194,28 @@ public class Hellion implements ICombatMethods {
             return;
         }
 
-        //first try Iron Swan
+        //try BarbaricYAWP if both front line targets are dangerous
+        if (barbaricYAWP != -1 && barbaricYAWPUses < 3) {
+            if (myHero.getPosition() <= 2) {
+                if (pos1.getDanger() > 1 && pos2.getDanger() > 1) {
+                    useBarbaricYAWP();
+                    return;
+                }
+            }
+
+        }
+
+        //use Bleed Out if the front-most target is dangerous and has high prot
+        if (bleedOut != -1) {
+            if (myHero.getPosition() == 1 && pos1 != null) {
+                if (pos1.getDanger() > 1 && pos1.getProt() >= .35) { //todo tweak this number
+                    useBleedOut(pos1);
+                    return;
+                }
+            }
+        }
+
+        //try Iron Swan
         if (myHero.getPosition() == 1) {
             if (ironSwan != -1) {
                 if (pos4 != null) {

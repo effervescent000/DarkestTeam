@@ -112,7 +112,7 @@ public class Hero extends Creature implements ICombatMethods {
 
             switch (heroClass) {
                 case "Antiquarian":
-                    antiquarian = new Antiquarian(resolveLvl);
+                    antiquarian = new Antiquarian(this);
 
                     maxHP = antiquarian.getMaxHPArray()[arraySlot];
                     dodge = antiquarian.getDodgeArray()[arraySlot];
@@ -133,7 +133,6 @@ public class Hero extends Creature implements ICombatMethods {
                     break;
                 case "Arbalest":
                     arbalest = new Arbalest(this);
-//                    myHero = new Arbalest();
 
                     maxHP = arbalest.getMaxHPArray()[arraySlot];
                     dodge = arbalest.getDodgeArray()[arraySlot];

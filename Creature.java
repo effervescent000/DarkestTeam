@@ -34,6 +34,11 @@ public class Creature implements ICombatMethods {
         return maxHP;
     }
 
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
     }

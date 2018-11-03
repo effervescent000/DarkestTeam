@@ -84,6 +84,11 @@ public class Vestal implements ICombatMethods {
         return religious;
     }
 
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void useMaceBash(Enemy t) {
         
         myHero.setAcc(.85 + .05 * maceBash);

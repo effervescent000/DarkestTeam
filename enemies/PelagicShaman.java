@@ -59,7 +59,7 @@ public class PelagicShaman extends Enemy implements ICombatMethods {
         Enemy target = ChooseTarget.chooseEnemy(1, 4);
         int amt = RandomFunctions.getRandomNumberInRange(6, 12);
 
-        //this move cannot target the caster but I don't feel like coding that RN TODO
+        //TODO this move cannot target the caster but I don't feel like coding that RN
         combat.healEnemy(this, target, amt);
     }
 

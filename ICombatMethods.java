@@ -12,7 +12,8 @@ package darkestteam;
 public interface ICombatMethods {
 
     public void selectAction(Combat combat);
-        //I'm not sure what to do with the args for this--
-        //the combatArray arrayList?
+    
+    public void resetSpecials();
+    
 
 }

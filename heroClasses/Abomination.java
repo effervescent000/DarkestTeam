@@ -5,6 +5,9 @@
  */
 package darkestteam.heroClasses;
 
+import darkestteam.Combat;
+import darkestteam.Hero;
+
 /**
  *
  * @author Tara
@@ -20,8 +23,7 @@ public class Abomination {
     private final double[] critModArray = {1.025, 1.03, 1.035, 1.04, 1.045};
     private final double[] dmgArray = {8.5, 10, 11.5, 14, 15.5};
 
-    private final static boolean religious = false;
-
+//    private final static boolean religious = false;
     private int maxHP;
     private double dodge;
     private int speed;
@@ -39,18 +41,12 @@ public class Abomination {
     private double deathRes = 0.67;
     private double trapRes = 0.1;
 
-    public Abomination(String heroClass, int resolveLvl) {
+    private Hero myHero;
+    private Combat combat;
 
-        this.resolveLvl = resolveLvl;
+    public Abomination(Hero myHero) {
 
-        int arraySlot = resolveLvl - 1;
-
-        this.maxHP = maxHPArray[arraySlot];
-        this.dodge = dodgeArray[arraySlot];
-        this.speed = speedArray[arraySlot];
-        this.accMod = accModArray[arraySlot];
-        this.critMod = critModArray[arraySlot];
-        this.dmg = dmgArray[arraySlot];
+        this.myHero = myHero;
 
     }
 
@@ -58,10 +54,9 @@ public class Abomination {
         return resolveLvl;
     }
 
-    public static boolean isReligious() {
-        return religious;
-    }
-
+//    public static boolean isReligious() {
+//        return religious;
+//    }
     public int getMaxHP() {
         return maxHP;
     }
