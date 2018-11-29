@@ -7,12 +7,14 @@ package darkestteam.heroClasses;
 
 import darkestteam.Combat;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
+import darkestteam.ICombatMethods;
 
 /**
  *
  * @author Tara
  */
-public class Abomination {
+public class Abomination implements ICombatMethods, HeroClass {
 
     private int resolveLvl;
 
@@ -50,6 +52,31 @@ public class Abomination {
 
     }
 
+    @Override
+    public double[] getAccModArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getCritModArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getDmgArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getDodgeArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int[] getMaxHPArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getResolveLvl() {
         return resolveLvl;
     }
@@ -85,6 +112,11 @@ public class Abomination {
         return prot;
     }
 
+    @Override
+    public int[] getSpeedArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public double getStunRes() {
         return stunRes;
     }
@@ -115,6 +147,16 @@ public class Abomination {
 
     public double getTrapRes() {
         return trapRes;
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void selectAction(Combat combat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

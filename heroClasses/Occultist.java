@@ -11,6 +11,7 @@ import darkestteam.Combat;
 import darkestteam.Debuff;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.Managers;
 import darkestteam.RandomFunctions;
 
@@ -18,7 +19,7 @@ import darkestteam.RandomFunctions;
  *
  * @author Tara
  */
-public class Occultist {
+public class Occultist implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {19, 23, 27, 31, 35};
@@ -28,8 +29,16 @@ public class Occultist {
     private final double[] critModArray = {.075, .08, .085, .09, .095};
     private final double[] dmgArray = {5.5, 6.5, 8, 8.5, 10};
 
-    private static boolean religious = false;
+    private double stunRes = 0.2;
+    private double moveRes = 0.2;
+    private double blightRes = 0.3;
+    private double bleedRes = 0.4;
+    private double diseaseRes = 0.4;
+    private double debuffRes = 0.6;
+    private double deathRes = 0.67;
+    private double trapRes = 0.1;
 
+//    private static boolean religious = false;
     private Hero myHero;
     private Combat combat;
 
@@ -53,12 +62,42 @@ public class Occultist {
         daemonsPull = myHero.getMove7Rank() - 1;
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -77,12 +116,27 @@ public class Occultist {
         return dmgArray;
     }
 
-    public static boolean isReligious() {
-        return religious;
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void useSacrificialStab(Enemy t) {
-        
+
         myHero.setAcc(.8 + .05 * sacrificialStab);
         myHero.setCrit(.1 + .01 * sacrificialStab);
         int amt = (int) myHero.getMeleeDmg();
@@ -98,7 +152,7 @@ public class Occultist {
     }
 
     private void useAbyssalArtillery() {
-        
+
         myHero.setAcc(.85 + .05 * abyssalArtillery);
         myHero.setCrit(0 + .01 * abyssalArtillery);
         int amt = (int) (myHero.getRangedDmg() * (1 - .33));
@@ -114,7 +168,7 @@ public class Occultist {
     }
 
     private void useWeakeningCurse(Enemy t) {
-                myHero.setAcc(.95 + .05 * weakeningCurse);
+        myHero.setAcc(.95 + .05 * weakeningCurse);
         myHero.setCrit(.05 + .01 * weakeningCurse);
         int amt = (int) (myHero.getRangedDmg() * (1 - .75));
 
@@ -126,7 +180,7 @@ public class Occultist {
     }
 
     private void useWyrdReconstruction(Hero t) {
-        
+
         int upper = (int) (13 + 2.25 * wyrdReconstruction); //this is again not perfect but w/e
         int amt = RandomFunctions.getRandomNumberInRange(0, upper);
 
@@ -142,7 +196,7 @@ public class Occultist {
     }
 
     private void useVulnerabilityHex(Enemy t) {
-        
+
         myHero.setAcc(.95 + .05 * vulnerabilityHex);
         myHero.setCrit(.05 + .01 * vulnerabilityHex);
         int amt = (int) (myHero.getRangedDmg() * (1 - .9));
@@ -161,7 +215,7 @@ public class Occultist {
     }
 
     private void useDaemonsPull(Enemy t) {
-        
+
         myHero.setAcc(.9 + .05 * daemonsPull);
         myHero.setCrit(.05 + .01 * daemonsPull);
         int amt = (int) (myHero.getRangedDmg() * (1 - .5));

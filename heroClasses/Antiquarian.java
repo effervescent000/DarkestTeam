@@ -7,12 +7,14 @@ package darkestteam.heroClasses;
 
 import darkestteam.Combat;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
+import darkestteam.ICombatMethods;
 
 /**
  *
  * @author Tara
  */
-public class Antiquarian {
+public class Antiquarian implements ICombatMethods, HeroClass {
 
     private int resolveLvl;
 
@@ -133,6 +135,11 @@ public class Antiquarian {
 
     public double getTrapRes() {
         return trapRes;
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void selectAction(Combat combat) {

@@ -12,20 +12,24 @@ import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
 import darkestteam.ICombatMethods;
-import static darkestteam.Log.addLog;
+import static darkestteam.CombatLog.addLog;
 import javafx.collections.ObservableList;
 import static darkestteam.Checker.checkEnemiesForDebuff;
+import darkestteam.HeroClass;
 import darkestteam.Managers;
 import static darkestteam.Managers.addHelpfulEffect;
 import static darkestteam.Managers.addStatusEffect;
 import darkestteam.RandomFunctions;
 import java.util.ArrayList;
+import static darkestteam.Checker.checkEnemiesForDebuff;
+import static darkestteam.Managers.addHelpfulEffect;
+import static darkestteam.Managers.addStatusEffect;
 
 /**
  *
  * @author Tara
  */
-public class Arbalest implements ICombatMethods {
+public class Arbalest implements ICombatMethods, HeroClass {
 
     private final int[] maxHPArray = {27, 32, 37, 42, 47};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};
@@ -36,6 +40,14 @@ public class Arbalest implements ICombatMethods {
 
     // RELIGIOUS commented out as it no longer serves a purpose
 //    private static boolean RELIGIOUS = false;
+    private double stunRes = 0.4;
+    private double moveRes = 0.4;
+    private double blightRes = 0.3;
+    private double bleedRes = 0.3;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double trapRes = 0.1;
+    private double deathRes = .67;
 
     private Hero myHero;
 
@@ -68,7 +80,6 @@ public class Arbalest implements ICombatMethods {
 //    public static boolean isReligious() {
 //        return RELIGIOUS;
 //    }
-
     private void useSniperShot(Enemy target) {
         myHero.setAcc(.95 + 5 * sniperShot);
         myHero.setCrit(.05 + .01 * sniperShot);
@@ -106,7 +117,7 @@ public class Arbalest implements ICombatMethods {
     }
 
     private void useSnipersMark(Enemy target) {
-        
+
         int rank = myHero.getMove3Rank() - 1;
         myHero.setAcc(1 + .05 * rank);
         myHero.setCrit(0);
@@ -239,28 +250,74 @@ public class Arbalest implements ICombatMethods {
         }
     }
 
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
 
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
+    }
+
+    @Override
+    public double getBleedRes() {
+        return bleedRes;
+    }
+
+    @Override
+    public double getBlightRes() {
+        return blightRes;
+    }
+
+    @Override
+    public double getDebuffRes() {
+        return debuffRes;
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        return diseaseRes;
+    }
+
+    @Override
+    public double getMoveRes() {
+        return moveRes;
+    }
+
+    @Override
+    public double getStunRes() {
+        return stunRes;
+    }
+
+    @Override
+    public double getTrapRes() {
+        return trapRes;
+    }
+
+    @Override
+    public double getDeathRes() {
+        return deathRes;
     }
 
 }

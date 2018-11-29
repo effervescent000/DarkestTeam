@@ -10,6 +10,7 @@ import static darkestteam.ChooseTarget.chooseEnemy;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.ICombatMethods;
 import darkestteam.Managers;
 import darkestteam.RandomFunctions;
@@ -20,7 +21,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class Vestal implements ICombatMethods {
+public class Vestal implements ICombatMethods, HeroClass {
 
     private final int[] maxHPArray = {24, 29, 34, 39, 44};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};
@@ -29,8 +30,16 @@ public class Vestal implements ICombatMethods {
     private final double[] critModArray = {.025, .03, .035, .04, .045};
     private final double[] dmgArray = {6.5, 8, 9.5, 10, 11.5};
 
-    private static boolean religious = true;
+    private double stunRes = 0.3;
+    private double moveRes = 0.3;
+    private double blightRes = 0.3;
+    private double bleedRes = 0.3;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double deathRes = 0.67;
+    private double trapRes = 0.1;
 
+//    private static boolean religious = true;
     private Hero myHero;
     private Combat combat;
 
@@ -56,12 +65,42 @@ public class Vestal implements ICombatMethods {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -80,8 +119,18 @@ public class Vestal implements ICombatMethods {
         return dmgArray;
     }
 
-    public static boolean isReligious() {
-        return religious;
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -90,7 +139,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useMaceBash(Enemy t) {
-        
+
         myHero.setAcc(.85 + .05 * maceBash);
         myHero.setCrit(0 + .01 * maceBash);
         int amt = (int) myHero.getMeleeDmg();
@@ -105,7 +154,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useJudgement() {
-        
+
         myHero.setAcc(.8 + .05 * judgement);
         myHero.setCrit(.05 + .01 * judgement);
         Enemy t = chooseEnemy(1, 4);
@@ -119,7 +168,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useDazzlingLight(Enemy t) {
-        
+
         myHero.setAcc(.9 + .05 * dazzlingLight);
         myHero.setCrit(.05 + .01 * dazzlingLight);
         int amt = (int) ((int) myHero.getRangedDmg() * (1 - .75));
@@ -132,7 +181,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useDivineGrace(Hero target) {
-        
+
         int lower = 4 + 1 * divineGrace;
         int upper = 5 + 1 * divineGrace;
         int amt = RandomFunctions.getRandomNumberInRange(lower, upper);
@@ -141,7 +190,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useDivineComfort() {
-        
+
         int lower = (int) (1.25 + .75 * divineComfort);
         int upper = (int) (3 + .75 * divineComfort);
         int amt;
@@ -153,7 +202,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useIllumination(Enemy t) {
-        
+
         myHero.setAcc(.9 + .05 * illumination);
         myHero.setCrit(0);
         int amt = (int) (myHero.getRangedDmg() * (1 - .5));
@@ -165,7 +214,7 @@ public class Vestal implements ICombatMethods {
     }
 
     public void useHandOfLight(Enemy t) {
-        
+
         myHero.setAcc(.85 + .05 * handOfLight);
         myHero.setCrit(0 + .01 * handOfLight);
         int amt = (int) (myHero.getRangedDmg() * (1 - .5));

@@ -5,7 +5,7 @@
  */
 package darkestteam;
 
-import static darkestteam.Log.addLog;
+import static darkestteam.CombatLog.addLog;
 import static java.lang.Math.random;
 import java.util.ArrayList;
 import darkestteam.enemies.*;
@@ -101,7 +101,7 @@ public class Zone {
 //                    progress = curIterations/totalIterations;
                 }
             }
-            Log.closeLog();
+            CombatLog.closeLog();
             a.calcFinalValues();
             a.dumpFinalValues();
         } catch (Throwable e) {

@@ -10,6 +10,7 @@ import darkestteam.ChooseTarget;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.ICombatMethods;
 import darkestteam.Managers;
 import static darkestteam.Managers.addHelpfulEffect;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  *
  * @author Tara
  */
-public class Hellion implements ICombatMethods {
+public class Hellion implements ICombatMethods, HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {26, 31, 36, 41, 46};
@@ -28,6 +29,15 @@ public class Hellion implements ICombatMethods {
     private final double[] accModArray = {0, 0, 0, 0, 0};
     private final double[] critModArray = {.025, .03, .035, .04, .045};
     private final double[] dmgArray = {9, 10.5, 12, 13, 14.5};
+
+    private double stunRes = 0.4;
+    private double moveRes = 0.4;
+    private double blightRes = 0.4;
+    private double bleedRes = 0.4;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double deathRes = 0.67;
+    private double trapRes = 0.2;
 
 //    private static boolean religious = false;
     private Hero myHero;
@@ -60,12 +70,42 @@ public class Hellion implements ICombatMethods {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -82,6 +122,16 @@ public class Hellion implements ICombatMethods {
 
     public double[] getDmgArray() {
         return dmgArray;
+    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 //    public static boolean isReligious() {

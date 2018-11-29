@@ -11,6 +11,7 @@ import darkestteam.ChooseTarget;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.Managers;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class PlagueDoctor {
+public class PlagueDoctor implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {22, 26, 30, 34, 38};
@@ -30,8 +31,16 @@ public class PlagueDoctor {
     private final double[] critModArray = {1.025, 1.03, 1.035, 1.04, 1.045};
     private final double[] dmgArray = {5.5, 6.5, 8, 8.5, 10};
 
-    private boolean religious = false;
+    private double stunRes = 0.2;
+    private double moveRes = 0.2;
+    private double blightRes = 0.6;
+    private double bleedRes = 0.2;
+    private double diseaseRes = 0.5;
+    private double debuffRes = 0.5;
+    private double deathRes = 0.67;
+    private double trapRes = 0.2;
 
+//    private boolean religious = false;
     private Hero myHero;
     private Combat combat;
 
@@ -62,12 +71,42 @@ public class PlagueDoctor {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -86,9 +125,19 @@ public class PlagueDoctor {
         return dmgArray;
     }
 
-    public boolean isReligious() {
-        return religious;
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+//    public boolean isReligious() {
+//        return religious;
+//    }
 
     private void useNoxiousBlast(Enemy t) {
         myHero.setAcc(.95 + .05 * noxiousBlast);

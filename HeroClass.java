@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 TLR
+ * Copyright (C) 2018 Tara
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,19 +14,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package darkestteam.heroClasses;
+package darkestteam;
 
 /**
  *
  * @author Tara
  */
-public class HeroClass {
-    
-    protected int[] maxHPArray;
+public interface HeroClass {
 
-    public HeroClass() {
-    }
-    
-    
-    
+    public void selectAction(Combat combat);
+
+    public void resetSpecials();
+
+    public int[] getMaxHPArray();
+
+    public double[] getDodgeArray();
+
+    public int[] getSpeedArray();
+
+    public double[] getAccModArray();
+
+    public double[] getCritModArray();
+
+    public double[] getDmgArray();
+
+    public double getBleedRes();
+
+    public double getBlightRes();
+
+    public double getDebuffRes();
+
+    public double getDiseaseRes();
+
+    public double getMoveRes();
+
+    public double getStunRes();
+
+    public double getTrapRes();
+
+    public double getDeathRes();
+
 }

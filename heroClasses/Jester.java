@@ -8,12 +8,13 @@ package darkestteam.heroClasses;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 
 /**
  *
  * @author Tara
  */
-public class Jester {
+public class Jester implements HeroClass {
 
     private int resolveLvl;
 
@@ -23,6 +24,15 @@ public class Jester {
     private final double[] accModArray = {0, 0, 0, 0, 0};
     private final double[] critModArray = {.075, .08, .085, .09, .095};
     private final double[] dmgArray = {5.5, 6.5, 8, 8.5, 10};
+
+    private double stunRes = 0.2;
+    private double moveRes = 0.2;
+    private double blightRes = 0.4;
+    private double bleedRes = 0.3;
+    private double diseaseRes = 0.2;
+    private double debuffRes = 0.4;
+    private double deathRes = 0.67;
+    private double trapRes = 0.3;
 
 //    private static boolean religious = false;
     private Combat combat;
@@ -49,12 +59,42 @@ public class Jester {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -75,6 +115,21 @@ public class Jester {
 
     public int getResolveLvl() {
         return resolveLvl;
+    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 //    public static boolean isReligious() {

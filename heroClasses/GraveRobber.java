@@ -10,6 +10,7 @@ import darkestteam.ChooseTarget;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.Managers;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class GraveRobber {
+public class GraveRobber implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {20, 24, 28, 32, 36};
@@ -28,6 +29,15 @@ public class GraveRobber {
     private final double[] accModArray = {0, 0, 0, 0, 0};
     private final double[] critModArray = {.05, .055, .06, .065, .07};
     private final double[] dmgArray = {6.5, 8, 9.5, 10, 11.5};
+
+    private double stunRes = 0.2;
+    private double moveRes = 0.2;
+    private double blightRes = 0.5;
+    private double bleedRes = 0.3;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double deathRes = 0.67;
+    private double trapRes = 0.5;
 
 //    private static boolean religious = false;
     private Hero myHero;
@@ -43,7 +53,7 @@ public class GraveRobber {
 
     public GraveRobber(Hero myHero) {
         this.myHero = myHero;
-        
+
         pickToTheFace = myHero.getMove1Rank() - 1;
         lunge = myHero.getMove2Rank() - 1;
         flashingDaggers = myHero.getMove3Rank() - 1;
@@ -54,12 +64,42 @@ public class GraveRobber {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -78,10 +118,24 @@ public class GraveRobber {
         return dmgArray;
     }
 
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 //    public static boolean isReligious() {
 //        return religious;
 //    }
-
     private void usePickToTheFace(Enemy t) {
 
     }
@@ -281,7 +335,7 @@ public class GraveRobber {
                 }
             }
         }
-        
+
         //if the pick to the face code above did not fire, then just use Thrown Dagger
         if (myHero.getPosition() >= 2 && thrownDagger != -1) {
             Enemy t = ChooseTarget.chooseEnemy(2, 4);

@@ -66,23 +66,23 @@ public class Hero extends Creature implements ICombatMethods {
     protected double trapRes;
 
     //TODO there must be a better way to associate each Hero with a specific instance of its class.
-    private Antiquarian antiquarian;
-    private Arbalest arbalest;
-    private BountyHunter bountyHunter;
-    private Flagellant flagellant;
-    private GraveRobber graveRobber;
-    private Hellion hellion;
-    private Highwayman highwayman;
-    private HoundMaster houndMaster;
-    private Jester jester;
-    private Leper leper;
-    private ManAtArms manAtArms;
-    private Occultist occultist;
-    private PlagueDoctor plagueDoctor;
-    private Shieldbreaker shieldbreaker;
-    private Vestal vestal;
-    
-//    private HeroClass myHero;
+//    private Abomination abomination;
+//    private Antiquarian antiquarian;
+////    private Arbalest arbalest;
+//    private BountyHunter bountyHunter;
+//    private Flagellant flagellant;
+//    private GraveRobber graveRobber;
+//    private Hellion hellion;
+//    private Highwayman highwayman;
+//    private HoundMaster houndMaster;
+//    private Jester jester;
+//    private Leper leper;
+//    private ManAtArms manAtArms;
+//    private Occultist occultist;
+//    private PlagueDoctor plagueDoctor;
+//    private Shieldbreaker shieldbreaker;
+//    private Vestal vestal;
+    private HeroClass myHero;
 
     private int startingPosition;
 
@@ -111,303 +111,325 @@ public class Hero extends Creature implements ICombatMethods {
             }
 
             switch (heroClass) {
+                case "Abomination":
+                    myHero = new Abomination(this);
+                    break;
                 case "Antiquarian":
-                    antiquarian = new Antiquarian(this);
+                    myHero = new Antiquarian(this);
 
-                    maxHP = antiquarian.getMaxHPArray()[arraySlot];
-                    dodge = antiquarian.getDodgeArray()[arraySlot];
-                    speed = antiquarian.getSpeedArray()[arraySlot];
-                    accMod = antiquarian.getAccModArray()[arraySlot];
-                    critMod = antiquarian.getCritModArray()[arraySlot];
-                    dmg = antiquarian.getDmgArray()[arraySlot];
-
-                    stunRes = 0.3 + .1 * resolveLvl;
-                    moveRes = 0.3 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    trapRes = 0.1 + .1 * resolveLvl;
-
-                    deathRes = 0.67;
+//                    maxHP = antiquarian.getMaxHPArray()[arraySlot];
+//                    dodge = antiquarian.getDodgeArray()[arraySlot];
+//                    speed = antiquarian.getSpeedArray()[arraySlot];
+//                    accMod = antiquarian.getAccModArray()[arraySlot];
+//                    critMod = antiquarian.getCritModArray()[arraySlot];
+//                    dmg = antiquarian.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.3 + .1 * resolveLvl;
+//                    moveRes = 0.3 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    trapRes = 0.1 + .1 * resolveLvl;
+//
+//                    deathRes = 0.67;
                     break;
                 case "Arbalest":
-                    arbalest = new Arbalest(this);
+//                    arbalest = new Arbalest(this);
+                    myHero = new Arbalest(this);
 
-                    maxHP = arbalest.getMaxHPArray()[arraySlot];
-                    dodge = arbalest.getDodgeArray()[arraySlot];
-                    speed = arbalest.getSpeedArray()[arraySlot];
-                    accMod = arbalest.getAccModArray()[arraySlot];
-                    critMod = arbalest.getCritModArray()[arraySlot];
-                    dmg = arbalest.getDmgArray()[arraySlot];
-
-                    stunRes = 0.4 + .1 * resolveLvl;
-                    moveRes = 0.4 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    trapRes = 0.1 + .1 * resolveLvl;
-
-                    deathRes = 0.67;
+//                    maxHP = myHero.getMaxHPArray()[arraySlot];
+//                    dodge = myHero.getDodgeArray()[arraySlot];
+//                    speed = myHero.getSpeedArray()[arraySlot];
+//                    accMod = myHero.getAccModArray()[arraySlot];
+//                    critMod = myHero.getCritModArray()[arraySlot];
+//                    dmg = myHero.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.4 + .1 * resolveLvl;
+//                    moveRes = 0.4 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    trapRes = 0.1 + .1 * resolveLvl;
+//
+//                    deathRes = 0.67;
                     break;
                 case "Bounty Hunter":
-                    bountyHunter = new BountyHunter(this);
-                    maxHP = bountyHunter.getMaxHPArray()[arraySlot];
-                    dodge = bountyHunter.getDodgeArray()[arraySlot];
-                    speed = bountyHunter.getSpeedArray()[arraySlot];
-                    accMod = bountyHunter.getAccModArray()[arraySlot];
-                    critMod = bountyHunter.getCritModArray()[arraySlot];
-                    dmg = bountyHunter.getDmgArray()[arraySlot];
-
-                    stunRes = 0.4 + .1 * resolveLvl;
-                    moveRes = 0.4 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.2 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    trapRes = 0.4 + .1 * resolveLvl;
-
-                    deathRes = 0.67;
+                    myHero = new BountyHunter(this);
+//                    maxHP = bountyHunter.getMaxHPArray()[arraySlot];
+//                    dodge = bountyHunter.getDodgeArray()[arraySlot];
+//                    speed = bountyHunter.getSpeedArray()[arraySlot];
+//                    accMod = bountyHunter.getAccModArray()[arraySlot];
+//                    critMod = bountyHunter.getCritModArray()[arraySlot];
+//                    dmg = bountyHunter.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.4 + .1 * resolveLvl;
+//                    moveRes = 0.4 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.2 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    trapRes = 0.4 + .1 * resolveLvl;
+//
+//                    deathRes = 0.67;
                     break;
                 case "Crusader":
-                    crusader = new Crusader(this);
-                    maxHP = crusader.getMaxHPArray()[arraySlot];
-                    dodge = crusader.getDodgeArray()[arraySlot];
-                    speed = crusader.getSpeedArray()[arraySlot];
-                    accMod = crusader.getAccModArray()[arraySlot];
-                    critMod = crusader.getCritModArray()[arraySlot];
-                    dmg = crusader.getDmgArray()[arraySlot];
-
-                    stunRes = 0.4 + .1 * resolveLvl;
-                    moveRes = 0.4 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.1 + .1 * resolveLvl;
+                    myHero = new Crusader(this);
+//                    maxHP = crusader.getMaxHPArray()[arraySlot];
+//                    dodge = crusader.getDodgeArray()[arraySlot];
+//                    speed = crusader.getSpeedArray()[arraySlot];
+//                    accMod = crusader.getAccModArray()[arraySlot];
+//                    critMod = crusader.getCritModArray()[arraySlot];
+//                    dmg = crusader.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.4 + .1 * resolveLvl;
+//                    moveRes = 0.4 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Flagellant":
-                    flagellant = new Flagellant(this);
-                    maxHP = flagellant.getMaxHPArray()[arraySlot];
-                    dodge = flagellant.getDodgeArray()[arraySlot];
-                    speed = flagellant.getSpeedArray()[arraySlot];
-                    accMod = flagellant.getAccModArray()[arraySlot];
-                    critMod = flagellant.getCritModArray()[arraySlot];
-                    dmg = flagellant.getDmgArray()[arraySlot];
-
-                    stunRes = 0.5 + .1 * resolveLvl;
-                    moveRes = 0.5 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.65 + .1 * resolveLvl;
-                    diseaseRes = 0.4 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.73;
-                    trapRes = 0 + .1 * resolveLvl;
+                    myHero = new Flagellant(this);
+//                    maxHP = flagellant.getMaxHPArray()[arraySlot];
+//                    dodge = flagellant.getDodgeArray()[arraySlot];
+//                    speed = flagellant.getSpeedArray()[arraySlot];
+//                    accMod = flagellant.getAccModArray()[arraySlot];
+//                    critMod = flagellant.getCritModArray()[arraySlot];
+//                    dmg = flagellant.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.5 + .1 * resolveLvl;
+//                    moveRes = 0.5 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.65 + .1 * resolveLvl;
+//                    diseaseRes = 0.4 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.73;
+//                    trapRes = 0 + .1 * resolveLvl;
                     break;
                 case "Grave Robber":
-                    graveRobber = new GraveRobber(this);
-                    maxHP = graveRobber.getMaxHPArray()[arraySlot];
-                    dodge = graveRobber.getDodgeArray()[arraySlot];
-                    speed = graveRobber.getSpeedArray()[arraySlot];
-                    accMod = graveRobber.getAccModArray()[arraySlot];
-                    critMod = graveRobber.getCritModArray()[arraySlot];
-                    dmg = graveRobber.getDmgArray()[arraySlot];
-
-                    stunRes = 0.2 + .1 * resolveLvl;
-                    moveRes = 0.2 + .1 * resolveLvl;
-                    blightRes = 0.5 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.5 + .1 * resolveLvl;
+                    myHero = new GraveRobber(this);
+//                    maxHP = graveRobber.getMaxHPArray()[arraySlot];
+//                    dodge = graveRobber.getDodgeArray()[arraySlot];
+//                    speed = graveRobber.getSpeedArray()[arraySlot];
+//                    accMod = graveRobber.getAccModArray()[arraySlot];
+//                    critMod = graveRobber.getCritModArray()[arraySlot];
+//                    dmg = graveRobber.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.2 + .1 * resolveLvl;
+//                    moveRes = 0.2 + .1 * resolveLvl;
+//                    blightRes = 0.5 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.5 + .1 * resolveLvl;
                     break;
                 case "Hellion":
-                    hellion = new Hellion(this);
-                    maxHP = hellion.getMaxHPArray()[arraySlot];
-                    dodge = hellion.getDodgeArray()[arraySlot];
-                    speed = hellion.getSpeedArray()[arraySlot];
-                    accMod = hellion.getAccModArray()[arraySlot];
-                    critMod = hellion.getCritModArray()[arraySlot];
-                    dmg = hellion.getDmgArray()[arraySlot];
-
-                    stunRes = 0.4 + .1 * resolveLvl;
-                    moveRes = 0.4 + .1 * resolveLvl;
-                    blightRes = 0.4 + .1 * resolveLvl;
-                    bleedRes = 0.4 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.2 + .1 * resolveLvl;
+                    myHero = new Hellion(this);
+//                    maxHP = hellion.getMaxHPArray()[arraySlot];
+//                    dodge = hellion.getDodgeArray()[arraySlot];
+//                    speed = hellion.getSpeedArray()[arraySlot];
+//                    accMod = hellion.getAccModArray()[arraySlot];
+//                    critMod = hellion.getCritModArray()[arraySlot];
+//                    dmg = hellion.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.4 + .1 * resolveLvl;
+//                    moveRes = 0.4 + .1 * resolveLvl;
+//                    blightRes = 0.4 + .1 * resolveLvl;
+//                    bleedRes = 0.4 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Highwayman":
-                    highwayman = new Highwayman(this);
-                    maxHP = highwayman.getMaxHPArray()[arraySlot];
-                    dodge = highwayman.getDodgeArray()[arraySlot];
-                    speed = highwayman.getSpeedArray()[arraySlot];
-                    accMod = highwayman.getAccModArray()[arraySlot];
-                    critMod = highwayman.getCritModArray()[arraySlot];
-                    dmg = highwayman.getDmgArray()[arraySlot];
-
-                    stunRes = 0.3 + .1 * resolveLvl;
-                    moveRes = 0.3 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.4 + .1 * resolveLvl;
+                    myHero = new Highwayman(this);
+//                    maxHP = highwayman.getMaxHPArray()[arraySlot];
+//                    dodge = highwayman.getDodgeArray()[arraySlot];
+//                    speed = highwayman.getSpeedArray()[arraySlot];
+//                    accMod = highwayman.getAccModArray()[arraySlot];
+//                    critMod = highwayman.getCritModArray()[arraySlot];
+//                    dmg = highwayman.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.3 + .1 * resolveLvl;
+//                    moveRes = 0.3 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.4 + .1 * resolveLvl;
                     break;
                 case "Hound Master":
-                    houndMaster = new HoundMaster(this);
-                    maxHP = houndMaster.getMaxHPArray()[arraySlot];
-                    dodge = houndMaster.getDodgeArray()[arraySlot];
-                    speed = houndMaster.getSpeedArray()[arraySlot];
-                    accMod = houndMaster.getAccModArray()[arraySlot];
-                    critMod = houndMaster.getCritModArray()[arraySlot];
-                    dmg = houndMaster.getDmgArray()[arraySlot];
-
-                    stunRes = 0.4 + .1 * resolveLvl;
-                    moveRes = 0.4 + .1 * resolveLvl;
-                    blightRes = 0.4 + .1 * resolveLvl;
-                    bleedRes = 0.4 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.4 + .1 * resolveLvl;
+                    myHero = new HoundMaster(this);
+//                    maxHP = houndMaster.getMaxHPArray()[arraySlot];
+//                    dodge = houndMaster.getDodgeArray()[arraySlot];
+//                    speed = houndMaster.getSpeedArray()[arraySlot];
+//                    accMod = houndMaster.getAccModArray()[arraySlot];
+//                    critMod = houndMaster.getCritModArray()[arraySlot];
+//                    dmg = houndMaster.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.4 + .1 * resolveLvl;
+//                    moveRes = 0.4 + .1 * resolveLvl;
+//                    blightRes = 0.4 + .1 * resolveLvl;
+//                    bleedRes = 0.4 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.4 + .1 * resolveLvl;
                     break;
                 case "Jester":
-                    jester = new Jester(this);
-                    maxHP = jester.getMaxHPArray()[arraySlot];
-                    dodge = jester.getDodgeArray()[arraySlot];
-                    speed = jester.getSpeedArray()[arraySlot];
-                    accMod = jester.getAccModArray()[arraySlot];
-                    critMod = jester.getCritModArray()[arraySlot];
-                    dmg = jester.getDmgArray()[arraySlot];
-
-                    stunRes = 0.2 + .1 * resolveLvl;
-                    moveRes = 0.2 + .1 * resolveLvl;
-                    blightRes = 0.4 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.2 + .1 * resolveLvl;
-                    debuffRes = 0.4 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.3 + .1 * resolveLvl;
+                    myHero = new Jester(this);
+//                    maxHP = jester.getMaxHPArray()[arraySlot];
+//                    dodge = jester.getDodgeArray()[arraySlot];
+//                    speed = jester.getSpeedArray()[arraySlot];
+//                    accMod = jester.getAccModArray()[arraySlot];
+//                    critMod = jester.getCritModArray()[arraySlot];
+//                    dmg = jester.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.2 + .1 * resolveLvl;
+//                    moveRes = 0.2 + .1 * resolveLvl;
+//                    blightRes = 0.4 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.2 + .1 * resolveLvl;
+//                    debuffRes = 0.4 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.3 + .1 * resolveLvl;
                     break;
                 case "Leper":
-                    leper = new Leper(this);
-                    maxHP = leper.getMaxHPArray()[arraySlot];
-                    dodge = leper.getDodgeArray()[arraySlot];
-                    speed = leper.getSpeedArray()[arraySlot];
-                    accMod = leper.getAccModArray()[arraySlot];
-                    critMod = leper.getCritModArray()[arraySlot];
-                    dmg = leper.getDmgArray()[arraySlot];
-
-                    stunRes = 0.6 + .1 * resolveLvl;
-                    moveRes = 0.6 + .1 * resolveLvl;
-                    blightRes = 0.4 + .1 * resolveLvl;
-                    bleedRes = 0.1 + .1 * resolveLvl;
-                    diseaseRes = 0.2 + .1 * resolveLvl;
-                    debuffRes = 0.4 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.1 + .1 * resolveLvl;
+                    myHero = new Leper(this);
+//                    maxHP = leper.getMaxHPArray()[arraySlot];
+//                    dodge = leper.getDodgeArray()[arraySlot];
+//                    speed = leper.getSpeedArray()[arraySlot];
+//                    accMod = leper.getAccModArray()[arraySlot];
+//                    critMod = leper.getCritModArray()[arraySlot];
+//                    dmg = leper.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.6 + .1 * resolveLvl;
+//                    moveRes = 0.6 + .1 * resolveLvl;
+//                    blightRes = 0.4 + .1 * resolveLvl;
+//                    bleedRes = 0.1 + .1 * resolveLvl;
+//                    diseaseRes = 0.2 + .1 * resolveLvl;
+//                    debuffRes = 0.4 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Man-at-Arms":
-                    manAtArms = new ManAtArms(this);
-                    maxHP = manAtArms.getMaxHPArray()[arraySlot];
-                    dodge = manAtArms.getDodgeArray()[arraySlot];
-                    speed = manAtArms.getSpeedArray()[arraySlot];
-                    accMod = manAtArms.getAccModArray()[arraySlot];
-                    critMod = manAtArms.getCritModArray()[arraySlot];
-                    dmg = manAtArms.getDmgArray()[arraySlot];
-
-                    stunRes = 0.5 + .1 * resolveLvl;
-                    moveRes = 0.5 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.4 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.1 + .1 * resolveLvl;
+                    myHero = new ManAtArms(this);
+//                    maxHP = manAtArms.getMaxHPArray()[arraySlot];
+//                    dodge = manAtArms.getDodgeArray()[arraySlot];
+//                    speed = manAtArms.getSpeedArray()[arraySlot];
+//                    accMod = manAtArms.getAccModArray()[arraySlot];
+//                    critMod = manAtArms.getCritModArray()[arraySlot];
+//                    dmg = manAtArms.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.5 + .1 * resolveLvl;
+//                    moveRes = 0.5 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.4 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Occultist":
-                    occultist = new Occultist(this);
-                    maxHP = occultist.getMaxHPArray()[arraySlot];
-                    dodge = occultist.getDodgeArray()[arraySlot];
-                    speed = occultist.getSpeedArray()[arraySlot];
-                    accMod = occultist.getAccModArray()[arraySlot];
-                    critMod = occultist.getCritModArray()[arraySlot];
-                    dmg = occultist.getDmgArray()[arraySlot];
-
-                    stunRes = 0.2 + .1 * resolveLvl;
-                    moveRes = 0.2 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.4 + .1 * resolveLvl;
-                    diseaseRes = 0.4 + .1 * resolveLvl;
-                    debuffRes = 0.6 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.1 + .1 * resolveLvl;
+                    myHero = new Occultist(this);
+//                    maxHP = occultist.getMaxHPArray()[arraySlot];
+//                    dodge = occultist.getDodgeArray()[arraySlot];
+//                    speed = occultist.getSpeedArray()[arraySlot];
+//                    accMod = occultist.getAccModArray()[arraySlot];
+//                    critMod = occultist.getCritModArray()[arraySlot];
+//                    dmg = occultist.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.2 + .1 * resolveLvl;
+//                    moveRes = 0.2 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.4 + .1 * resolveLvl;
+//                    diseaseRes = 0.4 + .1 * resolveLvl;
+//                    debuffRes = 0.6 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 case "Plague Doctor":
-                    plagueDoctor = new PlagueDoctor(this);
-                    maxHP = plagueDoctor.getMaxHPArray()[arraySlot];
-                    dodge = plagueDoctor.getDodgeArray()[arraySlot];
-                    speed = plagueDoctor.getSpeedArray()[arraySlot];
-                    accMod = plagueDoctor.getAccModArray()[arraySlot];
-                    critMod = plagueDoctor.getCritModArray()[arraySlot];
-                    dmg = plagueDoctor.getDmgArray()[arraySlot];
-
-                    stunRes = 0.2 + .1 * resolveLvl;
-                    moveRes = 0.2 + .1 * resolveLvl;
-                    blightRes = 0.6 + .1 * resolveLvl;
-                    bleedRes = 0.2 + .1 * resolveLvl;
-                    diseaseRes = 0.5 + .1 * resolveLvl;
-                    debuffRes = 0.5 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.2 + .1 * resolveLvl;
+                    myHero = new PlagueDoctor(this);
+//                    maxHP = plagueDoctor.getMaxHPArray()[arraySlot];
+//                    dodge = plagueDoctor.getDodgeArray()[arraySlot];
+//                    speed = plagueDoctor.getSpeedArray()[arraySlot];
+//                    accMod = plagueDoctor.getAccModArray()[arraySlot];
+//                    critMod = plagueDoctor.getCritModArray()[arraySlot];
+//                    dmg = plagueDoctor.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.2 + .1 * resolveLvl;
+//                    moveRes = 0.2 + .1 * resolveLvl;
+//                    blightRes = 0.6 + .1 * resolveLvl;
+//                    bleedRes = 0.2 + .1 * resolveLvl;
+//                    diseaseRes = 0.5 + .1 * resolveLvl;
+//                    debuffRes = 0.5 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Shieldbreaker":
-                    shieldbreaker = new Shieldbreaker(resolveLvl);
-                    maxHP = shieldbreaker.getMaxHPArray()[arraySlot];
-                    dodge = shieldbreaker.getDodgeArray()[arraySlot];
-                    speed = shieldbreaker.getSpeedArray()[arraySlot];
-                    accMod = shieldbreaker.getAccModArray()[arraySlot];
-                    critMod = shieldbreaker.getCritModArray()[arraySlot];
-                    dmg = shieldbreaker.getDmgArray()[arraySlot];
-
-                    stunRes = 0.5 + .1 * resolveLvl;
-                    moveRes = 0.5 + .1 * resolveLvl;
-                    blightRes = 0.2 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.2 + .1 * resolveLvl;
+                    myHero = new Shieldbreaker(this);
+//                    maxHP = shieldbreaker.getMaxHPArray()[arraySlot];
+//                    dodge = shieldbreaker.getDodgeArray()[arraySlot];
+//                    speed = shieldbreaker.getSpeedArray()[arraySlot];
+//                    accMod = shieldbreaker.getAccModArray()[arraySlot];
+//                    critMod = shieldbreaker.getCritModArray()[arraySlot];
+//                    dmg = shieldbreaker.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.5 + .1 * resolveLvl;
+//                    moveRes = 0.5 + .1 * resolveLvl;
+//                    blightRes = 0.2 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.2 + .1 * resolveLvl;
                     break;
                 case "Vestal":
-                    vestal = new Vestal(this);
-                    maxHP = vestal.getMaxHPArray()[arraySlot];
-                    dodge = vestal.getDodgeArray()[arraySlot];
-                    speed = vestal.getSpeedArray()[arraySlot];
-                    accMod = vestal.getAccModArray()[arraySlot];
-                    critMod = vestal.getCritModArray()[arraySlot];
-                    dmg = vestal.getDmgArray()[arraySlot];
-
-                    stunRes = 0.3 + .1 * resolveLvl;
-                    moveRes = 0.3 + .1 * resolveLvl;
-                    blightRes = 0.3 + .1 * resolveLvl;
-                    bleedRes = 0.3 + .1 * resolveLvl;
-                    diseaseRes = 0.3 + .1 * resolveLvl;
-                    debuffRes = 0.3 + .1 * resolveLvl;
-                    deathRes = 0.67;
-                    trapRes = 0.1 + .1 * resolveLvl;
+                    myHero = new Vestal(this);
+//                    maxHP = vestal.getMaxHPArray()[arraySlot];
+//                    dodge = vestal.getDodgeArray()[arraySlot];
+//                    speed = vestal.getSpeedArray()[arraySlot];
+//                    accMod = vestal.getAccModArray()[arraySlot];
+//                    critMod = vestal.getCritModArray()[arraySlot];
+//                    dmg = vestal.getDmgArray()[arraySlot];
+//
+//                    stunRes = 0.3 + .1 * resolveLvl;
+//                    moveRes = 0.3 + .1 * resolveLvl;
+//                    blightRes = 0.3 + .1 * resolveLvl;
+//                    bleedRes = 0.3 + .1 * resolveLvl;
+//                    diseaseRes = 0.3 + .1 * resolveLvl;
+//                    debuffRes = 0.3 + .1 * resolveLvl;
+//                    deathRes = 0.67;
+//                    trapRes = 0.1 + .1 * resolveLvl;
                     break;
                 default:
-                    System.out.println("Invalid class, try again");
+                    System.out.println("Invalid hero class, try again");
                     break;
             }
+
+            maxHP = myHero.getMaxHPArray()[arraySlot];
+            dodge = myHero.getDodgeArray()[arraySlot];
+            speed = myHero.getSpeedArray()[arraySlot];
+            accMod = myHero.getAccModArray()[arraySlot];
+            critMod = myHero.getCritModArray()[arraySlot];
+            dmg = myHero.getDmgArray()[arraySlot];
+
+            stunRes = myHero.getStunRes() + .1 * resolveLvl;
+            moveRes = myHero.getMoveRes() + .1 * resolveLvl;
+            blightRes = myHero.getBlightRes() + .1 * resolveLvl;
+            bleedRes = myHero.getBleedRes() + .1 * resolveLvl;
+            diseaseRes = myHero.getDiseaseRes() + .1 * resolveLvl;
+            debuffRes = myHero.getDebuffRes() + .1 * resolveLvl;
+            trapRes = myHero.getTrapRes() + .1 * resolveLvl;
+
+            deathRes = myHero.getDeathRes();
+
             //this is still within the IF statement so it won't trigger if the class was not set properly
             curHP = maxHP;
             //the specific damage types only matter once I bring quirks into it which can modify them individually
@@ -594,58 +616,59 @@ public class Hero extends Creature implements ICombatMethods {
     @Override
     public void selectAction(Combat combat) {
 
-        switch (heroClass.getValue()) {
-            case "Antiquarian":
-                antiquarian.selectAction(combat);
-                break;
-            case "Arbalest":
-                arbalest.selectAction(combat);
-                break;
-            case "Bounty Hunter":
-                bountyHunter.selectAction(combat);
-                break;
-            case "Crusader":
-                crusader.selectAction(combat);
-                break;
-            case "Flagellant":
-                flagellant.selectAction(combat);
-                break;
-            case "Grave Robber":
-                graveRobber.selectAction(combat);
-                break;
-            case "Hellion":
-                hellion.selectAction(combat);
-                break;
-            case "Highwayman":
-                highwayman.selectAction(combat);
-                break;
-            case "Hound Master":
-                houndMaster.selectAction(combat);
-                break;
-            case "Jester":
-                jester.selectAction(combat);
-                break;
-            case "Leper":
-                leper.selectAction(combat);
-                break;
-            case "Man-At-Arms":
-                manAtArms.selectAction(combat);
-                break;
-            case "Occultist":
-                occultist.selectAction(combat);
-                break;
-            case "Plague Doctor":
-                plagueDoctor.selectAction(combat);
-                break;
-            case "Shieldbreaker":
-                shieldbreaker.selectAction(combat);
-                break;
-            case "Vestal":
-                vestal.selectAction(combat);
-                break;
-            default:
-                System.out.println("Hero.selectAction() did not receive a valid class (Tara is poopoo)");
-        }
+//        switch (heroClass.getValue()) {
+//            case "Antiquarian":
+//                antiquarian.selectAction(combat);
+//                break;
+//            case "Arbalest":
+//                arbalest.selectAction(combat);
+//                break;
+//            case "Bounty Hunter":
+//                bountyHunter.selectAction(combat);
+//                break;
+//            case "Crusader":
+//                crusader.selectAction(combat);
+//                break;
+//            case "Flagellant":
+//                flagellant.selectAction(combat);
+//                break;
+//            case "Grave Robber":
+//                graveRobber.selectAction(combat);
+//                break;
+//            case "Hellion":
+//                hellion.selectAction(combat);
+//                break;
+//            case "Highwayman":
+//                highwayman.selectAction(combat);
+//                break;
+//            case "Hound Master":
+//                houndMaster.selectAction(combat);
+//                break;
+//            case "Jester":
+//                jester.selectAction(combat);
+//                break;
+//            case "Leper":
+//                leper.selectAction(combat);
+//                break;
+//            case "Man-At-Arms":
+//                manAtArms.selectAction(combat);
+//                break;
+//            case "Occultist":
+//                occultist.selectAction(combat);
+//                break;
+//            case "Plague Doctor":
+//                plagueDoctor.selectAction(combat);
+//                break;
+//            case "Shieldbreaker":
+//                shieldbreaker.selectAction(combat);
+//                break;
+//            case "Vestal":
+//                vestal.selectAction(combat);
+//                break;
+//            default:
+//                System.out.println("Hero.selectAction() did not receive a valid class (Tara is poopoo)");
+//        }
+        myHero.selectAction(combat);
     }
 
     /**
@@ -655,14 +678,16 @@ public class Hero extends Creature implements ICombatMethods {
      *
      */
     public void resetSpecials() {
-        switch (getHeroClass()) {
-            case "Man-At-Arms":
-                manAtArms.resetSpecials();
-                break;
-            case "Plague Doctor":
-                plagueDoctor.resetSpecials();
-                break;
-        }
+//        switch (getHeroClass()) {
+//            case "Man-At-Arms":
+//                manAtArms.resetSpecials();
+//                break;
+//            case "Plague Doctor":
+//                plagueDoctor.resetSpecials();
+//                break;
+//        }
+
+        myHero.resetSpecials();
     }
 
     public void setAcc(double acc) {

@@ -10,13 +10,14 @@ import darkestteam.ChooseTarget;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.RandomFunctions;
 
 /**
  *
  * @author Tara
  */
-public class Crusader {
+public class Crusader implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {33, 40, 47, 54, 61};
@@ -27,6 +28,15 @@ public class Crusader {
     private final double[] dmgArray = {9, 10.5, 12, 13, 14.5};
 
 //    private final boolean religious = true;
+    private double stunRes  = 0.4;
+    private double moveRes  = 0.4;
+    private double blightRes  = 0.3;
+    private double bleedRes  = 0.3;
+    private double diseaseRes  = 0.3;
+    private double debuffRes  = 0.3;
+    private double deathRes  = 0.67;
+    private double trapRes  = 0.1;
+
     private Hero myHero;
     private Combat combat;
 
@@ -50,31 +60,82 @@ public class Crusader {
         inspiringCry = myHero.getMove7Rank() - 1;
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 //    public boolean isReligious() {
 //        return religious;
 //    }
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
 
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
+    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void useSmite(Enemy target) {
@@ -182,7 +243,7 @@ public class Crusader {
                     }
                 }
             }
-            
+
             //if there is not a priority target in the front line, then use Zealous accusation
             if (zealousAccusation != -1) {
                 if (pos1 != null && pos2 != null) {

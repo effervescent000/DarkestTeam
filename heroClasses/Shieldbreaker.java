@@ -6,12 +6,14 @@
 package darkestteam.heroClasses;
 
 import darkestteam.Combat;
+import darkestteam.Hero;
+import darkestteam.HeroClass;
 
 /**
  *
  * @author Tara
  */
-public class Shieldbreaker {
+public class Shieldbreaker implements HeroClass {
 //
 //    private int resolveLvl;
 //    private String heroName;
@@ -23,9 +25,7 @@ public class Shieldbreaker {
     private final double[] critModArray = {.075, .08, .085, .09, .095};
     private final double[] dmgArray = {7.5, 9, 10.5, 12, 13.5};
 
-    private static boolean religious = false;
-
-
+//    private static boolean religious = false;
     private double stunRes = 0.5;
     private double moveRes = 0.5;
     private double blightRes = 0.2;
@@ -35,8 +35,12 @@ public class Shieldbreaker {
     private double deathRes = 0.67;
     private double trapRes = 0.2;
 
-    public Shieldbreaker(int resolveLvl) {
+    private Hero myHero;
+    private Combat combat;
+
+    public Shieldbreaker(Hero myHero) {
 //
+        this.myHero = myHero;
 //        this.resolveLvl = resolveLvl;
 //
 //        int arraySlot = resolveLvl - 1;
@@ -51,68 +55,39 @@ public class Shieldbreaker {
 //        System.out.println("Arbalest named " + heroName + " created. She has " + maxHP + " health.");
     }
 
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
 
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
     }
-    
-    
 
-//    public int getResolveLvl() {
-//        return resolveLvl;
+//    public static boolean isReligious() {
+//        return religious;
 //    }
-
-    public static boolean isReligious() {
-        return religious;
-    }
-
-//    public int getMaxHP() {
-//        return maxHP;
-//    }
-//
-//    public double getDodge() {
-//        return dodge;
-//    }
-//
-//    public int getSpeed() {
-//        return speed;
-//    }
-//
-//    public double getAccMod() {
-//        return accMod;
-//    }
-//
-//    public double getCritMod() {
-//        return critMod;
-//    }
-//
-//    public double getDmg() {
-//        return dmg;
-//    }
-//
-//    public double getProt() {
-//        return prot;
-//    }
-
     public double getStunRes() {
         return stunRes;
     }
@@ -143,6 +118,11 @@ public class Shieldbreaker {
 
     public double getTrapRes() {
         return trapRes;
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void selectAction(Combat combat) {

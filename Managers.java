@@ -5,7 +5,7 @@
  */
 package darkestteam;
 
-import static darkestteam.Log.addLog;
+import static darkestteam.CombatLog.addLog;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 

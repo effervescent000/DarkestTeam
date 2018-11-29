@@ -15,15 +15,15 @@ import java.util.logging.Logger;
  *
  * @author Tara
  */
-public class Log {
+public class CombatLog {
 
     private static BufferedWriter log;
 
-    public Log() {
+    public CombatLog() {
         try {
-            Log.log = new BufferedWriter(new FileWriter("combatlog.txt"));
+            CombatLog.log = new BufferedWriter(new FileWriter("combatlog.txt"));
         } catch (IOException ex) {
-            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CombatLog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -32,7 +32,7 @@ public class Log {
 
         try {
             if (log == null) {
-                Log.log = new BufferedWriter(new FileWriter("combatlog.txt"));
+                CombatLog.log = new BufferedWriter(new FileWriter("combatlog.txt"));
             }
             
             log.write(text + "\n");
@@ -46,7 +46,7 @@ public class Log {
         try {
             log.close();
         } catch (IOException ex) {
-            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CombatLog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

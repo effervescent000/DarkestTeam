@@ -12,12 +12,13 @@ import darkestteam.Hero;
 import darkestteam.Managers;
 import java.util.ArrayList;
 import static darkestteam.Checker.checkEnemiesForDebuff;
+import darkestteam.HeroClass;
 
 /**
  *
  * @author Tara
  */
-public class BountyHunter {
+public class BountyHunter implements HeroClass {
 
     private final int[] maxHPArray = {25, 30, 35, 40, 45};
     private final double[] dodgeArray = {.05, .10, .15, .20, .25};
@@ -26,7 +27,16 @@ public class BountyHunter {
     private final double[] critModArray = {.05, .055, .06, .065, .07};
     private final double[] dmgArray = {7.5, 9, 10, 11, 12};
 
-    private static boolean religious = false;
+//    private static boolean religious = false;
+    private double stunRes = 0.4;
+    private double moveRes = 0.4;
+    private double blightRes = 0.3;
+    private double bleedRes = 0.3;
+    private double diseaseRes = 0.2;
+    private double debuffRes = 0.3;
+    private double trapRes = 0.4;
+
+    private double deathRes = .67;
 
     private Hero myHero;
     private Combat combat;
@@ -52,16 +62,48 @@ public class BountyHunter {
 
     }
 
-    public static boolean isReligious() {
-        return religious;
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -78,6 +120,21 @@ public class BountyHunter {
 
     public double[] getDmgArray() {
         return dmgArray;
+    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void useCollectBounty(Enemy t) {
@@ -129,7 +186,7 @@ public class BountyHunter {
         myHero.setAcc(.9 + .05 * uppercut);
         myHero.setCrit(0 + .01 * uppercut);
         int amt = (int) (myHero.getDmg() * .33);
-        
+
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
             myHero.setAcc(1 + .1 * uppercut);

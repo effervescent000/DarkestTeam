@@ -10,12 +10,13 @@ import darkestteam.ChooseTarget;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 
 /**
  *
  * @author Tara
  */
-public class ManAtArms {
+public class ManAtArms implements HeroClass {
 
     private int resolveLvl;
 
@@ -26,8 +27,16 @@ public class ManAtArms {
     private final double[] critModArray = {.037, .043, .047, .053, .057};
     private final double[] dmgArray = {7.5, 9, 10, 11, 12};
 
-    private static boolean religious = false;
+    private double stunRes = 0.5;
+    private double moveRes = 0.5;
+    private double blightRes = 0.3;
+    private double bleedRes = 0.4;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double deathRes = 0.67;
+    private double trapRes = 0.1;
 
+//    private static boolean religious = false;
     private Combat combat;
     private Hero myHero;
 
@@ -57,12 +66,52 @@ public class ManAtArms {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getResolveLvl() {
         return resolveLvl;
     }
 
-    public static boolean isReligious() {
-        return religious;
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void useCrush(Enemy t) {

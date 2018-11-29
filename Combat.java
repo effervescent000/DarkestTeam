@@ -5,13 +5,15 @@
  */
 package darkestteam;
 
-import static darkestteam.Log.addLog;
+import static darkestteam.CombatLog.addLog;
 import static darkestteam.Managers.checkStress;
 import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
 import static darkestteam.Checker.checkSpecificForDebuff;
 import static darkestteam.Managers.checkDebuffs;
 

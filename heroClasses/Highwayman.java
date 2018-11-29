@@ -10,6 +10,7 @@ import darkestteam.ChooseTarget;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
+import darkestteam.HeroClass;
 import darkestteam.Managers;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class Highwayman {
+public class Highwayman implements HeroClass {
 
     private final int[] maxHPArray = {23, 28, 33, 38, 43};
     private final double[] dodgeArray = {.10, .15, .20, .25, .30};
@@ -27,6 +28,15 @@ public class Highwayman {
     private final double[] accModArray = {0, 0, 0, 0, 0};
     private final double[] critModArray = {.05, .055, .06, .065, .07};
     private final double[] dmgArray = {7.5, 9, 10, 11.5, 12.5};
+
+    private double stunRes = 0.3;
+    private double moveRes = 0.3;
+    private double blightRes = 0.3;
+    private double bleedRes = 0.3;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double deathRes = 0.67;
+    private double trapRes = 0.4;
 
     private static boolean religious = false;
 
@@ -54,32 +64,83 @@ public class Highwayman {
         openVein = myHero.getMove7Rank() - 1;
     }
 
+    @Override
+    public double getBleedRes() {
+        return bleedRes;
+    }
+
+    @Override
+    public double getBlightRes() {
+        return blightRes;
+    }
+
+    @Override
+    public double getDeathRes() {
+        return deathRes;
+    }
+
+    @Override
+    public double getDebuffRes() {
+        return debuffRes;
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        return diseaseRes;
+    }
+
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
 
+    @Override
+    public double getMoveRes() {
+        return moveRes;
+    }
+
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
     }
 
     public static boolean isReligious() {
         return religious;
+    }
+
+    @Override
+    public double getStunRes() {
+        return stunRes;
+    }
+
+    @Override
+    public double getTrapRes() {
+        return trapRes;
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void useWickedSlice(Enemy t) {
@@ -109,7 +170,7 @@ public class Highwayman {
     }
 
     private void usePointBlankShot(Enemy t) {
-                myHero.setAcc(.95 + .05 * pointBlankShot);
+        myHero.setAcc(.95 + .05 * pointBlankShot);
         myHero.setCrit(.05 + .01 * pointBlankShot);
         int amt = (int) (myHero.getRangedDmg() * 1.5);
 
@@ -122,7 +183,7 @@ public class Highwayman {
     }
 
     private void useGrapeshotBlast() {
-                myHero.setAcc(.75 + .05 * grapeshotBlast);
+        myHero.setAcc(.75 + .05 * grapeshotBlast);
         myHero.setCrit(-.09 + .01 * grapeshotBlast);
         int amt = (int) (myHero.getRangedDmg() * (1 - .5));
 
@@ -132,7 +193,7 @@ public class Highwayman {
     }
 
     private void useTrackingShot() {
-                myHero.setAcc(.95 + .05 * trackingShot);
+        myHero.setAcc(.95 + .05 * trackingShot);
         myHero.setCrit(0 + .025 * trackingShot); //this is not quite accurate but idc
         int amt = (int) (myHero.getRangedDmg() * (1 - .8));
 
@@ -162,7 +223,7 @@ public class Highwayman {
             myHero.setAcc(1 + .1 * openVein);
             amt = (int) (2 + .5 * openVein);
             Managers.addBleed(t, 3, amt, myHero);
-            Managers.addStatusEffect(t, "Open Vein", 3, myHero); 
+            Managers.addStatusEffect(t, "Open Vein", 3, myHero);
         }
     }
 

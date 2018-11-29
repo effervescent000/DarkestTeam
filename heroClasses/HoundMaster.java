@@ -13,12 +13,13 @@ import darkestteam.Hero;
 import darkestteam.Managers;
 import java.util.ArrayList;
 import static darkestteam.Checker.checkEnemiesForDebuff;
+import darkestteam.HeroClass;
 
 /**
  *
  * @author Tara
  */
-public class HoundMaster {
+public class HoundMaster implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {21, 25, 29, 33, 37};
@@ -28,8 +29,16 @@ public class HoundMaster {
     private final double[] critModArray = {.05, .055, .06, .065, .07};
     private final double[] dmgArray = {5.5, 6.5, 8, 8.5, 10};
 
-    private static boolean religious = false;
+    private double stunRes = 0.4;
+    private double moveRes = 0.4;
+    private double blightRes = 0.4;
+    private double bleedRes = 0.4;
+    private double diseaseRes = 0.3;
+    private double debuffRes = 0.3;
+    private double deathRes = 0.67;
+    private double trapRes = 0.4;
 
+//    private static boolean religious = false;
     private Hero myHero;
     private Combat combat;
 
@@ -54,12 +63,42 @@ public class HoundMaster {
 
     }
 
+    @Override
+    public double getBleedRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getBlightRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDeathRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDebuffRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getDiseaseRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
     public double[] getDodgeArray() {
         return dodgeArray;
+    }
+
+    @Override
+    public double getMoveRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int[] getSpeedArray() {
@@ -78,8 +117,23 @@ public class HoundMaster {
         return dmgArray;
     }
 
-    public static boolean isReligious() {
-        return religious;
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+
+    @Override
+    public double getStunRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getTrapRes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resetSpecials() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void useHoundsRush(Enemy t) {
@@ -135,7 +189,7 @@ public class HoundMaster {
     }
 
     private void useGuardDog() {
-           //TODO fill out ability code here
+        //TODO fill out ability code here
     }
 
     private void useLickWounds() {
