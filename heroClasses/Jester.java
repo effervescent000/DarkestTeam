@@ -61,75 +61,81 @@ public class Jester implements HeroClass {
 
     @Override
     public double getBleedRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bleedRes;
     }
 
     @Override
     public double getBlightRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return blightRes;
     }
 
     @Override
     public double getDeathRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return deathRes;
     }
 
     @Override
     public double getDebuffRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return debuffRes;
     }
 
     @Override
     public double getDiseaseRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return diseaseRes;
     }
 
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
 
     @Override
     public double getMoveRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return moveRes;
     }
 
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
     }
-
-    public int getResolveLvl() {
-        return resolveLvl;
-    }
+//
+//    public int getResolveLvl() {
+//        return resolveLvl;
+//    }
 
     @Override
     public double getStunRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return stunRes;
     }
 
     @Override
     public double getTrapRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return trapRes;
     }
 
     @Override
     public void resetSpecials() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Jester has no specials configured");
     }
 
 //    public static boolean isReligious() {
@@ -163,6 +169,7 @@ public class Jester implements HeroClass {
         //todo add ability code here   
     }
 
+    @Override
     public void selectAction(Combat combat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

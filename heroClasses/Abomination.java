@@ -54,27 +54,27 @@ public class Abomination implements ICombatMethods, HeroClass {
 
     @Override
     public double[] getAccModArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return accModArray;
     }
 
     @Override
     public double[] getCritModArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return critModArray;
     }
 
     @Override
     public double[] getDmgArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dmgArray;
     }
 
     @Override
     public double[] getDodgeArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dodgeArray;
     }
 
     @Override
     public int[] getMaxHPArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return maxHPArray;
     }
 
     public int getResolveLvl() {
@@ -114,37 +114,45 @@ public class Abomination implements ICombatMethods, HeroClass {
 
     @Override
     public int[] getSpeedArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return speedArray;
     }
 
+    @Override
     public double getStunRes() {
         return stunRes;
     }
 
+    @Override
     public double getMoveRes() {
         return moveRes;
     }
 
+    @Override
     public double getBlightRes() {
         return blightRes;
     }
 
+    @Override
     public double getBleedRes() {
         return bleedRes;
     }
 
+    @Override
     public double getDiseaseRes() {
         return diseaseRes;
     }
 
+    @Override
     public double getDebuffRes() {
         return debuffRes;
     }
 
+    @Override
     public double getDeathRes() {
         return deathRes;
     }
 
+    @Override
     public double getTrapRes() {
         return trapRes;
     }

@@ -213,7 +213,7 @@ public class Highwayman implements HeroClass {
     }
 
     private void useOpenVein(Enemy t) {
-        int openVein = myHero.getMove7Rank() - 1;
+//        int openVein = myHero.getMove7Rank() - 1;
         myHero.setAcc(.95 + .05 * openVein);
         myHero.setCrit(0 + .01 * openVein); //this is not quite accurate but idc
         int amt = (int) (myHero.getMeleeDmg() * (1 - .15));
@@ -227,6 +227,7 @@ public class Highwayman implements HeroClass {
         }
     }
 
+    @Override
     public void selectAction(Combat combat) {
         this.combat = combat;
 

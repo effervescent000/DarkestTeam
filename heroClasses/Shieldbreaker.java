@@ -88,43 +88,52 @@ public class Shieldbreaker implements HeroClass {
 //    public static boolean isReligious() {
 //        return religious;
 //    }
+    @Override
     public double getStunRes() {
         return stunRes;
     }
 
+    @Override
     public double getMoveRes() {
         return moveRes;
     }
 
+    @Override
     public double getBlightRes() {
         return blightRes;
     }
 
+    @Override
     public double getBleedRes() {
         return bleedRes;
     }
 
+    @Override
     public double getDiseaseRes() {
         return diseaseRes;
     }
 
+    @Override
     public double getDebuffRes() {
         return debuffRes;
     }
 
+    @Override
     public double getDeathRes() {
         return deathRes;
     }
 
+    @Override
     public double getTrapRes() {
         return trapRes;
     }
 
     @Override
     public void resetSpecials() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Shieldbreaker has no specials configured");
     }
 
+    @Override
     public void selectAction(Combat combat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

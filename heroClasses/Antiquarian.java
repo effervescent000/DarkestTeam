@@ -24,16 +24,16 @@ public class Antiquarian implements ICombatMethods, HeroClass {
     private final double[] accModArray = {0, 0, 0, 0, 0};
     private final double[] critModArray = {1.025, 1.03, 1.035, 1.04, 1.045};
     private final double[] dmgArray = {4, 5, 5.5, 6.5, 7};
-
-    private static boolean religious = false;
-
-    private int maxHP;
-    private double dodge;
-    private int speed;
-    private double accMod;
-    private double critMod;
-    private double dmg;
-    private double prot;
+//
+//    private static boolean religious = false;
+//
+//    private int maxHP;
+//    private double dodge;
+//    private int speed;
+//    private double accMod;
+//    private double critMod;
+//    private double dmg;
+//    private double prot;
 
     private double stunRes = 0.3;
     private double moveRes = 0.3;
@@ -69,103 +69,118 @@ public class Antiquarian implements ICombatMethods, HeroClass {
 
     }
 
-    public int getResolveLvl() {
-        return resolveLvl;
-    }
+//    public int getResolveLvl() {
+//        return resolveLvl;
+//    }
+//
+//    public static boolean isReligious() {
+//        return religious;
+//    }
+//
+//    public int getMaxHP() {
+//        return maxHP;
+//    }
+//
+//    public double getDodge() {
+//        return dodge;
+//    }
+//
+//    public int getSpeed() {
+//        return speed;
+//    }
+//
+//    public double getAccMod() {
+//        return accMod;
+//    }
+//
+//    public double getCritMod() {
+//        return critMod;
+//    }
+//
+//    public double getDmg() {
+//        return dmg;
+//    }
+//
+//    public double getProt() {
+//        return prot;
+//    }
 
-    public static boolean isReligious() {
-        return religious;
-    }
-
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public double getDodge() {
-        return dodge;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public double getAccMod() {
-        return accMod;
-    }
-
-    public double getCritMod() {
-        return critMod;
-    }
-
-    public double getDmg() {
-        return dmg;
-    }
-
-    public double getProt() {
-        return prot;
-    }
-
+    @Override
     public double getStunRes() {
         return stunRes;
     }
 
+    @Override
     public double getMoveRes() {
         return moveRes;
     }
 
+    @Override
     public double getBlightRes() {
         return blightRes;
     }
 
+    @Override
     public double getBleedRes() {
         return bleedRes;
     }
 
+    @Override
     public double getDiseaseRes() {
         return diseaseRes;
     }
 
+    @Override
     public double getDebuffRes() {
         return debuffRes;
     }
 
+    @Override
     public double getDeathRes() {
         return deathRes;
     }
 
+    @Override
     public double getTrapRes() {
         return trapRes;
     }
 
     @Override
     public void resetSpecials() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Antiquarian has no specials to reset");
     }
 
+    @Override
     public void selectAction(Combat combat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Antiquarian has no actions configured");
     }
 
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
 
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
     }

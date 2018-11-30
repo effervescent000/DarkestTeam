@@ -72,33 +72,35 @@ public class Hellion implements ICombatMethods, HeroClass {
 
     @Override
     public double getBleedRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bleedRes;
     }
 
     @Override
     public double getBlightRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return blightRes;
     }
 
     @Override
     public double getDeathRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return deathRes;
     }
 
     @Override
     public double getDebuffRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return debuffRes;
     }
 
     @Override
     public double getDiseaseRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return diseaseRes;
     }
 
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
@@ -108,18 +110,22 @@ public class Hellion implements ICombatMethods, HeroClass {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
     }
@@ -212,7 +218,7 @@ public class Hellion implements ICombatMethods, HeroClass {
         myHero.setCrit(.06 + .01 * bleedOut);
         int amt = (int) (myHero.getDmg() * 1.2);
 
-        if (combat.tryAttackByHero(myHero, t)) {
+        if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
 
             myHero.setAcc(1 + .1 * bleedOut);

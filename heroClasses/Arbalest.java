@@ -74,7 +74,7 @@ public class Arbalest implements ICombatMethods, HeroClass {
 
     @Override
     public void resetSpecials() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Arbalest has no specials to reset");
     }
 
 //    public static boolean isReligious() {

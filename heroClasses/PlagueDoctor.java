@@ -73,33 +73,35 @@ public class PlagueDoctor implements HeroClass {
 
     @Override
     public double getBleedRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bleedRes;
     }
 
     @Override
     public double getBlightRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return blightRes;
     }
 
     @Override
     public double getDeathRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return deathRes;
     }
 
     @Override
     public double getDebuffRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return debuffRes;
     }
 
     @Override
     public double getDiseaseRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return diseaseRes;
     }
 
+    @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
     }
 
+    @Override
     public double[] getDodgeArray() {
         return dodgeArray;
     }
@@ -109,30 +111,34 @@ public class PlagueDoctor implements HeroClass {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public int[] getSpeedArray() {
         return speedArray;
     }
 
+    @Override
     public double[] getAccModArray() {
         return accModArray;
     }
 
+    @Override
     public double[] getCritModArray() {
         return critModArray;
     }
 
+    @Override
     public double[] getDmgArray() {
         return dmgArray;
     }
 
     @Override
     public double getStunRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return stunRes;
     }
 
     @Override
     public double getTrapRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return trapRes;
     }
 
 //    public boolean isReligious() {
@@ -224,11 +230,13 @@ public class PlagueDoctor implements HeroClass {
         //todo fill out ability code here
     }
 
+    @Override
     public void resetSpecials() {
         blindingGasUses = 0;
         emboldeningVapoursUses = 0;
     }
 
+    @Override
     public void selectAction(Combat combat) {
 
         this.combat = combat;
