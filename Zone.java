@@ -127,9 +127,6 @@ public class Zone {
                 }
             }
         }
-//        addLog("Random encounter!");
-//        generateEnemies();
-//        Combat combat = new Combat();
 
         System.out.println("runDungeon() completed");
 

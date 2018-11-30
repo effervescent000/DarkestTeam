@@ -20,6 +20,8 @@ import javafx.collections.ObservableList;
  * @author Tara
  */
 public class IOSave {
+    
+    // TODO convert this from a csv to XML
 
     private ObservableList<Hero> heroArray = FXCollections.observableArrayList();
     private Rosters roster;

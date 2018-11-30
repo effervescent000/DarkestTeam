@@ -24,29 +24,23 @@ public class Hero extends Creature implements ICombatMethods {
     protected double acc;
     protected double accMod;
 
-    private int attacksMade;
-
     protected double crit;
     protected double critMod;
 
+    private int attacksMade;
     private int crits;
-    private Crusader crusader;
     private int damageDealtDOT;
     private int damageDealtDirect;
     private int damageTakenDOT;
     private int damageTakenDirect;
-    protected double deathRes;
-    protected double diseaseRes;
-
-    private Hero guardian;
     private int healingDone;
+    private int misses;
 
     protected double dmg;
     protected double dmgMod;
     protected double meleeDmg;
     protected double rangedDmg;
 
-    private int misses;
     private int move1Rank;
     private int move2Rank;
     private int move3Rank;
@@ -63,7 +57,11 @@ public class Hero extends Creature implements ICombatMethods {
     private ArrayList<String> stressQuirks = new ArrayList<>();
     private ArrayList<String> townQuirks = new ArrayList<>();
 
+    protected double deathRes;
+    protected double diseaseRes;
     protected double trapRes;
+
+    private Hero guardian;
 
     //TODO there must be a better way to associate each Hero with a specific instance of its class.
 //    private Abomination abomination;

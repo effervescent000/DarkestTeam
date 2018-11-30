@@ -25,20 +25,16 @@ public class CombatLog {
         } catch (IOException ex) {
             Logger.getLogger(CombatLog.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public static void addLog(String text) {
-
         try {
             if (log == null) {
                 CombatLog.log = new BufferedWriter(new FileWriter("combatlog.txt"));
             }
-            
             log.write(text + "\n");
-            
         } catch (IOException ex) {
-
+            ex.printStackTrace();
         }
     }
 

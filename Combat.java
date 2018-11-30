@@ -133,7 +133,6 @@ public class Combat {
             System.err.println("Uncaught exception - " + ex.getMessage());
             ex.printStackTrace(System.err);
         }
-
     }
 
     public void dmgHero(Hero target, int amt, Enemy attacker) {
@@ -426,7 +425,7 @@ public class Combat {
     }
 
     public boolean checkGroupHealth() {
-        //htis is sort of a misnomer, the goal is to return true if the group is essentially
+        //this is sort of a misnomer, the goal is to return true if the group is essentially
         //less than topped off.
 
         int needHealing = 0;
