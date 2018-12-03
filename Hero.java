@@ -813,8 +813,17 @@ public class Hero extends Creature implements ICombatMethods {
         this.startingPosition = startingPosition;
     }
 
+    /**
+     * Modifies the Hero's stress level (does *not* change it outright). Sets
+     * Hero's stress to zero if it goes negative.
+     *
+     * @param stressLvl
+     */
     public void setStressLvl(int stressLvl) {
-        this.stressLvl = stressLvl;
+        this.stressLvl += stressLvl;
+        if (this.stressLvl < 0) {
+            this.stressLvl = 0;
+        }
     }
 
     /**

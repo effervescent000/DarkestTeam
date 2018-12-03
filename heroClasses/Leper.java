@@ -48,6 +48,9 @@ public class Leper implements HeroClass {
     private int withstand;
     private int solemnity;
     private int intimidate;
+    
+    private int revengeUses;
+    private int withstandUses;
 
     public Leper(Hero myHero) {
         this.myHero = myHero;
@@ -59,6 +62,8 @@ public class Leper implements HeroClass {
         withstand = myHero.getMove5Rank() - 1;
         solemnity = myHero.getMove6Rank() - 1;
         intimidate = myHero.getMove7Rank() - 1;
+        
+        resetSpecials();
 
     }
 
@@ -142,7 +147,8 @@ public class Leper implements HeroClass {
 
     @Override
     public void resetSpecials() {
-        System.out.println("Lepers has no specials configured");
+        revengeUses = 0;
+        withstandUses = 0;
     }
 
     public void useChop(Enemy t) {
@@ -181,15 +187,20 @@ public class Leper implements HeroClass {
     }
 
     public void useRevenge() {
-        //todo ability code here
+        //fake duration to make the buff last the entire fight
+        Managers.addHelpfulEffect(myHero, "Revenge", 100);
+        revengeUses++;
     }
 
     public void useWithstand() {
-        //todo ability code here
+        Managers.addStatusEffect(myHero, "Marked", 3, null); //todo make sure this null doesn't cause issues
+        Managers.addHelpfulEffect(myHero, "Withstand", 100);
+        withstandUses++;
     }
 
     public void useSolemnity() {
-        //todo ability code here
+        combat.healHero(myHero, myHero, (int) (6 + 1.5 * solemnity));
+        myHero.setStressLvl(-5);
     }
 
     private void useIntimidate() {
@@ -204,6 +215,8 @@ public class Leper implements HeroClass {
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
+        
+        //TODO figure out situations in which to use Revenge & Withstand
 
         //use Purge if the front-line enemy is high-danger
         if (purge != -1) {
