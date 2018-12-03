@@ -48,7 +48,7 @@ public class Leper implements HeroClass {
     private int withstand;
     private int solemnity;
     private int intimidate;
-    
+
     private int revengeUses;
     private int withstandUses;
 
@@ -62,7 +62,7 @@ public class Leper implements HeroClass {
         withstand = myHero.getMove5Rank() - 1;
         solemnity = myHero.getMove6Rank() - 1;
         intimidate = myHero.getMove7Rank() - 1;
-        
+
         resetSpecials();
 
     }
@@ -130,7 +130,6 @@ public class Leper implements HeroClass {
 //    public int getResolveLvl() {
 //        return resolveLvl;
 //    }
-
     @Override
     public double getStunRes() {
         return stunRes;
@@ -144,7 +143,6 @@ public class Leper implements HeroClass {
 //    public boolean isReligious() {
 //        return religious;
 //    }
-
     @Override
     public void resetSpecials() {
         revengeUses = 0;
@@ -203,8 +201,21 @@ public class Leper implements HeroClass {
         myHero.setStressLvl(-5);
     }
 
-    private void useIntimidate() {
-        //todo ability code here
+    private void useIntimidate(Enemy t) {
+        myHero.setAcc(.95 + .05 * intimidate);
+        int amt;
+        if (intimidate < 4) {
+            amt = (int) (myHero.getMeleeDmg() * .15);
+        } else {
+            amt = (int) (myHero.getMeleeDmg() * .1);
+        }
+
+        if (Combat.tryAttackByHero(myHero, t)) {
+            myHero.setAcc(1 + .1 * intimidate);
+            Managers.addStatusEffect(t, "Intimidate", 3, myHero);
+            Managers.addStatusEffect(myHero, "Marked", 4, null); //todo make sure this null doesn't cause issues
+            Managers.addHelpfulEffect(myHero, "Intimidate", 3);
+        }
     }
 
     @Override
@@ -215,9 +226,8 @@ public class Leper implements HeroClass {
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
-        
-        //TODO figure out situations in which to use Revenge & Withstand
 
+        //TODO figure out situations in which to use Revenge & Withstand & Intimidate
         //use Purge if the front-line enemy is high-danger
         if (purge != -1) {
             if (myHero.getPosition() == 1) {
