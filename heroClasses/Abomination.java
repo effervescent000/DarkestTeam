@@ -8,7 +8,6 @@ package darkestteam.heroClasses;
 import darkestteam.Combat;
 import darkestteam.Hero;
 import darkestteam.HeroClass;
-import darkestteam.ICombatMethods;
 
 /**
  *
