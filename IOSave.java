@@ -14,23 +14,65 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.io.File;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 /**
  *
  * @author Tara
  */
 public class IOSave {
-    
+
     // TODO convert this from a csv to XML
+    private String fn = "roster.xml";
 
     private ObservableList<Hero> heroArray = FXCollections.observableArrayList();
-    private Rosters roster;
+    private static Rosters roster;
 
     public IOSave() {
-        if (Rosters.getHeroArray() != null) {
-            heroArray = Rosters.getHeroArray();
+        if (roster == null) {
+            roster = Rosters.getInstance();
         }
-        roster = new Rosters();
+        if (roster.getHeroArray() != null) {
+            heroArray = roster.getHeroArray();
+        }
+//        roster = new Rosters();
+    }
+
+    public boolean buildXML() {
+        try {
+            File file = new File(fn);
+            JAXBContext jax = JAXBContext.newInstance(roster.getClass());
+            Marshaller m = jax.createMarshaller();
+
+            //this sets pretty printing
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            m.marshal(roster, file);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Rosters readXML() {
+        try {
+            File file = new File(fn);
+            JAXBContext jax = JAXBContext.newInstance(Rosters.class);
+
+            Unmarshaller u = jax.createUnmarshaller();
+            roster = (Rosters) u.unmarshal(file);
+            return roster;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+
+        }
     }
 
     public void dumpHeroes() {
@@ -39,7 +81,7 @@ public class IOSave {
             save.write("");
             save.close();
         } catch (IOException ex) {
-
+            Logger.getLogger(Rosters.class.getName()).log(Level.SEVERE, null, ex);
         }
         try (FileWriter save = new FileWriter("savefile.txt", true)) {
             for (Hero hero : heroArray) {
@@ -69,7 +111,7 @@ public class IOSave {
             if (heroArray != null || !heroArray.isEmpty()) {
                 heroArray.clear();
             }
-            
+
             int counter = 0;
 
             while (scanner.hasNextLine()) {

@@ -5,7 +5,6 @@
  */
 package darkestteam;
 
-import static darkestteam.Rosters.getHeroArray;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -27,6 +26,7 @@ import javafx.stage.Stage;
 public class AddCharacterController implements Initializable {
 
     private Hero myHero;
+    private static Rosters roster;
 
     final ObservableList<String> classList = FXCollections.observableArrayList(
             "Abomination", "Antiquarian", "Arbalest", "Bounty Hunter",
@@ -90,9 +90,10 @@ public class AddCharacterController implements Initializable {
                 myHero.setMove6Rank((int) move6Rank.getSelectionModel().getSelectedItem());
                 myHero.setMove7Rank((int) move7Rank.getSelectionModel().getSelectedItem());
             } else {
-                Rosters NewHero = new Rosters();
-                NewHero.addHero(heroName, selClass, selResolve);
-                myHero = getHeroArray().get(getHeroArray().size() - 1);
+                if (roster == null) {
+                    roster = Rosters.getInstance();
+                }
+                myHero = roster.addHero(heroName, selClass, selResolve);
             }
 
             Stage stage = (Stage) ConfirmButton.getScene().getWindow();

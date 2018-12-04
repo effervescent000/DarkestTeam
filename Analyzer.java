@@ -6,6 +6,7 @@
 package darkestteam;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 import javafx.collections.ObservableList;
 
 /**
@@ -40,10 +41,11 @@ public class Analyzer {
     private ArrayList<Integer> cumulativeAvgEndingStress = new ArrayList();
     private ArrayList<Integer> cumulativeStress = new ArrayList();
     private ArrayList<Integer> cumulativeHealingDone = new ArrayList();
+//    private TreeMap<Integer, ArrayList<Hero>> iterationMap = new TreeMap<>();
 
     public Analyzer(int iterations) {
         this.iterations = iterations;
-        ObservableList<Hero> r = Rosters.getHeroRoster();
+        ObservableList<Hero> r = Rosters.getInstance().getHeroRoster();
 
         pos1 = r.get(0);
         pos2 = r.get(1);

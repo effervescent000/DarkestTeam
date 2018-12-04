@@ -8,37 +8,52 @@ package darkestteam;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Tara
  */
-public class Rosters {
+@XmlRootElement
+public final class Rosters {
 
-    private static ObservableList<Hero> heroArray = FXCollections.observableArrayList();
-    private static ObservableList<Hero> heroRoster = FXCollections.observableArrayList();
+    private static Rosters INSTANCE;
 
-    private static HashMap<Integer, Hero> heroMap = new HashMap(4);
+    public static Rosters getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Rosters();
+        }
+        return INSTANCE;
+    }
+
+    private ObservableList<Hero> heroArray = FXCollections.observableArrayList();
+    private ObservableList<Hero> heroRoster = FXCollections.observableArrayList();
+
+    private HashMap<Integer, Hero> heroMap = new HashMap(4);
 
 //    private String heroName;
 //    private String heroClass;
 //    private int lvl;
-    public Rosters() {
+    private Rosters() {
     }
 
-    public void addHero(String heroName, String heroClass, int Lvl) {
-        heroArray.add(new Hero(heroName, heroClass, Lvl));
+    public Hero addHero(String heroName, String heroClass, int Lvl) {
+        Hero newHero = new Hero(heroName, heroClass, Lvl);
+        heroArray.add(newHero);
+        return newHero;
     }
 
-    public static ObservableList<Hero> getHeroArray() {
+    public ObservableList<Hero> getHeroArray() {
         return heroArray;
     }
 
-    public static ObservableList<Hero> getHeroRoster() {
+    @XmlElement
+    public ObservableList<Hero> getHeroRoster() {
         return heroRoster;
     }
 
-    public static void removeHero(Hero hero) {
+    public void removeHero(Hero hero) {
         if (heroArray.contains(hero)) {
             heroArray.remove(hero);
             if (heroRoster.contains(hero)) {
@@ -49,14 +64,14 @@ public class Rosters {
         }
     }
 
-    public static void setHeroRoster(ObservableList<Hero> heroRoster) {
+    public void setHeroRoster(ObservableList<Hero> heroRoster) {
 //        Rosters.heroRoster.setAll(heroRoster);
-        Rosters.heroRoster = heroRoster;
+        this.heroRoster = heroRoster;
 
         setStartingPositions();
     }
 
-    public static void setStartingPositions() {
+    public void setStartingPositions() {
         //ok I was at first trying to do this so that the code would select preferred
         //positions based on hero class and it was a huge pain and clunky and bad
         //so I am just pulling it from the heroRoster array. For the future:
@@ -73,20 +88,13 @@ public class Rosters {
 
     }
 
-    public static HashMap getHeroMap() {
+    public HashMap getHeroMap() {
         return heroMap;
     }
 
     public void setHeroArray(ObservableList<Hero> heroArray) {
 //        Rosters.heroArray.setAll(heroArray);
-        Rosters.heroArray = heroArray;
+        this.heroArray = heroArray;
     }
 
-//    public static Hero getHeroInPosition(int pos) {
-//        Hero hero = heroRoster.get(pos -1);
-//        if (hero != null) {
-//            return hero;
-//        }
-//        return null;
-//    }
 }

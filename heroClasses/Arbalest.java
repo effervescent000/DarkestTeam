@@ -58,6 +58,8 @@ public final class Arbalest implements HeroClass {
     private Combat combat;
 
     public Arbalest(Hero myHero) {
+        
+        this.myHero = myHero;
 
         this.sniperShot = myHero.getMove1Rank() - 1;
         this.suppressingFire = myHero.getMove2Rank() - 1;
@@ -170,12 +172,7 @@ public final class Arbalest implements HeroClass {
         try {
             this.combat = combat;
 
-            Combat.getHeroRoster().stream().filter((Hero hero) -> (hero.getHeroClass().equals("Arbalest"))).forEach((hero) -> {
-                this.myHero = hero;
-            });
-
             ObservableList<Hero> heroRoster = Combat.getHeroRoster();
-
             Hero stunned = checkHeroesForDebuff("Stun", heroRoster);
             Enemy marked = checkEnemiesForDebuff("Marked", Combat.getEnemyRoster());
 

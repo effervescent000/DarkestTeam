@@ -39,7 +39,7 @@ public class Combat {
 
             this.round = 1;
 
-            heroRoster = Rosters.getHeroRoster();
+            heroRoster = Rosters.getInstance().getHeroRoster();
             enemyRoster = Zone.getEnemyRoster();
 
 //            combatRoster = FXCollections.observableArrayList();

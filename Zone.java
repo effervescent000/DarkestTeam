@@ -23,48 +23,48 @@ import javafx.stage.Stage;
  * @author Tara
  */
 public class Zone {
-
+    
     private String length;
     private String difficulty;
     private String zone;
-
+    
     private int lightLvl;
-
+    
     private int totalIterations;
     private int curIterations;
 //    public ObservableValue<Double> progress;
 
     private int encounters;
-
+    
     private int numHallSquares = 4;
     //this is the number of hall squares PER ROOM, not total
     private int numRooms;
-
+    
     private ArrayList<Enemy> sharedEnemies = new ArrayList<>();
     private ArrayList<Enemy> coveEnemies = new ArrayList<>();
     private ArrayList<Enemy> ruinsEnemies = new ArrayList<>();
     private ArrayList<Enemy> warrensEnemies = new ArrayList<>();
     private ArrayList<Enemy> wealdEnemies = new ArrayList<>();
-
+    
     private static ObservableList<Enemy> enemyRoster;
 
 //    private Log cLog;
-    public Zone(String length, String difficulty, String zone, Integer iterations) {
-
+    public Zone(String length, String difficulty, String zone, Integer iterations, MainWindowController mwc) {
+        
         this.length = length;
         this.difficulty = difficulty;
         this.zone = zone;
         this.totalIterations = iterations;
         curIterations = 0;
         encounters = 0;
-
+        
         try {
             if (enemyRoster == null) {
                 enemyRoster = FXCollections.observableArrayList();
             }
-
+            
             System.out.println("Zone constructor called");
-
+            
             if (null != length && difficulty != null && zone != null) {
                 switch (length) {
                     case "Short":
@@ -86,11 +86,11 @@ public class Zone {
             }
 
             //set Hero starting positions
-            ObservableList<Hero> r = Rosters.getHeroRoster();
-            for (int i = 0; i < Rosters.getHeroRoster().size(); i++) {
+            ObservableList<Hero> r = Rosters.getInstance().getHeroRoster();
+            for (int i = 0; i < Rosters.getInstance().getHeroRoster().size(); i++) {
                 r.get(i).setStartingPosition(i + 1);
             }
-
+            
             Analyzer a = new Analyzer(totalIterations);
             while (curIterations < totalIterations) {
                 runDungeon();
@@ -98,6 +98,7 @@ public class Zone {
                 Managers.resetAll();
                 if (encounters > 1) {
                     curIterations++;
+                    mwc.setPB(curIterations / totalIterations);
 //                    progress = curIterations/totalIterations;
                 }
             }
@@ -108,7 +109,7 @@ public class Zone {
             e.printStackTrace(System.err);
         }
     }
-
+    
     private void runDungeon() {
         //TODO this is basically the doRound() of the Zone class. This will
         //run through the map generate events. For the purposes of this sim,
@@ -127,12 +128,12 @@ public class Zone {
                 }
             }
         }
-
+        
         System.out.println("runDungeon() completed");
 
 //        displayResults();
     }
-
+    
     private void displayResults() {
         Parent root;
         try {
@@ -145,7 +146,7 @@ public class Zone {
             e.printStackTrace(System.err);
         }
     }
-
+    
     private void generateEnemies() {
         switch (zone) {
             case "Cove":
@@ -174,7 +175,7 @@ public class Zone {
 //            enemyMap.put(i + 1, enemyRoster.get(i));
         }
     }
-
+    
     private void fillRoster(ArrayList<Enemy> zoneEnemies) {
         //the reason for clearing the arrays after use is to force the code
         //to generate a new instance of the enemies, in case we end up
@@ -194,7 +195,7 @@ public class Zone {
                     enemyRoster.add(sharedEnemies.get(selection));
                     sharedEnemies.clear();
                 }
-
+                
             }
             for (Enemy enemy : enemyRoster) {
                 if (enemy.getCurHP() < enemy.getMaxHP()) {
@@ -213,7 +214,7 @@ public class Zone {
             e.printStackTrace(System.err);
         }
     }
-
+    
     private void populateArrays() {
         //these arrays are ordered in the same way as the lists are ordered on
         //the DD wiki by default
@@ -233,7 +234,7 @@ public class Zone {
 //            sharedEnemies.add(new Ghoul(difficulty));
 //            sharedEnemies.add(new Gargoyle(difficulty));
         }
-
+        
         switch (zone) {
             case "Cove":
                 if (coveEnemies.isEmpty()) {
@@ -288,27 +289,27 @@ public class Zone {
                 break;
         }
     }
-
+    
     public String getDifficulty() {
         return difficulty;
     }
-
+    
     public static ObservableList<Enemy> getEnemyRoster() {
         return enemyRoster;
     }
-
+    
     public int getCurIterations() {
         return curIterations;
     }
-
+    
     public int getLightLvl() {
         return lightLvl;
     }
-
+    
     public int getTotalIterations() {
         return totalIterations;
     }
-
+    
     public String getZone() {
         return zone;
     }

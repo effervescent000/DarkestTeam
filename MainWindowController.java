@@ -92,9 +92,9 @@ public class MainWindowController implements Initializable {
             Zone z = new Zone((String) lengthSelect.getSelectionModel().getSelectedItem(),
                     (String) difficultySelect.getSelectionModel().getSelectedItem(),
                     (String) zoneSelect.getSelectionModel().getSelectedItem(),
-                    (Integer) iterationsBox.getSelectionModel().getSelectedItem());
+                    (Integer) iterationsBox.getSelectionModel().getSelectedItem(), 
+                    this);
         }
-
         // TODO add elseif block here for GameConfig settings (need to actually create this fxml file first)
     }
 

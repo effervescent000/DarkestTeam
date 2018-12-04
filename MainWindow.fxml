@@ -15,6 +15,6 @@
         <ComboBox fx:id="difficultySelect" layoutX="225.0" layoutY="248.0" prefWidth="150.0" promptText="Difficulty" />
         <ComboBox fx:id="lengthSelect" layoutX="225.0" layoutY="273.0" prefWidth="150.0" promptText="Length" />
         <ComboBox fx:id="iterationsBox" layoutX="225.0" layoutY="298.0" prefWidth="150.0" promptText="Iterations" />
-      <ProgressBar fx:id="progressBar" layoutX="200.0" layoutY="347.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="pb" layoutX="200.0" layoutY="347.0" prefWidth="200.0" progress="0.0" />
     </children>
 </AnchorPane>

@@ -15,6 +15,8 @@ import javafx.collections.ObservableList;
  */
 public class Managers {
 
+    private static Rosters roster;
+
     public static void checkStress(Hero hero) {
         int stress = hero.getStressLvl();
         if (stress >= 100) {
@@ -226,7 +228,11 @@ public class Managers {
      *
      */
     public static void resetAll() {
-        Rosters.getHeroRoster().forEach((hero) -> {
+        if (roster == null) {
+            roster = Rosters.getInstance();
+        }
+
+        roster.getHeroRoster().forEach((hero) -> {
             hero.setStressLvl(0);
             removeAllDebuffs(hero);
             hero.resetCombatStats();

@@ -5,7 +5,6 @@
  */
 package darkestteam;
 
-import static darkestteam.Rosters.getHeroRoster;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -29,34 +28,38 @@ public class AnalysisWindowController implements Initializable {
     private Label damageDoneLabel, damageTakenLabel;
 
     private ObservableList<PieChart.Data> damageDealtData, damageTakenData;
+    private static Rosters roster;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (roster == null) {
+            roster = Rosters.getInstance();
+        }
         damageDealtData = FXCollections.observableArrayList(
-                new PieChart.Data(getHeroRoster().get(0).getHeroDesc(), getHeroRoster().get(0).getDamageDealtDirect() + getHeroRoster().get(0).getDamageDealtDOT()),
-                new PieChart.Data(getHeroRoster().get(1).getHeroDesc(), getHeroRoster().get(1).getDamageDealtDirect() + getHeroRoster().get(1).getDamageDealtDOT()),
-                new PieChart.Data(getHeroRoster().get(2).getHeroDesc(), getHeroRoster().get(2).getDamageDealtDirect() + getHeroRoster().get(2).getDamageDealtDOT()),
-                new PieChart.Data(getHeroRoster().get(3).getHeroDesc(), getHeroRoster().get(3).getDamageDealtDirect() + getHeroRoster().get(3).getDamageDealtDOT()));
+                new PieChart.Data(roster.getHeroRoster().get(0).getHeroDesc(), roster.getHeroRoster().get(0).getDamageDealtDirect() + roster.getHeroRoster().get(0).getDamageDealtDOT()),
+                new PieChart.Data(roster.getHeroRoster().get(1).getHeroDesc(), roster.getHeroRoster().get(1).getDamageDealtDirect() + roster.getHeroRoster().get(1).getDamageDealtDOT()),
+                new PieChart.Data(roster.getHeroRoster().get(2).getHeroDesc(), roster.getHeroRoster().get(2).getDamageDealtDirect() + roster.getHeroRoster().get(2).getDamageDealtDOT()),
+                new PieChart.Data(roster.getHeroRoster().get(3).getHeroDesc(), roster.getHeroRoster().get(3).getDamageDealtDirect() + roster.getHeroRoster().get(3).getDamageDealtDOT()));
         damageTakenData = FXCollections.observableArrayList(
-                new PieChart.Data(getHeroRoster().get(0).getHeroDesc(), getHeroRoster().get(0).getDamageTakenDirect() + getHeroRoster().get(0).getDamageTakenDOT()),
-                new PieChart.Data(getHeroRoster().get(1).getHeroDesc(), getHeroRoster().get(1).getDamageTakenDirect() + getHeroRoster().get(1).getDamageTakenDOT()),
-                new PieChart.Data(getHeroRoster().get(2).getHeroDesc(), getHeroRoster().get(2).getDamageTakenDirect() + getHeroRoster().get(2).getDamageTakenDOT()),
-                new PieChart.Data(getHeroRoster().get(3).getHeroDesc(), getHeroRoster().get(3).getDamageTakenDirect() + getHeroRoster().get(3).getDamageTakenDOT()));
+                new PieChart.Data(roster.getHeroRoster().get(0).getHeroDesc(), roster.getHeroRoster().get(0).getDamageTakenDirect() + roster.getHeroRoster().get(0).getDamageTakenDOT()),
+                new PieChart.Data(roster.getHeroRoster().get(1).getHeroDesc(), roster.getHeroRoster().get(1).getDamageTakenDirect() + roster.getHeroRoster().get(1).getDamageTakenDOT()),
+                new PieChart.Data(roster.getHeroRoster().get(2).getHeroDesc(), roster.getHeroRoster().get(2).getDamageTakenDirect() + roster.getHeroRoster().get(2).getDamageTakenDOT()),
+                new PieChart.Data(roster.getHeroRoster().get(3).getHeroDesc(), roster.getHeroRoster().get(3).getDamageTakenDirect() + roster.getHeroRoster().get(3).getDamageTakenDOT()));
 
         damageDealt.setData(damageDealtData);
         damageTaken.setData(damageTakenData);
 
-        damageDoneLabel.setText(Integer.toString(getHeroRoster().get(0).getDamageDealtDirect() + getHeroRoster().get(0).getDamageDealtDOT()
-                + getHeroRoster().get(1).getDamageDealtDirect() + getHeroRoster().get(1).getDamageDealtDOT()
-                + getHeroRoster().get(2).getDamageDealtDirect() + getHeroRoster().get(2).getDamageDealtDOT()
-                + getHeroRoster().get(3).getDamageDealtDirect() + getHeroRoster().get(3).getDamageDealtDOT()));
-        damageTakenLabel.setText(Integer.toString(getHeroRoster().get(0).getDamageTakenDirect() + getHeroRoster().get(0).getDamageTakenDOT()
-                + getHeroRoster().get(1).getDamageTakenDirect() + getHeroRoster().get(1).getDamageTakenDOT()
-                + getHeroRoster().get(2).getDamageTakenDirect() + getHeroRoster().get(2).getDamageTakenDOT()
-                + getHeroRoster().get(3).getDamageTakenDirect() + getHeroRoster().get(3).getDamageTakenDOT()));
+        damageDoneLabel.setText(Integer.toString(roster.getHeroRoster().get(0).getDamageDealtDirect() + roster.getHeroRoster().get(0).getDamageDealtDOT()
+                + roster.getHeroRoster().get(1).getDamageDealtDirect() + roster.getHeroRoster().get(1).getDamageDealtDOT()
+                + roster.getHeroRoster().get(2).getDamageDealtDirect() + roster.getHeroRoster().get(2).getDamageDealtDOT()
+                + roster.getHeroRoster().get(3).getDamageDealtDirect() + roster.getHeroRoster().get(3).getDamageDealtDOT()));
+        damageTakenLabel.setText(Integer.toString(roster.getHeroRoster().get(0).getDamageTakenDirect() + roster.getHeroRoster().get(0).getDamageTakenDOT()
+                + roster.getHeroRoster().get(1).getDamageTakenDirect() + roster.getHeroRoster().get(1).getDamageTakenDOT()
+                + roster.getHeroRoster().get(2).getDamageTakenDirect() + roster.getHeroRoster().get(2).getDamageTakenDOT()
+                + roster.getHeroRoster().get(3).getDamageTakenDirect() + roster.getHeroRoster().get(3).getDamageTakenDOT()));
 
     }
 

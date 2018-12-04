@@ -42,7 +42,7 @@ public class RosterWindowController implements Initializable {
 
     private ObservableList<Hero> selRosterList;
 
-    private Rosters roster = new Rosters();
+    private Rosters roster;
     private IOSave ioSave = new IOSave();
 
     @FXML
@@ -56,35 +56,35 @@ public class RosterWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 //        testSetUp();
 //        ioSave = new IOSave();
+        roster = Rosters.getInstance();
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("heroName"));
         classColumn.setCellValueFactory(new PropertyValueFactory<>("heroClass"));
         lvlColumn.setCellValueFactory(new PropertyValueFactory<>("resolveLvl"));
-        rosterDump.setItems(Rosters.getHeroArray());
+        rosterDump.setItems(roster.getHeroArray());
 
         nameSelectedCol.setCellValueFactory(new PropertyValueFactory<>("heroName"));
         classSelectedCol.setCellValueFactory(new PropertyValueFactory<>("heroClass"));
         lvlSelectedCol.setCellValueFactory(new PropertyValueFactory<>("resolveLvl"));
 
-        if (Rosters.getHeroRoster().isEmpty()) {
+        if (roster.getHeroRoster().isEmpty()) {
             if (selRosterList == null) {
                 selRosterList = FXCollections.observableArrayList();
             }
             selRosterTable.setItems(selRosterList);
         } else {
-            selRosterTable.setItems(Rosters.getHeroRoster());
+            selRosterTable.setItems(roster.getHeroRoster());
         }
 
     }
 
     private void testSetUp() {
-        Rosters newHero = new Rosters();
-        newHero.addHero("Melania", "Hellion", 1);
-        newHero.addHero("Max", "Crusader", 1);
-        newHero.addHero("Mary", "Vestal", 2);
-        newHero.addHero("Miri", "Arbalest", 1);
+        roster.addHero("Melania", "Hellion", 1);
+        roster.addHero("Max", "Crusader", 1);
+        roster.addHero("Mary", "Vestal", 2);
+        roster.addHero("Miri", "Arbalest", 1);
 
-        Rosters.setHeroRoster(Rosters.getHeroArray());
+        roster.setHeroRoster(roster.getHeroArray());
 
     }
 
@@ -105,17 +105,16 @@ public class RosterWindowController implements Initializable {
             Hero selection = selRosterTable.getSelectionModel().getSelectedItem();
             selRosterList.remove(selection);
         } else if (event.getSource().equals(finalizeButton)) {
-            Rosters.setHeroRoster(selRosterList);
+            roster.setHeroRoster(selRosterList);
 
             Stage stage = (Stage) finalizeButton.getScene().getWindow();
             stage.close();
 
         } else if (event.getSource().equals(removeButton)) {
             Hero selection = rosterDump.getSelectionModel().getSelectedItem();
-            Rosters.removeHero(selection);
+            Rosters.getInstance().removeHero(selection);
         } else if (event.getSource().equals(editButton)) {
             try {
-                //TODO code for edit window here
                 Hero myHero = rosterDump.getSelectionModel().getSelectedItem();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AddCharacterWindow.fxml"));
                 GridPane gridPane = loader.load();
@@ -130,8 +129,10 @@ public class RosterWindowController implements Initializable {
                 Logger.getLogger(RosterWindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (event.getSource().equals(exportButton)) {
+            ioSave.buildXML();
             ioSave.dumpHeroes();
         } else if (event.getSource().equals(importButton)) {
+//            ioSave.readXML();
             ioSave.parseSave();
         }
     }
