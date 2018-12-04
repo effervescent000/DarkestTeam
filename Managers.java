@@ -228,13 +228,13 @@ public class Managers {
      *
      */
     public static void resetAll() {
-        for (Hero hero : Rosters.getHeroRoster()) {
+        Rosters.getHeroRoster().forEach((hero) -> {
+            hero.setStressLvl(-1000);
             removeAllDebuffs(hero);
-            hero.setCurHP(hero.getMaxHP());
             hero.resetCombatStats();
-            hero.setStressLvl(0);
+            hero.setCurHP(hero.getMaxHP());
             //not calling the resetPosition method here, instead we are calling it at the end of every combat
-        }
+        });
     }
 
     public static void resetAllPositions(Combat combat) {
