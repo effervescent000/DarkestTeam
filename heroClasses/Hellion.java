@@ -11,7 +11,6 @@ import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
 import darkestteam.HeroClass;
-import darkestteam.ICombatMethods;
 import darkestteam.Managers;
 import static darkestteam.Managers.addHelpfulEffect;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Tara
  */
-public final class Hellion implements ICombatMethods, HeroClass {
+public final class Hellion implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {26, 31, 36, 41, 46};

@@ -11,7 +11,6 @@ import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
 import darkestteam.HeroClass;
-import darkestteam.ICombatMethods;
 import darkestteam.Managers;
 import darkestteam.RandomFunctions;
 import java.util.Arrays;
@@ -21,7 +20,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public final class Vestal implements ICombatMethods, HeroClass {
+public final class Vestal implements HeroClass {
 
     private final int[] maxHPArray = {24, 29, 34, 39, 44};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};

@@ -11,7 +11,6 @@ import static darkestteam.ChooseTarget.chooseEnemy;
 import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
-import darkestteam.ICombatMethods;
 import static darkestteam.CombatLog.addLog;
 import javafx.collections.ObservableList;
 import darkestteam.HeroClass;
@@ -26,7 +25,7 @@ import static darkestteam.Managers.addStatusEffect;
  *
  * @author Tara
  */
-public final class Arbalest implements ICombatMethods, HeroClass {
+public final class Arbalest implements HeroClass {
 
     private final int[] maxHPArray = {27, 32, 37, 42, 47};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};
