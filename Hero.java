@@ -820,7 +820,7 @@ public class Hero extends Creature implements ICombatMethods {
      * @param stressLvl
      */
     public void setStressLvl(int stressLvl) {
-        this.stressLvl += stressLvl;
+        this.stressLvl = stressLvl;
         if (this.stressLvl < 0) {
             this.stressLvl = 0;
         }

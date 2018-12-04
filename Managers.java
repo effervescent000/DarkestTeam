@@ -124,7 +124,6 @@ public class Managers {
 
         for (int i = 0; i < target.getDebuffs().size(); i++) {
             Debuff d = target.getDebuffs().get(i);
-
             d.setDuration(-1);
             if (d.getDuration() < 1) {
                 d.removeDebuff(target);
@@ -140,7 +139,6 @@ public class Managers {
     public static void checkDebuffs(Enemy target) {
         for (int i = 0; i < target.getDebuffs().size(); i++) {
             Debuff d = target.getDebuffs().get(i);
-
             d.setDuration(-1);
             if (d.getDuration() < 1) {
                 d.removeDebuff(target);
@@ -229,7 +227,7 @@ public class Managers {
      */
     public static void resetAll() {
         Rosters.getHeroRoster().forEach((hero) -> {
-            hero.setStressLvl(-1000);
+            hero.setStressLvl(0);
             removeAllDebuffs(hero);
             hero.resetCombatStats();
             hero.setCurHP(hero.getMaxHP());

@@ -34,7 +34,7 @@ public class CombatLog {
             }
             log.write(text + "\n");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(CombatLog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

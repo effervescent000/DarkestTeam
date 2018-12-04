@@ -21,7 +21,6 @@ import java.util.ArrayList;
  */
 public final class Crusader implements HeroClass {
 
-//    private int resolveLvl;
     private final int[] maxHPArray = {33, 40, 47, 54, 61};
     private final double[] dodgeArray = {.05, .10, .15, .20, .25};
     private final int[] speedArray = {1, 1, 2, 2, 3};
@@ -29,7 +28,6 @@ public final class Crusader implements HeroClass {
     private final double[] critModArray = {.05, .055, .06, .065, .07};
     private final double[] dmgArray = {9, 10.5, 12, 13, 14.5};
 
-//    private final boolean religious = true;
     private double stunRes = 0.4;
     private double moveRes = 0.4;
     private double blightRes = 0.3;
@@ -87,9 +85,6 @@ public final class Crusader implements HeroClass {
         return diseaseRes;
     }
 
-//    public boolean isReligious() {
-//        return religious;
-//    }
     @Override
     public int[] getMaxHPArray() {
         return maxHPArray;
