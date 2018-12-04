@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class Highwayman implements HeroClass {
+public final class Highwayman implements HeroClass {
 
     private final int[] maxHPArray = {23, 28, 33, 38, 43};
     private final double[] dodgeArray = {.10, .15, .20, .25, .30};

@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class PlagueDoctor implements HeroClass {
+public final class PlagueDoctor implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {22, 26, 30, 34, 38};

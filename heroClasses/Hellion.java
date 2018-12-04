@@ -20,7 +20,7 @@ import java.util.ArrayList;
  *
  * @author Tara
  */
-public class Hellion implements ICombatMethods, HeroClass {
+public final class Hellion implements ICombatMethods, HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {26, 31, 36, 41, 46};

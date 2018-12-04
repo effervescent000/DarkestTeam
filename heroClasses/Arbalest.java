@@ -14,11 +14,8 @@ import darkestteam.Hero;
 import darkestteam.ICombatMethods;
 import static darkestteam.CombatLog.addLog;
 import javafx.collections.ObservableList;
-import static darkestteam.Checker.checkEnemiesForDebuff;
 import darkestteam.HeroClass;
 import darkestteam.Managers;
-import static darkestteam.Managers.addHelpfulEffect;
-import static darkestteam.Managers.addStatusEffect;
 import darkestteam.RandomFunctions;
 import java.util.ArrayList;
 import static darkestteam.Checker.checkEnemiesForDebuff;
@@ -29,7 +26,7 @@ import static darkestteam.Managers.addStatusEffect;
  *
  * @author Tara
  */
-public class Arbalest implements ICombatMethods, HeroClass {
+public final class Arbalest implements ICombatMethods, HeroClass {
 
     private final int[] maxHPArray = {27, 32, 37, 42, 47};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};

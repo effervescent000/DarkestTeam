@@ -19,7 +19,7 @@ import darkestteam.RandomFunctions;
  *
  * @author Tara
  */
-public class Occultist implements HeroClass {
+public final class Occultist implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {19, 23, 27, 31, 35};

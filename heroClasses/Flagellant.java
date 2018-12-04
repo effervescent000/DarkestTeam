@@ -13,7 +13,7 @@ import darkestteam.HeroClass;
  *
  * @author Tara
  */
-public class Flagellant implements HeroClass {
+public final class Flagellant implements HeroClass {
 
     //todo literally everything with the flagellant
     private int resolveLvl;

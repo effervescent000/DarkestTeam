@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class GraveRobber implements HeroClass {
+public final class GraveRobber implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {20, 24, 28, 32, 36};

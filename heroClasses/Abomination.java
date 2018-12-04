@@ -14,7 +14,7 @@ import darkestteam.ICombatMethods;
  *
  * @author Tara
  */
-public class Abomination implements ICombatMethods, HeroClass {
+public final class Abomination implements ICombatMethods, HeroClass {
 
     private int resolveLvl;
 

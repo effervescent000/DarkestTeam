@@ -14,7 +14,7 @@ import darkestteam.ICombatMethods;
  *
  * @author Tara
  */
-public class Antiquarian implements ICombatMethods, HeroClass {
+public final class Antiquarian implements ICombatMethods, HeroClass {
 
     private int resolveLvl;
 

@@ -14,7 +14,7 @@ import darkestteam.HeroClass;
  *
  * @author Tara
  */
-public class Jester implements HeroClass {
+public final class Jester implements HeroClass {
 
     private int resolveLvl;
 

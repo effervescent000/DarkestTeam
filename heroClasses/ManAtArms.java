@@ -16,7 +16,7 @@ import darkestteam.HeroClass;
  *
  * @author Tara
  */
-public class ManAtArms implements HeroClass {
+public final class ManAtArms implements HeroClass {
 
 //    private int resolveLvl;
 

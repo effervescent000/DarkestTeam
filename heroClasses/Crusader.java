@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Tara
  */
-public class Crusader implements HeroClass {
+public final class Crusader implements HeroClass {
 
 //    private int resolveLvl;
     private final int[] maxHPArray = {33, 40, 47, 54, 61};

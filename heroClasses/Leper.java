@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author Tara
  */
-public class Leper implements HeroClass {
+public final class Leper implements HeroClass {
 
     private int resolveLvl;
 

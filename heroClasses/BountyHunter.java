@@ -18,7 +18,7 @@ import darkestteam.HeroClass;
  *
  * @author Tara
  */
-public class BountyHunter implements HeroClass {
+public final class BountyHunter implements HeroClass {
 
     private final int[] maxHPArray = {25, 30, 35, 40, 45};
     private final double[] dodgeArray = {.05, .10, .15, .20, .25};

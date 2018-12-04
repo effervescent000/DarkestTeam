@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author Tara
  */
-public class Vestal implements ICombatMethods, HeroClass {
+public final class Vestal implements ICombatMethods, HeroClass {
 
     private final int[] maxHPArray = {24, 29, 34, 39, 44};
     private final double[] dodgeArray = {0, .05, .10, .15, .20};

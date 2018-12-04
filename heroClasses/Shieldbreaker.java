@@ -13,7 +13,7 @@ import darkestteam.HeroClass;
  *
  * @author Tara
  */
-public class Shieldbreaker implements HeroClass {
+public final class Shieldbreaker implements HeroClass {
 //
 //    private int resolveLvl;
 //    private String heroName;
