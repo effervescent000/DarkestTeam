@@ -242,7 +242,7 @@ public class Leper implements HeroClass {
         //if the leper's health is low and/or his stress is high
         if (solemnity != -1) {
             if (myHero.getPosition() <= 2) {
-                if (myHero.getCurHP() < myHero.getMaxHP() * .5 || myHero.getStressLvl() > .7) {
+                if (myHero.getCurHP() < myHero.getMaxHP() * .5 || myHero.getStressLvl() > 50) { //todo tweak this stress level
                     useSolemnity();
                     return;
                 }

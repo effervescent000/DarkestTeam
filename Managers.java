@@ -57,7 +57,7 @@ public class Managers {
      * @param attacker the value of attacker
      */
     public static void addStatusEffect(Enemy target, String name, int duration, Hero attacker) {
-        if (name.equals("Marked")) {
+        if (name.equals("Marked")) { //TODO does Marked have a resist chance?
             target.getDebuffs().add(new Debuff(name, duration, target));
         } else if (name.equals("Stun")) {
             if (Combat.calcHit(target.stunRes, attacker.getAcc() + attacker.getAccMod())) {

@@ -65,7 +65,6 @@ public class BountyHunter implements HeroClass {
 //    public static boolean isReligious() {
 //        return religious;
 //    }
-
     @Override
     public double getBleedRes() {
         return bleedRes;
@@ -201,6 +200,14 @@ public class BountyHunter implements HeroClass {
     }
 
     private void useFlashbang(Enemy t) {
+        myHero.setAcc(.95 + .05 * flashbang);
+        int amt = 0;
+
+        if (Combat.tryAttackByHero(myHero, t)) {
+            myHero.setAcc(1.1 + .1 * flashbang);
+            Managers.addStatusEffect(t, "Stun", 1, myHero);
+            //TODO this has a shuffle component that I'm not sure how it works
+        }
 
     }
 
@@ -220,7 +227,18 @@ public class BountyHunter implements HeroClass {
         }
     }
 
-    private void useCaltrops() {
+    private void useCaltrops(Enemy t) {
+        myHero.setAcc(.9 + .05 * caltrops);
+        int amt = (int) (myHero.getRangedDmg() * .05);
+        myHero.setCrit(.5 + .01 * caltrops);
+
+        if (Combat.tryAttackByHero(myHero, t)) {
+            combat.dmgEnemy(t, amt, myHero);
+            myHero.setAcc(1 + .1 * caltrops);
+            amt = (int) (2 + .5 * caltrops);
+            Managers.addBleed(t, 3, amt, myHero);
+            Managers.addStatusEffect(t, "Caltrops", 3, myHero);
+        }
 
     }
 
@@ -248,6 +266,17 @@ public class BountyHunter implements HeroClass {
                     return;
 //                    }
                 }
+            }
+        }
+
+        //use Caltrops if there is a backline target with high prot
+        if (caltrops != -1 && myHero.getPosition() > 1) {
+            ArrayList<Enemy> list = new ArrayList<>();
+            list.add(pos3);
+            list.add(pos4);
+            Enemy t = c.getHighestProtEnemy(list);
+            if (t.getProt() > .25) {
+                useCaltrops(t);
             }
         }
 
@@ -279,13 +308,26 @@ public class BountyHunter implements HeroClass {
 
         //use Finish Him against a stunned target
         if (finishHim != -1 && myHero.getPosition() <= 3) {
-            ArrayList list = new ArrayList();
+            ArrayList<Enemy> list = new ArrayList();
             list.add(pos1);
             list.add(pos2);
             list.add(pos3);
             Enemy t = checkEnemiesForDebuff("Stun", list);
             if (t != null) {
                 useFinishHim(t);
+                return;
+            }
+        }
+
+        //use Flashbang against a dangerous target not in the first position
+        if (flashbang != -1 && myHero.getPosition() > 1) {
+            ArrayList<Enemy> list = new ArrayList();
+            list.add(pos2);
+            list.add(pos3);
+            list.add(pos4);
+            Enemy t = c.getHighestDangerEnemy(list);
+            if (t != null && t.getDanger() > 1) {
+                useFlashbang(t);
                 return;
             }
         }

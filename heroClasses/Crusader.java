@@ -11,7 +11,9 @@ import darkestteam.Combat;
 import darkestteam.Enemy;
 import darkestteam.Hero;
 import darkestteam.HeroClass;
+import darkestteam.Managers;
 import darkestteam.RandomFunctions;
+import java.util.ArrayList;
 
 /**
  *
@@ -100,7 +102,7 @@ public class Crusader implements HeroClass {
 
     @Override
     public double getMoveRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return moveRes;
     }
 
     @Override
@@ -125,17 +127,17 @@ public class Crusader implements HeroClass {
 
     @Override
     public double getStunRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return stunRes;
     }
 
     @Override
     public double getTrapRes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return trapRes;
     }
 
     @Override
     public void resetSpecials() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Crusader has no specials configured.");
     }
 
     private void useSmite(Enemy target) {
@@ -161,8 +163,16 @@ public class Crusader implements HeroClass {
         combat.dmgEnemyMulti(1, 3, amt, myHero);
     }
 
-    private void useStunningBlow() {
-        //TODO add ability code here
+    private void useStunningBlow(Enemy t) {
+        myHero.setAcc(.9 + .05 * stunningBlow);
+        myHero.setCrit(0 + .01 * stunningBlow);
+        int amt = (int) (myHero.getMeleeDmg() * .5);
+
+        if (Combat.tryAttackByHero(myHero, t)) {
+            combat.dmgEnemy(t, amt, myHero);
+            myHero.setAcc(1 + .1 * stunningBlow);
+            Managers.addStatusEffect(t, "Stun", 3, myHero);
+        }
     }
 
     private void useBulwarkOfFaith() {
@@ -211,9 +221,10 @@ public class Crusader implements HeroClass {
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
 
+        Checker c = new Checker();
+
         //if someone is very low health and we have Battle Heal, use it
         if (battleHeal != -1) {
-            Checker c = new Checker();
             Hero t = c.getLowestHealthHero(Combat.getHeroRoster());
             if (t.getCurHP() < t.getMaxHP() * .25) {
                 useBattleHeal(t);
@@ -229,19 +240,29 @@ public class Crusader implements HeroClass {
             }
         }
 
+        //if there is a high danger target in the front lines, use Stunning Blow
+        if (stunningBlow != -1 && myHero.getPosition() >= 2) {
+            ArrayList<Enemy> list = new ArrayList<>();
+            list.add(pos1);
+            list.add(pos2);
+            Enemy t = c.getHighestDangerEnemy(list);
+            if (t != null && t.getDanger() > 1) {
+                useStunningBlow(t);
+                return;
+            }
+        }
+
         //if there is an Unholy target, use Smite
-        if (myHero.getPosition() <= 2) {
-            if (smite != -1) {
-                if (pos1 != null) {
-                    if (pos1.isUnholy()) {
-                        useSmite(pos1);
-                        return;
-                    }
-                } else if (pos2 != null) {
-                    if (pos2.isUnholy()) {
-                        useSmite(pos2);
-                        return;
-                    }
+        if (myHero.getPosition() <= 2 && smite != -1) {
+            if (pos1 != null) {
+                if (pos1.isUnholy()) {
+                    useSmite(pos1);
+                    return;
+                }
+            } else if (pos2 != null) {
+                if (pos2.isUnholy()) {
+                    useSmite(pos2);
+                    return;
                 }
             }
 
