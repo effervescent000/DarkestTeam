@@ -26,6 +26,7 @@ public class DarkestTeam extends Application {
     public void start(Stage stage) {
         Parent root;
         try {
+            Rosters roster = Rosters.getInstance();
             root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Scene scene = new Scene(root);
 

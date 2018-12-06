@@ -155,6 +155,7 @@ public class RosterWindowController implements Initializable {
                 alert.showAndWait();
             } else {
                 rosterDump.setItems(roster.getHeroBench());
+                Rosters.setHeroBench(roster.getHeroBench());
                 alert.setContentText("Roster imported successfully!");
                 alert.showAndWait();
             }
