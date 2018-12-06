@@ -119,7 +119,7 @@ public class ChooseTarget {
                     returnEnemy = Combat.getEnemyInPosition(front);
                     return returnEnemy;
                 }
-            } else if (roster.size() > front) {
+            } else if (roster.size() > front || roster.size() == front) {
                 returnEnemy = Combat.getEnemyInPosition(front);
                 return returnEnemy;
             }
