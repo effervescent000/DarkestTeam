@@ -70,8 +70,8 @@ public class Managers {
         }
     }
 
-    public static void addHelpfulEffect(Hero target, String name, int duration) {
-        target.getDebuffs().add(new Debuff(name, duration, target));
+    public static void addHelpfulEffect(Hero target, String name, int duration, Hero user) {
+        target.getDebuffs().add(new Debuff(name, duration, target, user));
     }
 
     public static void addHelpfulEffect(Enemy target, String name, int duration) {
@@ -188,6 +188,7 @@ public class Managers {
      * this.
      *
      *
+     * @param t
      */
     public static void removeTempDebuffs(Hero t) {
         try {
@@ -210,6 +211,7 @@ public class Managers {
      * buffs/debuffs.
      *
      *
+     * @param t
      */
     public static void removeAllDebuffs(Hero t) {
         ArrayList<Debuff> debuffs = t.getDebuffs();

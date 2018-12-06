@@ -14,7 +14,8 @@ public class Debuff {
     private int duration;
     private String name;
     private int dmg;
-    private Hero attacker;
+    private Hero user;
+    private Hero target;
     private int rank;
 
     /**
@@ -37,12 +38,12 @@ public class Debuff {
 
     }
 
-    public Debuff(String type, int duration, int dmg, Hero attacker) {
+    public Debuff(String type, int duration, int dmg, Hero user) {
         if (type.equals("Bleed") || type.equals("Blight")) {
             this.duration = duration;
             this.name = type;
             this.dmg = dmg;
-            this.attacker = attacker;
+            this.user = user;
         } else {
             System.out.println("DOT debuff constructor was called (on an Enemy) with a bad string");
         }
@@ -66,11 +67,28 @@ public class Debuff {
         if (!name.equals("Blight") && !name.equals("Bleed") && !name.equals("Marked") && !name.equals("Stun")) {
             setModifiers(name, target, true);
         }
+    }
 
+    /**
+     * This constructor is for adding status effects to friendlies.
+     *
+     * @param name
+     * @param duration
+     * @param target
+     * @param user
+     */
+    public Debuff(String name, int duration, Hero target, Hero user) {
+        this.name = name;
+        this.duration = duration;
+        this.user = user;
+
+        if (!name.equals("Blight") && !name.equals("Bleed") && !name.equals("Marked") && !name.equals("Stun")) {
+            setModifiers(name, target, true);
+        }
     }
 
     public Debuff(String name, int duration, Enemy target, Hero attacker) {
-        this.attacker = attacker;
+        this.user = attacker;
         this.name = name;
         this.duration = duration;
 
@@ -103,7 +121,8 @@ public class Debuff {
     }
 
     /**
-     * This is the method that actually applies or removes the status effects.
+     * This is the method that actually applies or removes *harmful* status
+     * effects to *Heroes*.
      *
      * @param status This should be true if the debuff is being *applied* and
      *               false if it's being *removed*.
@@ -177,6 +196,14 @@ public class Debuff {
                     target.setDodge(.1);
                 }
                 break;
+            case "Emboldening Vapours":
+                rank = user.getMove6Rank() - 1;
+                if (status) {
+                    target.setDmgMod(.2 + .0125 * rank);
+                } else {
+                    target.setDmgMod((.2 + .0125 * rank) * -1);
+                }
+                break;
             case "Purge":
                 if (status) {
                     target.setAccMod(.05);
@@ -216,7 +243,8 @@ public class Debuff {
     }
 
     /**
-     * This is the method that actually applies or removes the status effects.
+     * This is the method that actually applies or removes status effects to
+     * *enemies*.
      *
      * @param status This should be true if the debuff is being *applied* and
      *               false if it's being *removed*.
@@ -246,21 +274,11 @@ public class Debuff {
                 }
                 break;
             case "Illumination":
-                rank = attacker.getMove6Rank() - 1;
+                rank = user.getMove6Rank() - 1;
                 if (status) {
                     target.setDodge((.2 + .025 * rank) * -1);
                 } else {
                     target.setDodge((.2 + .025 * rank));
-                }
-                break;
-            case "Open Vein":
-                rank = attacker.getMove7Rank() - 1;
-                if (status) {
-                    target.setBleedRes((.2 + .033 * rank) * -1);
-                    target.setSpeed((int) ((1 + .5 * rank) * - 1));
-                } else {
-                    target.setBleedRes((.2 + .033 * rank));
-                    target.setSpeed((int) ((1 + .5 * rank)));
                 }
                 break;
             case "Noxious Blast":
@@ -270,11 +288,29 @@ public class Debuff {
                     target.setAccMod(.05);
                 }
                 break;
+            case "Open Vein":
+                rank = user.getMove7Rank() - 1;
+                if (status) {
+                    target.setBleedRes((.2 + .033 * rank) * -1);
+                    target.setSpeed((int) ((1 + .5 * rank) * - 1));
+                } else {
+                    target.setBleedRes((.2 + .033 * rank));
+                    target.setSpeed((int) ((1 + .5 * rank)));
+                }
+                break;
             case "Point Blank Shot Debuff":
                 if (status) {
                     target.setSpeed(-2);
                 } else {
                     target.setSpeed(2);
+                }
+                break;
+            case "Poison Dart":
+                rank = user.getMove6Rank() - 1;
+                if (status) {
+                    target.setBlightRes((.2 + .033 * rank) * -1);
+                } else {
+                    target.setBlightRes((.2 + .033 * rank));
                 }
                 break;
             case "Sniper's Mark Debuff":
@@ -286,13 +322,13 @@ public class Debuff {
                 break;
             case "Target Whistle":
                 if (status) {
-                    target.setProt((.2 + .025 * attacker.getMove3Rank()) * -1);
+                    target.setProt((.2 + .025 * user.getMove3Rank()) * -1);
                 } else {
-                    target.setProt(.2 + .025 * attacker.getMove3Rank());
+                    target.setProt(.2 + .025 * user.getMove3Rank());
                 }
                 break;
             case "Weakening Curse":
-                rank = attacker.getMove3Rank() - 1;
+                rank = user.getMove3Rank() - 1;
                 if (status) {
                     target.setDmgMod((.1 + .025 * rank));
                     target.setProt((.1 + .025 * rank));
@@ -327,7 +363,7 @@ public class Debuff {
     }
 
     public Hero getAttacker() {
-        return attacker;
+        return user;
     }
 
 }
