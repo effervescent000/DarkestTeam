@@ -225,6 +225,14 @@ public class Debuff {
                     target.setBleedRes(.15);
                 }
                 break;
+            case "Thrown Dagger":
+                rank = user.getMove5Rank() - 1;
+                if (status) {
+                    target.setAccMod(.05 + .0125 * rank);
+                } else {
+                    target.setAccMod((.05 + .0125 * rank) * -1);
+                }
+                break;
             case "Tracking Shot":
                 rank = target.getMove5Rank() - 1;
                 if (status) {
