@@ -9,6 +9,7 @@ import java.util.HashMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,8 +28,8 @@ public final class Rosters {
         return INSTANCE;
     }
 
-    private ObservableList<Hero> heroArray = FXCollections.observableArrayList();
-    private ObservableList<Hero> heroRoster = FXCollections.observableArrayList();
+    private ObservableList<Hero> heroBench = FXCollections.observableArrayList();
+    private ObservableList<Hero> selectedHeroes = FXCollections.observableArrayList();
 
     private HashMap<Integer, Hero> heroMap = new HashMap(4);
 
@@ -40,33 +41,35 @@ public final class Rosters {
 
     public Hero addHero(String heroName, String heroClass, int Lvl) {
         Hero newHero = new Hero(heroName, heroClass, Lvl);
-        heroArray.add(newHero);
+        heroBench.add(newHero);
         return newHero;
     }
 
-    public ObservableList<Hero> getHeroArray() {
-        return heroArray;
+    @XmlElements({
+        @XmlElement(name = "Hero")})
+    public ObservableList<Hero> getHeroBench() {
+        return heroBench;
     }
 
-    @XmlElement
-    public ObservableList<Hero> getHeroRoster() {
-        return heroRoster;
+    
+    public ObservableList<Hero> getSelectedHeroes() {
+        return selectedHeroes;
     }
 
     public void removeHero(Hero hero) {
-        if (heroArray.contains(hero)) {
-            heroArray.remove(hero);
-            if (heroRoster.contains(hero)) {
-                heroRoster.remove(hero);
+        if (heroBench.contains(hero)) {
+            heroBench.remove(hero);
+            if (selectedHeroes.contains(hero)) {
+                selectedHeroes.remove(hero);
             }
         } else {
             System.out.println("removeHero: Hero is not valid!");
         }
     }
 
-    public void setHeroRoster(ObservableList<Hero> heroRoster) {
+    public void setSelectedHeroes(ObservableList<Hero> selectedHeroes) {
 //        Rosters.heroRoster.setAll(heroRoster);
-        this.heroRoster = heroRoster;
+        this.selectedHeroes = selectedHeroes;
 
         setStartingPositions();
     }
@@ -77,9 +80,9 @@ public final class Rosters {
         //so I am just pulling it from the heroRoster array. For the future:
         //TODO add buttons in the UI to move heroes around in the Roster, since it
         //determines initial position.
-        if (heroRoster != null) {
-            for (int i = 0; i < heroRoster.size(); i++) {
-                heroRoster.get(i).setPosition(i + 1);
+        if (selectedHeroes != null) {
+            for (int i = 0; i < selectedHeroes.size(); i++) {
+                selectedHeroes.get(i).setPosition(i + 1);
 //                heroMap.put(i + 1, heroRoster.get(i));
             }
         } else {
@@ -92,9 +95,9 @@ public final class Rosters {
         return heroMap;
     }
 
-    public void setHeroArray(ObservableList<Hero> heroArray) {
+    public static void setHeroBench(ObservableList<Hero> heroBench) {
 //        Rosters.heroArray.setAll(heroArray);
-        this.heroArray = heroArray;
+        getInstance().heroBench = heroBench;
     }
 
 }

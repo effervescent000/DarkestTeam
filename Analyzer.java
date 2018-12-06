@@ -45,7 +45,7 @@ public class Analyzer {
 
     public Analyzer(int iterations) {
         this.iterations = iterations;
-        ObservableList<Hero> r = Rosters.getInstance().getHeroRoster();
+        ObservableList<Hero> r = Rosters.getInstance().getSelectedHeroes();
 
         pos1 = r.get(0);
         pos2 = r.get(1);

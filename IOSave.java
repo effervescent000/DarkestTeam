@@ -25,23 +25,22 @@ import javax.xml.bind.Unmarshaller;
  */
 public class IOSave {
 
-    // TODO convert this from a csv to XML
-    private String fn = "roster.xml";
+    private static final String fn = "roster.xml";
 
     private ObservableList<Hero> heroArray = FXCollections.observableArrayList();
-    private static Rosters roster;
+    private Rosters roster;
 
     public IOSave() {
         if (roster == null) {
             roster = Rosters.getInstance();
         }
-        if (roster.getHeroArray() != null) {
-            heroArray = roster.getHeroArray();
+        if (roster.getHeroBench() != null) {
+            heroArray = roster.getHeroBench();
         }
 //        roster = new Rosters();
     }
 
-    public boolean buildXML() {
+    public boolean buildXML(Rosters roster) {
         try {
             File file = new File(fn);
             JAXBContext jax = JAXBContext.newInstance(roster.getClass());
@@ -141,7 +140,8 @@ public class IOSave {
                 counter++;
 //                data = null;
             }
-            roster.setHeroArray(heroArray);
+            
+            Rosters.setHeroBench(heroArray);
         } catch (IOException ex) {
             Logger.getLogger(Rosters.class.getName()).log(Level.SEVERE, null, ex);
         }

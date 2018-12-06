@@ -86,8 +86,8 @@ public class Zone {
             }
 
             //set Hero starting positions
-            ObservableList<Hero> r = Rosters.getInstance().getHeroRoster();
-            for (int i = 0; i < Rosters.getInstance().getHeroRoster().size(); i++) {
+            ObservableList<Hero> r = Rosters.getInstance().getSelectedHeroes();
+            for (int i = 0; i < Rosters.getInstance().getSelectedHeroes().size(); i++) {
                 r.get(i).setStartingPosition(i + 1);
             }
             

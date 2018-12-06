@@ -24,7 +24,7 @@ public class Checker {
     }
 
     public static boolean amIGuarding(Hero user) {
-        for (Hero hero : Rosters.getInstance().getHeroRoster()) {
+        for (Hero hero : Rosters.getInstance().getSelectedHeroes()) {
             if (hero.getGuardian().equals(user)) {
                 return true;
             }
@@ -134,7 +134,7 @@ public class Checker {
      */
     public static int checkPartyCompForBleeds() {
         int count = 0;
-        for (Hero hero : Rosters.getInstance().getHeroRoster()) {
+        for (Hero hero : Rosters.getInstance().getSelectedHeroes()) {
             String hc = hero.getHeroClass();
             switch (hc) {
                 case "Hellion":
@@ -191,7 +191,7 @@ public class Checker {
      */
     public static int checkPartyCompForBlights() {
         int count = 0;
-        for (Hero hero : Rosters.getInstance().getHeroRoster()) {
+        for (Hero hero : Rosters.getInstance().getSelectedHeroes()) {
             String hc = hero.getHeroClass();
             switch (hc) {
                 case "Grave Robber":
@@ -233,7 +233,7 @@ public class Checker {
      */
     public static int checkPartyCompForMarked() {
         int count = 0;
-        for (Hero hero : Rosters.getInstance().getHeroRoster()) {
+        for (Hero hero : Rosters.getInstance().getSelectedHeroes()) {
             String hc = hero.getHeroClass();
             switch (hc) {
                 case "Arbalest":

@@ -232,7 +232,7 @@ public class Managers {
             roster = Rosters.getInstance();
         }
 
-        roster.getHeroRoster().forEach((hero) -> {
+        roster.getSelectedHeroes().forEach((hero) -> {
             hero.setStressLvl(0);
             removeAllDebuffs(hero);
             hero.resetCombatStats();

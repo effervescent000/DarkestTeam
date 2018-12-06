@@ -70,9 +70,12 @@ public class Hero extends Creature implements ICombatMethods {
     private HeroClass myHero;
 
     private int startingPosition;
-    
+
     public Hero() {
-    };
+        this.heroName = new SimpleStringProperty();
+        this.heroClass = new SimpleStringProperty();
+        this.resolveLvl = new SimpleIntegerProperty();
+    }
 
     public Hero(String heroName, String heroClass, int resolveLvl) {
         //this method can be private maybe
@@ -269,7 +272,7 @@ public class Hero extends Creature implements ICombatMethods {
         return getHeroClass() + " " + getHeroName();
     }
 
-    @XmlElement
+    @XmlAttribute
     public String getHeroName() {
         return heroName.get();
     }

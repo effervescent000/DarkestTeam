@@ -16,6 +16,66 @@ import static darkestteam.Checker.checkSpecificForDebuff;
 import static darkestteam.Managers.checkDebuffs;
 import static darkestteam.Checker.checkSpecificForDebuff;
 import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
+import static darkestteam.Checker.checkSpecificForDebuff;
+import static darkestteam.Managers.checkDebuffs;
 
 /**
  *
@@ -39,7 +99,7 @@ public class Combat {
 
             this.round = 1;
 
-            heroRoster = Rosters.getInstance().getHeroRoster();
+            heroRoster = Rosters.getInstance().getSelectedHeroes();
             enemyRoster = Zone.getEnemyRoster();
 
 //            combatRoster = FXCollections.observableArrayList();
