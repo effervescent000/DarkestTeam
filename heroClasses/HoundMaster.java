@@ -13,6 +13,7 @@ import darkestteam.Hero;
 import darkestteam.Managers;
 import java.util.ArrayList;
 import static darkestteam.Checker.checkEnemiesForDebuff;
+import darkestteam.ChooseTarget;
 import darkestteam.HeroClass;
 
 /**
@@ -269,7 +270,7 @@ public class HoundMaster implements HeroClass {
             }
         }
 
-        //try Hound's Rush on a marked target, otherwise on a beast
+        //try Hound's Rush on a marked target, otherwise on a beast, otherwise on a random target
         if (houndsRush != -1) {
             if (myHero.getPosition() >= 2) {
                 Enemy t = checkEnemiesForDebuff("Marked", Combat.getEnemyRoster());
@@ -281,9 +282,22 @@ public class HoundMaster implements HeroClass {
                     if (t != null) {
                         useHoundsRush(t);
                         return;
+                    } else {
+                        t = ChooseTarget.chooseEnemy(1, 4);
+                        useHoundsRush(t);
+                        return;
                     }
                 }
             }
+        }
+        
+        //otherwise we need to move
+        if (myHero.getPosition() == 1) {
+            combat.moveSelf(myHero, 1);
+            return;
+        } else if (myHero.getPosition() == 4) {
+            combat.moveSelf(myHero, -1);
+            return;
         }
 
         //++++++++++++++++++
