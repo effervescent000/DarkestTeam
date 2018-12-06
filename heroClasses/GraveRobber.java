@@ -253,7 +253,7 @@ public final class GraveRobber implements HeroClass {
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
-        
+
         Checker c = new Checker();
 
         //use flashing daggers if we have party members who can benefit from the 
@@ -344,9 +344,13 @@ public final class GraveRobber implements HeroClass {
 
         //if the pick to the face code above did not fire, then just use Thrown Dagger
         if (myHero.getPosition() >= 2 && thrownDagger != -1) {
-            Enemy t = ChooseTarget.chooseEnemy(2, 4);
-            if (t != null) {
-                useThrownDagger(t);
+            if (pos2 != null) {
+                //only checking pos2, because if that's null then all the ones behind it are as well
+                Enemy t = ChooseTarget.chooseEnemy(2, 4);
+                if (t != null) {
+                    useThrownDagger(t);
+                    return;
+                }
             }
         }
 
