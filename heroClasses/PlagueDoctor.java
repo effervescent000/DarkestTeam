@@ -244,6 +244,8 @@ public final class PlagueDoctor implements HeroClass {
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
+        
+        Checker c = new Checker();
 
         //first, try to use battlefield medicine
         if (battlefieldMedicine != -1) {
@@ -302,7 +304,6 @@ public final class PlagueDoctor implements HeroClass {
                 Enemy t;
                 if (pos1 != null && pos2 != null) {
                     List<Enemy> list = Arrays.asList(pos1, pos2);
-                    Checker c = new Checker();
                     t = c.getHighestDangerEnemy(list);
                     if (t != null) {
                         if (t.getDanger() > 3 && t.getCurHP() > 15) {
@@ -319,7 +320,6 @@ public final class PlagueDoctor implements HeroClass {
             if (myHero.getPosition() >= 3) {
                 if (pos3 != null && pos4 != null) {
                     List<Enemy> list = Arrays.asList(pos3, pos4);
-                    Checker c = new Checker();
                     Enemy t = c.getHighestDangerEnemy(list);
                     if (t.getDanger() > 3 && t.getStunRes() < .4) {
                         useBlindingGas();
@@ -349,14 +349,13 @@ public final class PlagueDoctor implements HeroClass {
                 if (pos1 != null && pos2 != null) {
                     List<Enemy> list = Arrays.asList(pos1, pos2);
                     if (pos1.getDanger() == pos2.getDanger()) {
-                        Checker c = new Checker();
                         t = c.getLowestBlightResEnemy(list);
                         if (t.getBlightRes() < .55) { //higher than this and incision is better
                             useNoxiousBlast(t);
                             return;
                         }
                     } else {
-                        Checker c = new Checker();
+                        
                         t = c.getHighestDangerEnemy(list);
                         if (t.getBlightRes() < .55) {
                             useNoxiousBlast(t);
