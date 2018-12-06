@@ -328,7 +328,10 @@ public final class GraveRobber implements HeroClass {
             }
             if (pos1 != null) {
                 t = pos1;
-                if ((t.getProt() > .25 && t.getBlightRes() > .5) || (t.getProt() > .15 && t.getBlightRes() > .55)) {
+                //checking for prot is irrelevant in position one because Thrown
+                //Dagger (the prot-based competition with Pick To the Face)
+                //can't be used against a frontline target
+                if (poisonDart != -1 && t.getBlightRes() > .6) {
                     usePickToTheFace(t);
                     return;
                 }
@@ -375,6 +378,12 @@ public final class GraveRobber implements HeroClass {
                 combat.moveSelf(myHero, -2);
                 return;
             }
+        }
+        
+        //just use poison Dart if we have nothing else
+        if (myHero.getPosition() >= 2 && poisonDart != -1) {
+            Enemy t = ChooseTarget.chooseEnemy(1, 4);
+            usePoisonDart(t);
         }
 
         //if we're in the backline and presumably don't have lunge
