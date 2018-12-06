@@ -232,7 +232,7 @@ public class Combat {
                 }
             } else {
                 target.setCurHP(0);
-                Managers.addHelpfulEffect(target, "Death's Door", 100, myHero);
+                Managers.addHelpfulEffect(target, "Death's Door", 100, target);
                 //this isn't actually a helpful effect but it doesn't have a caster and can't miss
                 //this is set to 100 so that it will functionally last until the Hero dies
                 //or is healed.
