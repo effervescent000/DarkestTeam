@@ -144,7 +144,6 @@ public final class PlagueDoctor implements HeroClass {
 //    public boolean isReligious() {
 //        return religious;
 //    }
-
     private void useNoxiousBlast(Enemy t) {
         myHero.setAcc(.95 + .05 * noxiousBlast);
         myHero.setCrit(.05 + .01 * noxiousBlast);
@@ -363,6 +362,12 @@ public final class PlagueDoctor implements HeroClass {
                             useNoxiousBlast(t);
                             return;
                         }
+                    }
+                    //if there is only one target left:
+                } else if (pos1 != null) {
+                    t = pos1;
+                    if (t.getBlightRes() < .55) {
+                        useNoxiousBlast(t);
                     }
                 }
             }
