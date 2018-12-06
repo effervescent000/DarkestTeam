@@ -23,14 +23,14 @@ import javax.xml.bind.Unmarshaller;
  *
  * @author Tara
  */
-public class IOSave {
+public class SaveFile {
 
     private static final String fn = "roster.xml";
 
     private ObservableList<Hero> heroArray = FXCollections.observableArrayList();
     private Rosters roster;
 
-    public IOSave() {
+    public SaveFile() {
         if (roster == null) {
             roster = Rosters.getInstance();
         }

@@ -44,7 +44,7 @@ public class RosterWindowController implements Initializable {
     private ObservableList<Hero> selRosterList;
 
     private Rosters roster;
-    private IOSave ioSave = new IOSave();
+    private SaveFile ioSave = new SaveFile();
 
     @FXML
     private Button addToRosterButton, removeFromRosterButton, finalizeButton,
