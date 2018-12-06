@@ -345,6 +345,12 @@ public final class Vestal implements HeroClass {
                 return;
             }
         }
+        
+        //top people off if there's nothing else to do
+        if (divineGrace != -1 && myHero.getPosition() >= 3) {
+            useDivineGrace(healTarget);
+            return;
+        }
 
 //        if (healTarget.getCurHP() < healTarget.getMaxHP() * 0.75 && myHero.getPosition() >= 3 && myHero.getMove4Rank() >= 1) {
 //            useDivineGrace(healTarget);

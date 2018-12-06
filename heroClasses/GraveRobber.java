@@ -384,6 +384,7 @@ public final class GraveRobber implements HeroClass {
         if (myHero.getPosition() >= 2 && poisonDart != -1) {
             Enemy t = ChooseTarget.chooseEnemy(1, 4);
             usePoisonDart(t);
+            return;
         }
 
         //if we're in the backline and presumably don't have lunge
