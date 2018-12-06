@@ -106,7 +106,8 @@ public class RosterWindowController implements Initializable {
             Hero selection = selRosterTable.getSelectionModel().getSelectedItem();
             selRosterList.remove(selection);
         } else if (event.getSource().equals(finalizeButton)) {
-            roster.setSelectedHeroes(selRosterList);
+            
+            Rosters.setSelectedHeroes(selRosterList);
 
             Stage stage = (Stage) finalizeButton.getScene().getWindow();
             stage.close();

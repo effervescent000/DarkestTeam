@@ -85,12 +85,22 @@ public class Hero extends Creature implements ICombatMethods {
         this.heroClass = new SimpleStringProperty(heroClass);
         this.resolveLvl = new SimpleIntegerProperty(resolveLvl);
 
+        initMyHero();
+        
+    }
+
+    public HeroClass getMyHero() {
+        return myHero;
+    }
+    
+    public void initMyHero() {
         this.dmgMod = 1;
+        int resolve = getResolveLvl();
 
         int arraySlot;
 
         if (heroClass != null) {
-            switch (resolveLvl) {
+            switch (resolve) {
                 case 0:
                     arraySlot = 0;
                     break;
@@ -98,11 +108,11 @@ public class Hero extends Creature implements ICombatMethods {
                     arraySlot = 4;
                     break;
                 default:
-                    arraySlot = resolveLvl - 1;
+                    arraySlot = resolve - 1;
                     break;
             }
 
-            switch (heroClass) {
+            switch (getHeroClass()) {
                 case "Abomination":
                     myHero = new Abomination(this);
                     break;
@@ -166,13 +176,13 @@ public class Hero extends Creature implements ICombatMethods {
             critMod = myHero.getCritModArray()[arraySlot];
             dmg = myHero.getDmgArray()[arraySlot];
 
-            stunRes = myHero.getStunRes() + .1 * resolveLvl;
-            moveRes = myHero.getMoveRes() + .1 * resolveLvl;
-            blightRes = myHero.getBlightRes() + .1 * resolveLvl;
-            bleedRes = myHero.getBleedRes() + .1 * resolveLvl;
-            diseaseRes = myHero.getDiseaseRes() + .1 * resolveLvl;
-            debuffRes = myHero.getDebuffRes() + .1 * resolveLvl;
-            trapRes = myHero.getTrapRes() + .1 * resolveLvl;
+            stunRes = myHero.getStunRes() + .1 * resolve;
+            moveRes = myHero.getMoveRes() + .1 * resolve;
+            blightRes = myHero.getBlightRes() + .1 * resolve;
+            bleedRes = myHero.getBleedRes() + .1 * resolve;
+            diseaseRes = myHero.getDiseaseRes() + .1 * resolve;
+            debuffRes = myHero.getDebuffRes() + .1 * resolve;
+            trapRes = myHero.getTrapRes() + .1 * resolve;
 
             deathRes = myHero.getDeathRes();
 
@@ -184,6 +194,7 @@ public class Hero extends Creature implements ICombatMethods {
             rangedDmg = dmg;
         }
     }
+    
 
     @XmlTransient
     public int getStartingPosition() {
@@ -395,7 +406,12 @@ public class Hero extends Creature implements ICombatMethods {
 
     @Override
     public void selectAction(Combat combat) {
-        myHero.selectAction(combat);
+        if (myHero != null) {
+            myHero.selectAction(combat);
+        } else {
+            System.out.println("myHero is null for " + getHeroDesc());
+        }
+        
     }
 
     /**

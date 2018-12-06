@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class AddCharacterController implements Initializable {
 
     private Hero myHero;
-    private static Rosters roster;
+    private Rosters roster;
 
     final ObservableList<String> classList = FXCollections.observableArrayList(
             "Abomination", "Antiquarian", "Arbalest", "Bounty Hunter",

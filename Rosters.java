@@ -51,7 +51,6 @@ public final class Rosters {
         return heroBench;
     }
 
-    
     public ObservableList<Hero> getSelectedHeroes() {
         return selectedHeroes;
     }
@@ -67,19 +66,22 @@ public final class Rosters {
         }
     }
 
-    public void setSelectedHeroes(ObservableList<Hero> selectedHeroes) {
+    public static void setSelectedHeroes(ObservableList<Hero> selectedHeroes) {
 //        Rosters.heroRoster.setAll(heroRoster);
-        this.selectedHeroes = selectedHeroes;
+        selectedHeroes.forEach((hero) -> {
+            if (hero.getMyHero() == null) {
+                hero.initMyHero();
+            }
+        });
+        getInstance().selectedHeroes = selectedHeroes;
 
-        setStartingPositions();
+        getInstance().setStartingPositions();
     }
 
     public void setStartingPositions() {
         //ok I was at first trying to do this so that the code would select preferred
         //positions based on hero class and it was a huge pain and clunky and bad
-        //so I am just pulling it from the heroRoster array. For the future:
-        //TODO add buttons in the UI to move heroes around in the Roster, since it
-        //determines initial position.
+        //so I am just pulling it from the heroRoster array.
         if (selectedHeroes != null) {
             for (int i = 0; i < selectedHeroes.size(); i++) {
                 selectedHeroes.get(i).setPosition(i + 1);
