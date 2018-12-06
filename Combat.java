@@ -147,12 +147,14 @@ public class Combat {
 
             for (int i = 0; i < combatRoster.size(); i++) {
                 if (combatRoster.get(i).getCurHP() > 0) {
-                    if (combatRoster.get(i).getClass().getName().equals("darkestteam.Hero")) {
-                        checkDebuffs((Hero) combatRoster.get(i));
-                    } else {
-                        checkDebuffs((Enemy) combatRoster.get(i));
+                    if (heroRoster.size() > 0 && enemyRoster.size() > 0) {
+                        if (combatRoster.get(i).getClass().getName().equals("darkestteam.Hero")) {
+                            checkDebuffs((Hero) combatRoster.get(i));
+                        } else {
+                            checkDebuffs((Enemy) combatRoster.get(i));
+                        }
+                        combatRoster.get(i).selectAction(this);
                     }
-                    combatRoster.get(i).selectAction(this);
                 }
             }
             checkEncounterStatus();
