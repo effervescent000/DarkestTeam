@@ -253,6 +253,8 @@ public final class GraveRobber implements HeroClass {
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
+        
+        Checker c = new Checker();
 
         //use flashing daggers if we have party members who can benefit from the 
         //bleed res debuff and the available targets have moderate bleed res (not super high or super low)
@@ -270,12 +272,10 @@ public final class GraveRobber implements HeroClass {
         //use Poison Dart if a target does not super high blight res
         //TODO may want to make this higher priority since it can hit all positions
         if (myHero.getPosition() >= 2 && poisonDart != -1) {
-            Checker c = new Checker();
             Enemy t = c.getHighestDangerEnemy(Combat.getEnemyRoster());
             if (t.getDanger() < 2) {
                 //if the highest danger target isn't a huge threat then just pick a backline target
                 //randomly, since they're generally harder to get to
-                c = new Checker();
                 t = c.getLowestBlightResEnemy(Combat.getEnemyRoster());
                 if (t.getBlightRes() < .4) { //napkin math says this is the point where it's about even with Thrown Dagger
                     usePoisonDart(t);
@@ -311,7 +311,6 @@ public final class GraveRobber implements HeroClass {
 
         //if a valid target has prot and blight resistance, use pick to the face
         if (myHero.getPosition() <= 3 && pickToTheFace != -1) {
-            Checker c = new Checker();
             List<Enemy> list = Arrays.asList(pos1, pos2);
             Enemy t = c.getHighestDangerEnemy(list);
             //if our highest danger target isn't particularly dangerous then check out the available targets
