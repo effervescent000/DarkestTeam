@@ -154,11 +154,12 @@ public class RosterWindowController implements Initializable {
                 alert.setContentText("Roster import failed.");
                 alert.showAndWait();
             } else {
+                rosterDump.setItems(roster.getHeroBench());
                 alert.setContentText("Roster imported successfully!");
                 alert.showAndWait();
             }
 
-//            rosterDump.setItems(roster.getHeroBench());
+            
 //            ioSave.parseSave();
         }
     }

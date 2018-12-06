@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -129,7 +130,7 @@ public class Hero extends Creature implements ICombatMethods {
                 case "Highwayman":
                     myHero = new Highwayman(this);
                     break;
-                case "Hound Master":
+                case "Houndmaster":
                     myHero = new HoundMaster(this);
                     break;
                 case "Jester":
@@ -184,6 +185,7 @@ public class Hero extends Creature implements ICombatMethods {
         }
     }
 
+    @XmlTransient
     public int getStartingPosition() {
         return startingPosition;
     }
@@ -199,66 +201,82 @@ public class Hero extends Creature implements ICombatMethods {
         }
     }
 
+    @XmlTransient
     public double getAcc() {
         return acc;
     }
 
+    @XmlTransient
     public double getAccMod() {
         return accMod;
     }
 
+    @XmlTransient
     public int getAttacksMade() {
         return attacksMade;
     }
 
+    @XmlTransient
     public double getCrit() {
         return crit;
     }
 
+    @XmlTransient
     public double getCritMod() {
         return critMod;
     }
 
+    @XmlTransient
     public int getCrits() {
         return crits;
     }
 
+    @XmlTransient
     public int getDamageDealtDOT() {
         return damageDealtDOT;
     }
 
+    @XmlTransient
     public int getDamageDealtDirect() {
         return damageDealtDirect;
     }
 
+    @XmlTransient
     public int getDamageTakenDOT() {
         return damageTakenDOT;
     }
 
+    @XmlTransient
     public int getDamageTakenDirect() {
         return damageTakenDirect;
     }
 
+    @XmlTransient
     public double getDeathRes() {
         return deathRes;
     }
 
+    @XmlTransient
     public double getDiseaseRes() {
         return diseaseRes;
     }
 
+    @XmlTransient
     public double getDmg() {
         return dmg * dmgMod;
     }
 
+    @XmlTransient
     public double getDmgMod() {
         return dmgMod;
     }
 
+    @XmlTransient
     public Hero getGuardian() {
         return guardian;
     }
 
+    @XmlTransient
     public int getHealingDone() {
         return healingDone;
     }
@@ -268,6 +286,7 @@ public class Hero extends Creature implements ICombatMethods {
         return heroClass.get();
     }
 
+    @XmlTransient
     public String getHeroDesc() {
         return getHeroClass() + " " + getHeroName();
     }
@@ -277,10 +296,12 @@ public class Hero extends Creature implements ICombatMethods {
         return heroName.get();
     }
 
+    @XmlTransient
     public double getMeleeDmg() {
         return meleeDmg * dmgMod;
     }
 
+    @XmlTransient
     public int getMisses() {
         return misses;
     }
@@ -324,6 +345,7 @@ public class Hero extends Creature implements ICombatMethods {
         return otherQuirks;
     }
 
+    @XmlTransient
     public double getRangedDmg() {
         return rangedDmg * dmgMod;
     }
@@ -337,10 +359,12 @@ public class Hero extends Creature implements ICombatMethods {
         return statQuirks;
     }
 
+    @XmlTransient
     public int getStressLvl() {
         return stressLvl;
     }
 
+    @XmlTransient
     public double getStressMod() {
         return stressMod;
     }
@@ -353,6 +377,7 @@ public class Hero extends Creature implements ICombatMethods {
         return townQuirks;
     }
 
+    @XmlTransient
     public double getTrapRes() {
         return trapRes;
     }
@@ -457,6 +482,10 @@ public class Hero extends Creature implements ICombatMethods {
         this.healingDone += healingDone;
     }
 
+    public void setHeroClass(String heroClass) {
+        this.heroClass.set(heroClass);
+    }
+
     public void setHeroName(String heroName) {
         this.heroName.set(heroName);
     }
@@ -472,6 +501,11 @@ public class Hero extends Creature implements ICombatMethods {
     public void setMove1Rank(int move1Rank) {
         this.move1Rank = move1Rank;
     }
+    
+    public void setMove1Rank(String move1Rank) {
+        this.move1Rank = Integer.parseInt(move1Rank);
+    }
+    
 
     public void setMove2Rank(int move2Rank) {
         this.move2Rank = move2Rank;
@@ -532,4 +566,6 @@ public class Hero extends Creature implements ICombatMethods {
         this.stressMod += stressMod;
     }
 
+    
+    
 }

@@ -30,7 +30,7 @@ public class AddCharacterController implements Initializable {
 
     final ObservableList<String> classList = FXCollections.observableArrayList(
             "Abomination", "Antiquarian", "Arbalest", "Bounty Hunter",
-            "Crusader", "Flagellant,", "Grave Robber", "Hellion",
+            "Crusader", "Flagellant", "Grave Robber", "Hellion",
             "Highwayman", "Houndmaster", "Jester", "Leper",
             "Man-at-Arms", "Occultist", "Plague Doctor", "Shieldbreaker",
             "Vestal"
@@ -94,6 +94,13 @@ public class AddCharacterController implements Initializable {
                     roster = Rosters.getInstance();
                 }
                 myHero = roster.addHero(heroName, selClass, selResolve);
+                myHero.setMove1Rank((int) move1Rank.getSelectionModel().getSelectedItem());
+                myHero.setMove2Rank((int) move2Rank.getSelectionModel().getSelectedItem());
+                myHero.setMove3Rank((int) move3Rank.getSelectionModel().getSelectedItem());
+                myHero.setMove4Rank((int) move4Rank.getSelectionModel().getSelectedItem());
+                myHero.setMove5Rank((int) move5Rank.getSelectionModel().getSelectedItem());
+                myHero.setMove6Rank((int) move6Rank.getSelectionModel().getSelectedItem());
+                myHero.setMove7Rank((int) move7Rank.getSelectionModel().getSelectedItem());
             }
 
             Stage stage = (Stage) ConfirmButton.getScene().getWindow();
