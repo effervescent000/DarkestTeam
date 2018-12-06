@@ -220,7 +220,7 @@ public final class PlagueDoctor implements HeroClass {
     private void useEmboldeningVapours(Hero t) {
         emboldeningVapours = myHero.getMove6Rank() - 1;
 
-        Managers.addHelpfulEffect(t, "Emboldening Vapours", 1000); //lasts for 1 battle
+        Managers.addHelpfulEffect(t, "Emboldening Vapours", 1000, myHero); //lasts for 1 battle
 
         emboldeningVapoursUses++;
 
@@ -380,6 +380,7 @@ public final class PlagueDoctor implements HeroClass {
         //otherwise we need to move
         if (myHero.getPosition() == 1) {
             combat.moveSelf(myHero, 1);
+            return;
         }
 
         //++++++++++++++++++++++++++

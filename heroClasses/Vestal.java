@@ -226,7 +226,7 @@ public final class Vestal implements HeroClass {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addHelpfulEffect(myHero, "Hand of Light", 3);
+            Managers.addHelpfulEffect(myHero, "Hand of Light", 3, myHero);
 
         }
 

@@ -203,7 +203,7 @@ public final class GraveRobber implements HeroClass {
 
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
-            Managers.addHelpfulEffect(myHero, "Thrown Dagger", 3);
+            Managers.addHelpfulEffect(myHero, "Thrown Dagger", 3, myHero);
         }
     }
 

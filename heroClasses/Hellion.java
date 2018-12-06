@@ -175,7 +175,7 @@ public final class Hellion implements HeroClass {
                 Managers.addStatusEffect(enemy, "Stun", 1, myHero);
             }
         }
-        Managers.addHelpfulEffect(myHero, "BarbaricYAWP", 3);
+        Managers.addHelpfulEffect(myHero, "BarbaricYAWP", 3, myHero);
 
         barbaricYAWPUses++;
     }
@@ -200,7 +200,7 @@ public final class Hellion implements HeroClass {
 
         combat.dmgEnemyMulti(1, 3, amt, myHero);
         combat.moveSelf(myHero, -1);
-        addHelpfulEffect(myHero, "Breakthrough", 3);
+        addHelpfulEffect(myHero, "Breakthrough", 3, myHero);
 
     }
 
@@ -208,7 +208,7 @@ public final class Hellion implements HeroClass {
         Managers.purgeBleeds(myHero);
         Managers.purgeBlights(myHero);
         combat.healHero(myHero, myHero, 1 + 1 * adrenalineRush);
-        addHelpfulEffect(myHero, "Adrenaline Rush", 3);
+        addHelpfulEffect(myHero, "Adrenaline Rush", 3, myHero);
     }
 
     private void useBleedOut(Enemy t) {
@@ -223,7 +223,7 @@ public final class Hellion implements HeroClass {
             myHero.setAcc(1 + .1 * bleedOut);
             amt = (int) (3.5 + .5 * bleedOut);
             Managers.addBleed(t, 3, amt, myHero);
-            Managers.addHelpfulEffect(myHero, "Bleed Out", 3);
+            Managers.addHelpfulEffect(myHero, "Bleed Out", 3, myHero);
         }
 
     }

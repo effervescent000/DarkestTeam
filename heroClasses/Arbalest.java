@@ -151,7 +151,7 @@ public final class Arbalest implements HeroClass {
         if (Combat.tryAttackByHero(myHero, t)) {
             combat.dmgEnemy(t, amt, myHero);
         }
-        Managers.addHelpfulEffect(myHero, "Blindfire", 3);
+        Managers.addHelpfulEffect(myHero, "Blindfire", 3, myHero);
 
     }
 
@@ -159,7 +159,7 @@ public final class Arbalest implements HeroClass {
         int amt = RandomFunctions.getRandomNumberInRange(2, 3); //TODO this needs to take skill rank into account
 
         combat.healHero(myHero, t, amt);
-        Managers.addHelpfulEffect(t, "Battlefield Bandage", 3);
+        Managers.addHelpfulEffect(t, "Battlefield Bandage", 3, myHero);
 
     }
 

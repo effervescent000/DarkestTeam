@@ -166,7 +166,7 @@ public final class BountyHunter implements HeroClass {
         if (Combat.tryAttackByHero(myHero, t)) {
             Managers.addStatusEffect(t, "Marked", 3, myHero);
             Managers.addStatusEffect(t, "Mark For Death", 3, myHero);
-            Managers.addHelpfulEffect(myHero, "Mark For Death", 3);
+            Managers.addHelpfulEffect(myHero, "Mark For Death", 3, myHero);
         }
 
     }

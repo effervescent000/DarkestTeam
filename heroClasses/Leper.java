@@ -180,19 +180,19 @@ public final class Leper implements HeroClass {
             combat.dmgEnemy(t, amt, myHero);
             myHero.setAcc(1 + .1 * purge);
             combat.moveAttack(myHero, t, 3);
-            Managers.addHelpfulEffect(myHero, "Purge", 3);
+            Managers.addHelpfulEffect(myHero, "Purge", 3, myHero);
         }
     }
 
     public void useRevenge() {
         //fake duration to make the buff last the entire fight
-        Managers.addHelpfulEffect(myHero, "Revenge", 100);
+        Managers.addHelpfulEffect(myHero, "Revenge", 100, myHero);
         revengeUses++;
     }
 
     public void useWithstand() {
         Managers.addStatusEffect(myHero, "Marked", 3, null); //todo make sure this null doesn't cause issues
-        Managers.addHelpfulEffect(myHero, "Withstand", 100);
+        Managers.addHelpfulEffect(myHero, "Withstand", 100, myHero);
         withstandUses++;
     }
 
@@ -214,7 +214,7 @@ public final class Leper implements HeroClass {
             myHero.setAcc(1 + .1 * intimidate);
             Managers.addStatusEffect(t, "Intimidate", 3, myHero);
             Managers.addStatusEffect(myHero, "Marked", 4, null); //todo make sure this null doesn't cause issues
-            Managers.addHelpfulEffect(myHero, "Intimidate", 3);
+            Managers.addHelpfulEffect(myHero, "Intimidate", 3, myHero);
         }
     }
 

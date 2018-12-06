@@ -204,7 +204,7 @@ public final class Highwayman implements HeroClass {
         }
         //I don't know what happens if the ability misses, for now I am assuming that the buff
         //still applies and so I'm putting it outside of the miss check
-        Managers.addHelpfulEffect(myHero, "Tracking Shot", 1000);
+        Managers.addHelpfulEffect(myHero, "Tracking Shot", 1000, myHero);
 
     }
 
