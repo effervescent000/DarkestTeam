@@ -192,17 +192,15 @@ public final class PlagueDoctor implements HeroClass {
 
     }
 
-    private void useIncision() {
+    private void useIncision(Enemy t) {
         myHero.setAcc(.85 + .05 * incision);
         myHero.setCrit(.05 + .01 * incision);
         int amt = (int) myHero.getDmg();
 
-        Enemy target = ChooseTarget.chooseEnemy(1, 2);
-
-        if (Combat.tryAttackByHero(myHero, target)) {
-            combat.dmgEnemy(target, amt, myHero);
+        if (Combat.tryAttackByHero(myHero, t)) {
+            combat.dmgEnemy(t, amt, myHero);
             myHero.setAcc(1 + .1 * incision); //this is not a perfect representation but it's close
-            Managers.addBleed(target, 3, 1, myHero);
+            Managers.addBleed(t, 3, 1, myHero);
         }
 
     }
@@ -244,7 +242,7 @@ public final class PlagueDoctor implements HeroClass {
         Enemy pos2 = Combat.getEnemyInPosition(2);
         Enemy pos3 = Combat.getEnemyInPosition(3);
         Enemy pos4 = Combat.getEnemyInPosition(4);
-        
+
         Checker c = new Checker();
 
         //first, try to use battlefield medicine
@@ -355,28 +353,30 @@ public final class PlagueDoctor implements HeroClass {
                             return;
                         }
                     } else {
-                        
                         t = c.getHighestDangerEnemy(list);
                         if (t.getBlightRes() < .55) {
                             useNoxiousBlast(t);
                             return;
                         }
                     }
-                    //if there is only one target left:
-                } else if (pos1 != null) {
-                    t = pos1;
-                    if (t.getBlightRes() < .55) {
-                        useNoxiousBlast(t);
-                    }
                 }
+            }
+            //if none of the above is true but we don't have Incision as a fall-back:
+            if (incision == -1) {
+                List<Enemy> list = Arrays.asList(pos1, pos2);
+                Enemy t = c.getLowestBlightResEnemy(list);
+                useNoxiousBlast(t);
+                return;
             }
         }
 
         //use incision if all available targets have high blight resist
         if (incision != -1) {
             if (myHero.getPosition() <= 3) {
+                List<Enemy> list = Arrays.asList(pos1, pos2);
+                Enemy t = c.getLowestBleedResEnemy(list);
                 //I'm not including a bleed res check b/c the code should only get down here as a last resort
-                useIncision();
+                useIncision(t);
                 return;
             }
         }
