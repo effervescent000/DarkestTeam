@@ -174,9 +174,9 @@ public class HoundMaster implements HeroClass {
 
         ArrayList<Enemy> hits = combat.dmgEnemyMulti(1, 4, amt, myHero);
         myHero.setAcc(1 + .1 * houndsHarry);
-        for (Enemy e : hits) {
+        hits.stream().forEach((Enemy e) -> {
             Managers.addBleed(e, 3, (int) (1 + .5 * houndsHarry), myHero);
-        }
+        });
     }
 
     private void useTargetWhistle(Enemy t) {
