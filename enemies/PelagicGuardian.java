@@ -47,7 +47,7 @@ public class PelagicGuardian extends Enemy implements ICombatMethods {
 
         int amt = RandomFunctions.getRandomNumberInRange(3, 5);
         Hero target = ChooseTarget.chooseHero(1, 2);
-        
+
         if (Combat.tryAttackByEnemy(this, target)) {
             combat.dmgEnemy(this, amt, target);
             Managers.addBleed(target, 3, 2, this);
@@ -56,8 +56,10 @@ public class PelagicGuardian extends Enemy implements ICombatMethods {
 
     private void useBarnacleBarrier() {
         Enemy target = ChooseTarget.chooseEnemy(1, 4);
-        //TODO I still don't know how to prevent this from selecting itself but I sort of don't care rn
-        
+        while (target == this) {
+            target = ChooseTarget.chooseEnemy(1, 4);
+        }
+
         Managers.addHelpfulEffect(target, "Guard", 3);
         target.setGuardian(this);
         Managers.addHelpfulEffect(this, "Barnacle Barrier", 3);
