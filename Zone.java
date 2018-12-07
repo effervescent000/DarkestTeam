@@ -228,9 +228,7 @@ public class Zone {
                 sharedEnemies.add(new Ghoul(difficulty));
                 sharedEnemies.add(new Gargoyle(difficulty));
             }
-
         }
-
         switch (zone) {
             case "Cove":
                 if (coveEnemies.isEmpty()) {
@@ -244,7 +242,6 @@ public class Zone {
                         coveEnemies.add(new UcaMajor(difficulty));
                         coveEnemies.add(new SquiffyGhast(difficulty));
                     }
-
                 }
                 break;
             case "Ruins":
@@ -258,7 +255,6 @@ public class Zone {
                         ruinsEnemies.add(new BoneCaptain(difficulty));
                         ruinsEnemies.add(new BoneBearer(difficulty));
                     }
-
                 }
                 break;
             case "Warrens":
@@ -273,7 +269,6 @@ public class Zone {
                         warrensEnemies.add(new Swinetaur(difficulty));
                         warrensEnemies.add(new SwineSkiver(difficulty));
                     }
-
                 }
                 break;
             case "Weald":
