@@ -10,7 +10,6 @@ import static java.lang.Math.random;
 import java.util.ArrayList;
 import darkestteam.enemies.*;
 import java.io.IOException;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -197,13 +196,9 @@ public class Zone {
                 }
 
             }
-            for (Enemy enemy : enemyRoster) {
-                if (enemy.getCurHP() < enemy.getMaxHP()) {
-                    enemy.setCurHP(enemy.getMaxHP());
-                }
-            }
-
-            //TODO reject duplicates of certain enemy types
+            enemyRoster.stream().filter((enemy) -> (enemy.getCurHP() < enemy.getMaxHP())).forEach((enemy) -> {
+                enemy.setCurHP(enemy.getMaxHP());
+            }); //TODO reject duplicates of certain enemy types
             //-----------------------------------------------------------------
             //TODO factor in enemy size into this (so that Large enemies count
             //for 2, somehow
