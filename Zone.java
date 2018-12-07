@@ -23,48 +23,48 @@ import javafx.stage.Stage;
  * @author Tara
  */
 public class Zone {
-    
+
     private String length;
     private String difficulty;
     private String zone;
-    
+
     private int lightLvl;
-    
+
     private int totalIterations;
     private int curIterations;
 //    public ObservableValue<Double> progress;
 
     private int encounters;
-    
+
     private int numHallSquares = 4;
     //this is the number of hall squares PER ROOM, not total
     private int numRooms;
-    
+
     private ArrayList<Enemy> sharedEnemies = new ArrayList<>();
     private ArrayList<Enemy> coveEnemies = new ArrayList<>();
     private ArrayList<Enemy> ruinsEnemies = new ArrayList<>();
     private ArrayList<Enemy> warrensEnemies = new ArrayList<>();
     private ArrayList<Enemy> wealdEnemies = new ArrayList<>();
-    
+
     private static ObservableList<Enemy> enemyRoster;
 
 //    private Log cLog;
     public Zone(String length, String difficulty, String zone, Integer iterations, MainWindowController mwc) {
-        
+
         this.length = length;
         this.difficulty = difficulty;
         this.zone = zone;
         this.totalIterations = iterations;
         curIterations = 0;
         encounters = 0;
-        
+
         try {
             if (enemyRoster == null) {
                 enemyRoster = FXCollections.observableArrayList();
             }
-            
+
             System.out.println("Zone constructor called");
-            
+
             if (null != length && difficulty != null && zone != null) {
                 switch (length) {
                     case "Short":
@@ -90,7 +90,7 @@ public class Zone {
             for (int i = 0; i < Rosters.getInstance().getSelectedHeroes().size(); i++) {
                 r.get(i).setStartingPosition(i + 1);
             }
-            
+
             Analyzer a = new Analyzer(totalIterations);
             while (curIterations < totalIterations) {
                 runDungeon();
@@ -109,7 +109,7 @@ public class Zone {
             e.printStackTrace(System.err);
         }
     }
-    
+
     private void runDungeon() {
         //TODO this is basically the doRound() of the Zone class. This will
         //run through the map generate events. For the purposes of this sim,
@@ -128,12 +128,12 @@ public class Zone {
                 }
             }
         }
-        
+
         System.out.println("runDungeon() completed");
 
 //        displayResults();
     }
-    
+
     private void displayResults() {
         Parent root;
         try {
@@ -146,7 +146,7 @@ public class Zone {
             e.printStackTrace(System.err);
         }
     }
-    
+
     private void generateEnemies() {
         switch (zone) {
             case "Cove":
@@ -175,7 +175,7 @@ public class Zone {
 //            enemyMap.put(i + 1, enemyRoster.get(i));
         }
     }
-    
+
     private void fillRoster(ArrayList<Enemy> zoneEnemies) {
         //the reason for clearing the arrays after use is to force the code
         //to generate a new instance of the enemies, in case we end up
@@ -195,7 +195,7 @@ public class Zone {
                     enemyRoster.add(sharedEnemies.get(selection));
                     sharedEnemies.clear();
                 }
-                
+
             }
             for (Enemy enemy : enemyRoster) {
                 if (enemy.getCurHP() < enemy.getMaxHP()) {
@@ -207,34 +207,35 @@ public class Zone {
             //-----------------------------------------------------------------
             //TODO factor in enemy size into this (so that Large enemies count
             //for 2, somehow
-            //-----------------------------------------------------------------
-            //TODO if the difficulty is set to Apprentice, we will need to reject
-            //enemies which only appear on higher difficulties
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
     }
-    
+
     private void populateArrays() {
         //these arrays are ordered in the same way as the lists are ordered on
-        //the DD wiki by default
+        //the DD wiki by default, except that ones that don't appear on 
+        //Apprentice are lumped together in an if statement
         if (sharedEnemies.isEmpty()) {
             sharedEnemies.add(new CultistBrawler(difficulty));
             sharedEnemies.add(new CultistAcolyte(difficulty));
             sharedEnemies.add(new BrigandCutthroat(difficulty));
             sharedEnemies.add(new BrigandFusilier(difficulty));
             sharedEnemies.add(new BrigandBloodletter(difficulty));
-            sharedEnemies.add(new BrigandRaider(difficulty));
-            sharedEnemies.add(new BrigandHunter(difficulty));
             sharedEnemies.add(new Madman(difficulty));
             sharedEnemies.add(new Maggot(difficulty));
             sharedEnemies.add(new Webber(difficulty));
             sharedEnemies.add(new Spitter(difficulty));
             sharedEnemies.add(new BoneRabble(difficulty));
-//            sharedEnemies.add(new Ghoul(difficulty));
-//            sharedEnemies.add(new Gargoyle(difficulty));
+            if (!difficulty.equals("Apprentice")) {
+                sharedEnemies.add(new BrigandHunter(difficulty));
+                sharedEnemies.add(new BrigandRaider(difficulty));
+                sharedEnemies.add(new Ghoul(difficulty));
+                sharedEnemies.add(new Gargoyle(difficulty));
+            }
+
         }
-        
+
         switch (zone) {
             case "Cove":
                 if (coveEnemies.isEmpty()) {
@@ -244,8 +245,11 @@ public class Zone {
                     coveEnemies.add(new SeaMaggot(difficulty));
                     coveEnemies.add(new DeepStinger(difficulty));
                     coveEnemies.add(new DrownedThrall(difficulty));
-//                    coveEnemies.add(new UcaMajor(difficulty));
-//                    coveEnemies.add(new SquiffyGhast(difficulty));
+                    if (!difficulty.equals("Apprentice")) {
+                        coveEnemies.add(new UcaMajor(difficulty));
+                        coveEnemies.add(new SquiffyGhast(difficulty));
+                    }
+
                 }
                 break;
             case "Ruins":
@@ -254,9 +258,12 @@ public class Zone {
                     ruinsEnemies.add(new BoneCourtier(difficulty));
                     ruinsEnemies.add(new BoneArbalest(difficulty));
                     ruinsEnemies.add(new BoneDefender(difficulty));
-//                    ruinsEnemies.add(new BoneSpearman(difficulty));
-//                    ruinsEnemies.add(new BoneCaptain(difficulty));
-//                    ruinsEnemies.add(new BoneBearer(difficulty));
+                    if (!difficulty.equals("Apprentice")) {
+                        ruinsEnemies.add(new BoneSpearman(difficulty));
+                        ruinsEnemies.add(new BoneCaptain(difficulty));
+                        ruinsEnemies.add(new BoneBearer(difficulty));
+                    }
+
                 }
                 break;
             case "Warrens":
@@ -266,9 +273,12 @@ public class Zone {
                     warrensEnemies.add(new SwineWretch(difficulty));
                     warrensEnemies.add(new SwineDrummer(difficulty));
                     warrensEnemies.add(new CarrionEater(difficulty));
-//                    warrensEnemies.add(new LargeCarrionEater(difficulty));
-//                    warrensEnemies.add(new Swinetaur(difficulty));
-//                    warrensEnemies.add(new SwineSkiver(difficulty));
+                    if (!difficulty.equals("Apprentice")) {
+                        warrensEnemies.add(new LargeCarrionEater(difficulty));
+                        warrensEnemies.add(new Swinetaur(difficulty));
+                        warrensEnemies.add(new SwineSkiver(difficulty));
+                    }
+
                 }
                 break;
             case "Weald":
@@ -278,10 +288,12 @@ public class Zone {
                     wealdEnemies.add(new RabidGnasher(difficulty));
                     wealdEnemies.add(new FungalScratcher(difficulty));
                     wealdEnemies.add(new FungalArtillery(difficulty));
-//                    wealdEnemies.add(new Crone(difficulty));
-//                    wealdEnemies.add(new UncleanGiant(difficulty));
-//                    wealdEnemies.add(new HatefulVirago(difficulty));
-//                    wealdEnemies.add(new NecroticFungus(difficulty));
+                    if (!difficulty.equals("Apprentice")) {
+                        wealdEnemies.add(new Crone(difficulty));
+                        wealdEnemies.add(new UncleanGiant(difficulty));
+                        wealdEnemies.add(new HatefulVirago(difficulty));
+                        wealdEnemies.add(new NecroticFungus(difficulty));
+                    }
                 }
                 break;
             default:
@@ -289,27 +301,27 @@ public class Zone {
                 break;
         }
     }
-    
+
     public String getDifficulty() {
         return difficulty;
     }
-    
+
     public static ObservableList<Enemy> getEnemyRoster() {
         return enemyRoster;
     }
-    
+
     public int getCurIterations() {
         return curIterations;
     }
-    
+
     public int getLightLvl() {
         return lightLvl;
     }
-    
+
     public int getTotalIterations() {
         return totalIterations;
     }
-    
+
     public String getZone() {
         return zone;
     }
