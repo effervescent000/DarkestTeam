@@ -220,10 +220,6 @@ public class Combat {
 
         //this code checks for Death's Door (both if a deathblow check is needed
         //and if Death's Door needs to be applied)
-        //TODO something seems to be broken here, dead heroes are not being removed
-        //(I think this may have something to do with the Death's Door checking
-        //but I'm not sure, and it may also be a problem with the enemies)
-        //coming back to the to*do above later, I'm not sure if I figured this out or not
         if (target.getCurHP() < 1) {
             if (checkSpecificForDebuff(target, "Death's Door")) {
                 if (calcRes(target.getDeathRes())) {
