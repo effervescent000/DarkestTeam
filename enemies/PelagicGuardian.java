@@ -71,11 +71,18 @@ public class PelagicGuardian extends Enemy implements ICombatMethods {
 
         if (position == 4) {
             useBarnacleBarrier();
-        } else if (Checker.amIGuarding(this)) {
-            useOctocestus();
-        } else {
-            useBarnacleBarrier();
+            return;
         }
+        if (Checker.amIGuarding(this)) {
+            useOctocestus();
+            return;
+        }
+        if (combat.getEnemyRoster().size() == 1) {
+            useOctocestus();
+            return;
+        }
+        useBarnacleBarrier();
+
     }
 
 }
