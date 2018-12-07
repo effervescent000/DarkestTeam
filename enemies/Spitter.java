@@ -60,7 +60,7 @@ public class Spitter extends Enemy implements ICombatMethods {
 
             acc = 1;
             if (Combat.calcHit(target.getBlightRes(), acc)) {
-                addBlight(target, 2, 1, this); //TODO check duration
+                addBlight(target, 2, 1, this);
             }
         }
     }
@@ -78,7 +78,7 @@ public class Spitter extends Enemy implements ICombatMethods {
             }
             acc = 1;
             if (Combat.calcHit(target.getBlightRes(), acc)) {
-                addBlight(target, 2, 1, this); //TODO check duration
+                addBlight(target, 2, 1, this);
             }
         }
     }

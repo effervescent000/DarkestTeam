@@ -44,7 +44,7 @@ public class SeaMaggot extends Enemy implements ICombatMethods {
         if (Combat.tryAttackByEnemy(this, target)) {
             combat.dmgHero(target, 3, this);
             if (calcHit(target.getDebuffRes(), acc)) {
-                target.getDebuffs().add(new Debuff("Brine", 3, target)); //TODO get accurate duration, this is a guess
+                target.getDebuffs().add(new Debuff("Brine", 3, target));
             }
             
         }

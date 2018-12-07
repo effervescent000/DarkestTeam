@@ -56,7 +56,7 @@ public class SwineDrummer extends Enemy implements ICombatMethods {
         if (Combat.tryAttackByEnemy(this, t)) {
             combat.dmgHero(t, 1, this);
             setAcc(1);
-            Managers.addStatusEffect(t, "Drum of Debilitation", 3, this); //TODO check duration
+            Managers.addStatusEffect(t, "Drum of Debilitation", 3, this);
             Managers.addStatusEffect(t, "Marked", 3, this);
         }
     }

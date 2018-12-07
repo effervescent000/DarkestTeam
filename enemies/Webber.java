@@ -57,14 +57,14 @@ public class Webber extends Enemy implements ICombatMethods {
 
         if (Combat.tryAttackByEnemy(this, target)) {
             combat.dmgHero(target, 1, this);
-            addStatusEffect(target, "Marked", 1, this); //TODO check duration
+            addStatusEffect(target, "Marked", 1, this);
 
             acc = 1;
             if (Combat.calcHit(target.getStunRes(), acc)) {
                 addStatusEffect(target, "Stun", 1, this);
             }
             if (Combat.calcHit(target.getDebuffRes(), acc)) {
-                addStatusEffect(target, "Web", 2, this); //TODO check duration
+                addStatusEffect(target, "Web", 2, this);
             }
 
         }
