@@ -6,7 +6,6 @@
 package darkestteam;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 import javafx.collections.ObservableList;
 
 /**
